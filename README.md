@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# Wandie Admin Dashboard React Js
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A fully fledged backend starter project for spinning up software projects admin dashboards in react.js , material UI.
 
 ## Available Scripts
 
