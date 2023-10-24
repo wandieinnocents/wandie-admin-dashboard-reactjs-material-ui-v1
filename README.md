@@ -9,6 +9,7 @@ YOUTUBE : https://youtu.be/wYpCWwD1oz0
 ## Libraries used 
 - Material UI : https://mui.com/material-ui/getting-started/
 - React Pro sidebar : https://github.com/azouaoui-med/react-pro-sidebar
+- React data grid : https://mui.com/x/react-data-grid/
 - 
 
 
