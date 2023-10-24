@@ -19,17 +19,8 @@ const Team = () => {
       <Box display="flex" justifyContent="space-between" alignItems="center">
       <Header title="Team" subtitle="Welcome to your Team" />
 
-      <Box>
 
-        <DataGrid
-        rows={ mockDataTeam }
-        columns={ columns }
-        
-         />
-
-  
-        
-      </Box>
+      
 
 
       </Box>

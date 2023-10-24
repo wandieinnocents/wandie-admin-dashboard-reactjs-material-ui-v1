@@ -1,18 +1,17 @@
 import React from 'react';
 import { Typography,Box,useTheme } from '@mui/material';
 import { tokens } from '../theme';
+import Grid from '@mui/material/Grid';
+
 
 
 const Header = ({ title, subtitle })=> {
-  const theme = useTheme();
-  const colors = tokens(theme.palette.mode);
-
-
 
   return (
-  <Box>
 
-    <Typography 
+   <Grid container spacing={2}>
+  <Grid item xs={8}>
+  <Typography 
       variant='h3' 
       color="#000000" 
       fontWeight="bold" 
@@ -26,8 +25,22 @@ const Header = ({ title, subtitle })=> {
     >
     { subtitle }
     </Typography>
+  </Grid>
 
-  </Box>
+  <Grid item xs={4}>
+  <Typography
+    variant='h5'
+    style={{textAlign: 'right'}}  
+    // color={colors.greenAccent[400]}
+    >
+    Dashboard
+    </Typography>
+  </Grid>
+  
+</Grid>
+
+  
+  
   );
 }
 
