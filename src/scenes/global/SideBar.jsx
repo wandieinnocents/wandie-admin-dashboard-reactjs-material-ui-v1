@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Sidebar, Menu, MenuItem } from "react-pro-sidebar";
+import { Sidebar, Menu, MenuItem , SubMenu} from "react-pro-sidebar";
 import { Box, IconButton, Typography, useTheme } from "@mui/material";
 import { Link } from "react-router-dom";
 // import "react-pro-sidebar/dist/css/styles.css";
@@ -80,7 +80,7 @@ const SideBar = () => {
                 ml="15px"
               >
                 <Typography variant="h3" color={colors.grey[100]}>
-                  ADMINIS
+                  REACT JS
                 </Typography>
                 <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
                   <MenuOutlinedIcon />
@@ -94,12 +94,13 @@ const SideBar = () => {
               <Box display="flex" justifyContent="center" alignItems="center">
                 <img
                   alt="profile-user"
-                  width="100px"
-                  height="100px"
+                  width="70px"
+                  height="70px"
                   src={`https://static.vecteezy.com/system/resources/previews/019/896/008/original/male-user-avatar-icon-in-flat-design-style-person-signs-illustration-png.png`}
                   style={{ cursor: "pointer", borderRadius: "50%" }}
                 />
               </Box>
+
               <Box textAlign="center">
                 <Typography
                   variant="h2"
@@ -107,10 +108,10 @@ const SideBar = () => {
                   fontWeight="bold"
                   sx={{ m: "10px 0 0 0" }}
                 >
-                  Ed Roh
+                  Wandie
                 </Typography>
                 <Typography variant="h5" color={colors.greenAccent[500]}>
-                  VP Fancy Admin
+                  Administrator
                 </Typography>
               </Box>
             </Box>
@@ -126,6 +127,25 @@ const SideBar = () => {
                 > 
               DASSS
             </MenuItem>
+
+            <SubMenu icon={<HomeOutlinedIcon />} label="Products">
+
+            <MenuItem 
+             icon={<PeopleOutlinedIcon />}
+              component={<Link to="/addproduct" />}
+              // selected={selected}
+              // setSelected={setSelected}
+              > Add Product
+              </MenuItem>
+
+            <MenuItem 
+             icon={<PeopleOutlinedIcon />}
+              component={<Link to="/manage" />}
+              // selected={selected}
+              // setSelected={setSelected}
+              > Manage Product
+              </MenuItem>
+          </SubMenu>
 
 
             <Typography
@@ -145,21 +165,25 @@ const SideBar = () => {
               Teams
             </MenuItem>
 
-           
-            <Item
-              title="Contacts Information"
-              to="/contacts"
+            <MenuItem 
               icon={<ContactsOutlinedIcon />}
+              component={<Link to="/contact" />}
               selected={selected}
               setSelected={setSelected}
-            />
-            <Item
-              title="Invoices Balances"
-              to="/invoices"
+                > 
+              Contacts
+            </MenuItem>
+
+            <MenuItem 
               icon={<ReceiptOutlinedIcon />}
+              component={<Link to="/invoice" />}
               selected={selected}
               setSelected={setSelected}
-            />
+                > 
+              Invoices
+              
+            </MenuItem>
+
 
             <Typography
               variant="h6"
@@ -168,27 +192,36 @@ const SideBar = () => {
             >
               Pages
             </Typography>
-            <Item
-              title="Profile Form"
-              to="/form"
+
+            <MenuItem 
               icon={<PersonOutlinedIcon />}
+              component={<Link to="/form" />}
               selected={selected}
               setSelected={setSelected}
-            />
-            <Item
-              title="Calendar"
-              to="/calendar"
+                > 
+              Form
+              
+            </MenuItem>
+
+            <MenuItem 
               icon={<CalendarTodayOutlinedIcon />}
+              component={<Link to="/calendar" />}
               selected={selected}
               setSelected={setSelected}
-            />
-            <Item
-              title="FAQ Page"
-              to="/faq"
+                > 
+              Calendar
+              
+            </MenuItem>
+
+            <MenuItem 
               icon={<HelpOutlineOutlinedIcon />}
+              component={<Link to="/faq" />}
               selected={selected}
               setSelected={setSelected}
-            />
+                > 
+              FAQ
+              
+            </MenuItem>
 
             <Typography
               variant="h6"
@@ -197,34 +230,46 @@ const SideBar = () => {
             >
               Charts
             </Typography>
-            <Item
-              title="Bar Chart"
-              to="/bar"
+
+            
+            <MenuItem 
               icon={<BarChartOutlinedIcon />}
+              component={<Link to="/bar" />}
               selected={selected}
               setSelected={setSelected}
-            />
-            <Item
-              title="Pie Chart"
-              to="/pie"
+                > 
+              Bar Chart
+              
+            </MenuItem>
+            <MenuItem 
               icon={<PieChartOutlineOutlinedIcon />}
+              component={<Link to="/pie" />}
               selected={selected}
               setSelected={setSelected}
-            />
-            <Item
-              title="Line Chart"
-              to="/line"
+                > 
+              Pie Chart
+              
+            </MenuItem>
+            <MenuItem 
               icon={<TimelineOutlinedIcon />}
+              component={<Link to="/line" />}
               selected={selected}
               setSelected={setSelected}
-            />
-            <Item
-              title="Geography Chart"
-              to="/geography"
+                > 
+              Line Chart
+              
+            </MenuItem>
+
+            <MenuItem 
               icon={<MapOutlinedIcon />}
+              component={<Link to="/map" />}
               selected={selected}
               setSelected={setSelected}
-            />
+                > 
+             Map
+              
+            </MenuItem>
+
           </Box>
         </Menu>
       </Sidebar>
