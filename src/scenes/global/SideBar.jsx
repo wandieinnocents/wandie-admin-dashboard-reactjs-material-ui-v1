@@ -167,7 +167,7 @@ const SideBar = () => {
 
             <MenuItem 
               icon={<ContactsOutlinedIcon />}
-              component={<Link to="/contact" />}
+              component={<Link to="/contacts" />}
               selected={selected}
               setSelected={setSelected}
                 > 
