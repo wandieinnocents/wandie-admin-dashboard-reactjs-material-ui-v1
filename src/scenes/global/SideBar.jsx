@@ -61,6 +61,9 @@ const SideBar = () => {
         // },
       }}
     >
+
+    {/*  Start Sidebar */}
+
       <Sidebar collapsed={isCollapsed}>
         <Menu iconShape="square">
           {/* LOGO AND MENU ICON */}
@@ -131,149 +134,311 @@ const SideBar = () => {
             {/* Product categories  */}
             <SubMenu icon={<HomeOutlinedIcon />} label="Product Categories">
 
-            <MenuItem 
-             icon={<PeopleOutlinedIcon />}
-              component={<Link to="/addproduct" />}
-              // selected={selected}
-              // setSelected={setSelected}
-              > Add  Category
-              </MenuItem>
-
-            <MenuItem 
-             icon={<PeopleOutlinedIcon />}
-              component={<Link to="/manage" />}
-              // selected={selected}
-              // setSelected={setSelected}
-              > Manage Categories
-              </MenuItem>
-          </SubMenu>
-
-
-            <Typography
-              variant="h6"
-              color={colors.grey[300]}
-              sx={{ m: "15px 0 5px 20px" }}
-            >
-              Data
-            </Typography>
-
-            <MenuItem 
+              <MenuItem 
               icon={<PeopleOutlinedIcon />}
-              component={<Link to="/team" />}
-              selected={selected}
-              setSelected={setSelected}
-                > 
-              Teams
-            </MenuItem>
+                component={<Link to="/addproduct" />}
+                // selected={selected}
+                // setSelected={setSelected}
+                > Add Category
+                </MenuItem>
 
-            <MenuItem 
-              icon={<ContactsOutlinedIcon />}
-              component={<Link to="/clients" />}
-              selected={selected}
-              setSelected={setSelected}
-                > 
-              Clients
-            </MenuItem>
+              <MenuItem 
+              icon={<PeopleOutlinedIcon />}
+                component={<Link to="/manage" />}
+                // selected={selected}
+                // setSelected={setSelected}
+                > Manage Categories
+                </MenuItem>
 
-            <MenuItem 
-              icon={<ReceiptOutlinedIcon />}
-              component={<Link to="/invoice" />}
-              selected={selected}
-              setSelected={setSelected}
-                > 
-              Invoices
-              
-            </MenuItem>
+            </SubMenu>
+
+            {/* Packages  */}
+            <SubMenu icon={<HomeOutlinedIcon />} label="Packages">
+
+              <MenuItem 
+              icon={<PeopleOutlinedIcon />}
+                component={<Link to="/addproduct" />}
+                // selected={selected}
+                // setSelected={setSelected}
+                > Add Package
+                </MenuItem>
+
+              <MenuItem 
+              icon={<PeopleOutlinedIcon />}
+                component={<Link to="/manage" />}
+                // selected={selected}
+                // setSelected={setSelected}
+                > Manage Packages
+                </MenuItem>
+
+            </SubMenu>
+
+             {/* Clients  */}
+             <SubMenu icon={<HomeOutlinedIcon />} label="Clients">
+
+                  <MenuItem 
+                    icon={<PeopleOutlinedIcon />}
+                    component={<Link to="/addproduct" />}
+                    // selected={selected}
+                    // setSelected={setSelected}
+                    > Add Client
+                  </MenuItem>
+
+                  <MenuItem 
+                    icon={<PeopleOutlinedIcon />}
+                    component={<Link to="/manage" />}
+                    // selected={selected}
+                    // setSelected={setSelected}
+                    > Manage Clients
+                  </MenuItem>
+
+             </SubMenu>
+
+             {/* Sales  */}
+             <SubMenu icon={<HomeOutlinedIcon />} label="Sales">
+
+                  <MenuItem 
+                    icon={<PeopleOutlinedIcon />}
+                    component={<Link to="/addproduct" />}
+                    // selected={selected}
+                    // setSelected={setSelected}
+                    > Add Sale
+                  </MenuItem>
+
+                  <MenuItem 
+                    icon={<PeopleOutlinedIcon />}
+                    component={<Link to="/manage" />}
+                    // selected={selected}
+                    // setSelected={setSelected}
+                    > Manage Sales
+                  </MenuItem>
+
+             </SubMenu>
+
+             {/* Hosting Providers  */}
+             <SubMenu icon={<HomeOutlinedIcon />} label="Hosting Providers">
+
+                  <MenuItem 
+                    icon={<PeopleOutlinedIcon />}
+                    component={<Link to="/addproduct" />}
+                    // selected={selected}
+                    // setSelected={setSelected}
+                    > Add Provider
+                  </MenuItem>
+
+                  <MenuItem 
+                    icon={<PeopleOutlinedIcon />}
+                    component={<Link to="/manage" />}
+                    // selected={selected}
+                    // setSelected={setSelected}
+                    > Manage Providers
+                  </MenuItem>
+
+             </SubMenu>
+
+             {/* Email Reminders  */}
+             <SubMenu icon={<HomeOutlinedIcon />} label="Email Reminders">
+
+                  <MenuItem 
+                    icon={<PeopleOutlinedIcon />}
+                    component={<Link to="/addproduct" />}
+                    // selected={selected}
+                    // setSelected={setSelected}
+                    > Add  Reminder
+                  </MenuItem>
+
+                  <MenuItem 
+                    icon={<PeopleOutlinedIcon />}
+                    component={<Link to="/manage" />}
+                    // selected={selected}
+                    // setSelected={setSelected}
+                    > Manage Reminders
+                  </MenuItem>
+
+             </SubMenu>
+
+             {/* Payments  */}
+             <SubMenu icon={<HomeOutlinedIcon />} label="Payments">
+
+                  <MenuItem 
+                    icon={<PeopleOutlinedIcon />}
+                    component={<Link to="/addproduct" />}
+                    // selected={selected}
+                    // setSelected={setSelected}
+                    > Add  Payment
+                  </MenuItem>
+
+                  <MenuItem 
+                    icon={<PeopleOutlinedIcon />}
+                    component={<Link to="/manage" />}
+                    // selected={selected}
+                    // setSelected={setSelected}
+                    > Manage Payments
+                  </MenuItem>
+
+             </SubMenu>
+
+             {/* Documentation  */}
+             <SubMenu icon={<HomeOutlinedIcon />} label="Documention">
+
+                  <MenuItem 
+                    icon={<PeopleOutlinedIcon />}
+                    component={<Link to="/addproduct" />}
+                    // selected={selected}
+                    // setSelected={setSelected}
+                    > Add  Invoice
+                  </MenuItem>
+
+                  <MenuItem 
+                    icon={<PeopleOutlinedIcon />}
+                    component={<Link to="/addproduct" />}
+                    // selected={selected}
+                    // setSelected={setSelected}
+                    > Manage  Invoices
+                  </MenuItem>
+
+                  <MenuItem 
+                    icon={<PeopleOutlinedIcon />}
+                    component={<Link to="/manage" />}
+                    // selected={selected}
+                    // setSelected={setSelected}
+                    > Add Quotation 
+                  </MenuItem>
+
+                  <MenuItem 
+                    icon={<PeopleOutlinedIcon />}
+                    component={<Link to="/manage" />}
+                    // selected={selected}
+                    // setSelected={setSelected}
+                    > Manage Quotations
+                  </MenuItem>
+
+             </SubMenu>
+
+              {/* Debtors  */}
+              <SubMenu icon={<HomeOutlinedIcon />} label="Debtors">
+
+                <MenuItem 
+                  icon={<PeopleOutlinedIcon />}
+                  component={<Link to="/addproduct" />}
+                  // selected={selected}
+                  // setSelected={setSelected}
+                  > Add  Debtor
+                </MenuItem>
+
+                <MenuItem 
+                  icon={<PeopleOutlinedIcon />}
+                  component={<Link to="/manage" />}
+                  // selected={selected}
+                  // setSelected={setSelected}
+                  > Manage Debtors
+                </MenuItem>
+
+              </SubMenu>
 
 
-            <Typography
-              variant="h6"
-              color={colors.grey[300]}
-              sx={{ m: "15px 0 5px 20px" }}
-            >
-              Pages
-            </Typography>
+              {/* Reports  */}
+              <SubMenu icon={<HomeOutlinedIcon />} label="Reports">
 
-            <MenuItem 
-              icon={<PersonOutlinedIcon />}
-              component={<Link to="/form" />}
-              selected={selected}
-              setSelected={setSelected}
-                > 
-              Form
-              
-            </MenuItem>
+                <MenuItem 
+                  icon={<PeopleOutlinedIcon />}
+                  component={<Link to="/addproduct" />}
+                  // selected={selected}
+                  // setSelected={setSelected}
+                  > Monthly Reports
+                </MenuItem>
 
-            <MenuItem 
-              icon={<CalendarTodayOutlinedIcon />}
-              component={<Link to="/calendar" />}
-              selected={selected}
-              setSelected={setSelected}
-                > 
-              Calendar
-              
-            </MenuItem>
+                <MenuItem 
+                  icon={<PeopleOutlinedIcon />}
+                  component={<Link to="/manage" />}
+                  // selected={selected}
+                  // setSelected={setSelected}
+                  > Annual Reports
+                </MenuItem>
 
-            <MenuItem 
-              icon={<HelpOutlineOutlinedIcon />}
-              component={<Link to="/faq" />}
-              selected={selected}
-              setSelected={setSelected}
-                > 
-              FAQ
-              
-            </MenuItem>
-
-            <Typography
-              variant="h6"
-              color={colors.grey[300]}
-              sx={{ m: "15px 0 5px 20px" }}
-            >
-              Charts
-            </Typography>
+              </SubMenu>
 
             
-            <MenuItem 
-              icon={<BarChartOutlinedIcon />}
-              component={<Link to="/bar" />}
-              selected={selected}
-              setSelected={setSelected}
-                > 
-              Bar Chart
-              
-            </MenuItem>
-            <MenuItem 
-              icon={<PieChartOutlineOutlinedIcon />}
-              component={<Link to="/pie" />}
-              selected={selected}
-              setSelected={setSelected}
-                > 
-              Pie Chart
-              
-            </MenuItem>
-            <MenuItem 
-              icon={<TimelineOutlinedIcon />}
-              component={<Link to="/line" />}
-              selected={selected}
-              setSelected={setSelected}
-                > 
-              Line Chart
-              
-            </MenuItem>
 
-            <MenuItem 
-              icon={<MapOutlinedIcon />}
-              component={<Link to="/map" />}
-              selected={selected}
-              setSelected={setSelected}
-                > 
-             Map
-              
-            </MenuItem>
+
+            <Typography
+              variant="h6"
+              color={colors.grey[300]}
+              sx={{ m: "15px 0 5px 20px" }}
+            >
+              Account
+            </Typography>
+
+             {/* Roles  */}
+             <SubMenu icon={<HomeOutlinedIcon />} label="Roles">
+
+                <MenuItem 
+                  icon={<PeopleOutlinedIcon />}
+                  component={<Link to="/addproduct" />}
+                  // selected={selected}
+                  // setSelected={setSelected}
+                  > Add Role
+                </MenuItem>
+
+                <MenuItem 
+                  icon={<PeopleOutlinedIcon />}
+                  component={<Link to="/manage" />}
+                  // selected={selected}
+                  // setSelected={setSelected}
+                  > Manage Roles
+                </MenuItem>
+
+             </SubMenu>
+
+              {/* Permissions  */}
+              <SubMenu icon={<HomeOutlinedIcon />} label="Permissions">
+
+                <MenuItem 
+                  icon={<PeopleOutlinedIcon />}
+                  component={<Link to="/addproduct" />}
+                  // selected={selected}
+                  // setSelected={setSelected}
+                  > Add Permission
+                </MenuItem>
+
+                <MenuItem 
+                  icon={<PeopleOutlinedIcon />}
+                  component={<Link to="/manage" />}
+                  // selected={selected}
+                  // setSelected={setSelected}
+                  > Manage Permissions
+                </MenuItem>
+
+              </SubMenu>
+
+              {/* Users  */}
+              <SubMenu icon={<HomeOutlinedIcon />} label="Permissions">
+
+                <MenuItem 
+                  icon={<PeopleOutlinedIcon />}
+                  component={<Link to="/addproduct" />}
+                  // selected={selected}
+                  // setSelected={setSelected}
+                  > Add User
+                </MenuItem>
+
+                <MenuItem 
+                  icon={<PeopleOutlinedIcon />}
+                  component={<Link to="/manage" />}
+                  // selected={selected}
+                  // setSelected={setSelected}
+                  > Manage Users
+                </MenuItem>
+
+              </SubMenu>
+
+           
 
           </Box>
         </Menu>
       </Sidebar>
+
+      {/* End Sidebar */}
     </Box>
   );
 };
