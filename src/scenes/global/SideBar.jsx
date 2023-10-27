@@ -20,8 +20,6 @@ import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
 
 
 const SideBar = () => {
-  // const theme = useTheme();
-  // const colors = tokens(theme.palette.mode);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [selected, setSelected] = useState("Dashboard");
 
@@ -30,15 +28,17 @@ const SideBar = () => {
 
     {/*  Start Sidebar */}
 
-      <Sidebar collapsed={isCollapsed} style={{ backgroundColor:"#2D9BF0" }}>
+      <Sidebar 
+      collapsed={isCollapsed}>
         <Menu iconShape="square" style={{ backgroundColor:"#6ce4fe", color:"#000000" }}>
           {/* LOGO AND MENU ICON */}
           <MenuItem
             onClick={() => setIsCollapsed(!isCollapsed)}
             icon={isCollapsed ? <MenuOutlinedIcon /> : undefined}
             style={{
-              margin: "10px 0 20px 0",
+              margin: "0px 0 20px 0",
               color: "#000000",
+              backgroundColor:"#6ce4fe"
             }}
           >
             {!isCollapsed && (
@@ -87,12 +87,14 @@ const SideBar = () => {
           )}
 
           {/* Dashbord list items */}
-          <Box paddingLeft={isCollapsed ? undefined : "10%"}>
+          <Box paddingLeft={isCollapsed ? undefined : "0%"}>
             <MenuItem 
               icon={<HomeOutlinedIcon />}
               component={<Link to="/" />}
               selected={selected}
               setSelected={setSelected}
+             
+
                 > 
               Dashboard
             </MenuItem>

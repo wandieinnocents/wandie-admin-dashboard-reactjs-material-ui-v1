@@ -47,7 +47,7 @@ function App() {
         <Route path="/" element={<Dashboard />} />
         <Route path="/team" element={<Team />} />
         <Route path="/contacts" element={<Contacts />} />
-        <Route path="/clients" element={<Clients />} />
+        {/* <Route path="/clients" element={<Contacts />} /> */}
         {/* <Route path="/invoices" element={<Invoices />} /> */}
         {/* <Route path="/form" element={<Form />} /> */}
         {/* <Route path="/bar" element={<Bar />} /> */}
