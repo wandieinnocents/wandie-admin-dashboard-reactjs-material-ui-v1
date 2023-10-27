@@ -37,7 +37,7 @@ const Team = () => {
     },
     {
       field: 'fullName',
-      headerName: 'Full name',
+      headerName: 'fulll name',
       description: 'This column has a value getter and is not sortable.',
       sortable: false,
       width: 160,
@@ -68,6 +68,7 @@ const Team = () => {
        <Header title="Team" subtitle="Welcome to your Team" />
 
       <DataGrid
+        style={{ marginTop:"20px" }}
         rows={rows}
         columns={columns}
         initialState={{

@@ -125,17 +125,18 @@ const SideBar = () => {
               selected={selected}
               setSelected={setSelected}
                 > 
-              DASSS
+              Dashboard
             </MenuItem>
 
-            <SubMenu icon={<HomeOutlinedIcon />} label="Products">
+            {/* Product categories  */}
+            <SubMenu icon={<HomeOutlinedIcon />} label="Product Categories">
 
             <MenuItem 
              icon={<PeopleOutlinedIcon />}
               component={<Link to="/addproduct" />}
               // selected={selected}
               // setSelected={setSelected}
-              > Add Product
+              > Add  Category
               </MenuItem>
 
             <MenuItem 
@@ -143,7 +144,7 @@ const SideBar = () => {
               component={<Link to="/manage" />}
               // selected={selected}
               // setSelected={setSelected}
-              > Manage Product
+              > Manage Categories
               </MenuItem>
           </SubMenu>
 
@@ -167,11 +168,11 @@ const SideBar = () => {
 
             <MenuItem 
               icon={<ContactsOutlinedIcon />}
-              component={<Link to="/contacts" />}
+              component={<Link to="/clients" />}
               selected={selected}
               setSelected={setSelected}
                 > 
-              Contacts
+              Clients
             </MenuItem>
 
             <MenuItem 
