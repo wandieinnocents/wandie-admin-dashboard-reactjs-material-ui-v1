@@ -6,8 +6,6 @@ import { ColorModeContext, useMode } from "./theme";
 import TopBar from "./scenes/global/TopBar";
 import SideBar from "./scenes/global/SideBar";
 import Dashboard from "./scenes/dashboard";
-import Team from "./pages/Team";
-import Contacts from "./pages/Contacts";
 import AddClient from "./pages/Clients/AddClient";
 import ViewClients from "./pages/Clients/ViewClients";
 import AddProductCategory from "./pages/ProductCategories/AddProductCategory";
@@ -53,8 +51,6 @@ function App() {
         <TopBar />
         <Routes>
         <Route path="/" element={<Dashboard />} />
-        <Route path="/team" element={<Team />} />
-        <Route path="/contacts" element={<Contacts />} />
         <Route path="/add_product_category" element={<AddProductCategory />} />
         <Route path="/view_product_categories" element={<ViewProductCategories />} />
         <Route path="/add_package" element={<AddPackage />} />
