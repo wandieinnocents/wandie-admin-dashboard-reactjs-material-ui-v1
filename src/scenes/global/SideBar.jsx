@@ -126,7 +126,7 @@ const SideBar = () => {
 
               <MenuItem 
               icon={<PeopleOutlinedIcon />}
-                component={<Link to="/addproduct" />}
+                component={<Link to="/add_package" />}
                 // selected={selected}
                 // setSelected={setSelected}
                 > Add Package
@@ -134,7 +134,7 @@ const SideBar = () => {
 
               <MenuItem 
               icon={<PeopleOutlinedIcon />}
-                component={<Link to="/manage" />}
+                component={<Link to="/view_packages" />}
                 // selected={selected}
                 // setSelected={setSelected}
                 > Manage Packages
@@ -147,7 +147,7 @@ const SideBar = () => {
 
                   <MenuItem 
                     icon={<PeopleOutlinedIcon />}
-                    component={<Link to="/addproduct" />}
+                    component={<Link to="/add_client" />}
                     // selected={selected}
                     // setSelected={setSelected}
                     > Add Client
@@ -155,7 +155,7 @@ const SideBar = () => {
 
                   <MenuItem 
                     icon={<PeopleOutlinedIcon />}
-                    component={<Link to="/manage" />}
+                    component={<Link to="/view_clients" />}
                     // selected={selected}
                     // setSelected={setSelected}
                     > Manage Clients
@@ -168,7 +168,7 @@ const SideBar = () => {
 
                   <MenuItem 
                     icon={<PeopleOutlinedIcon />}
-                    component={<Link to="/addproduct" />}
+                    component={<Link to="/add_sale" />}
                     // selected={selected}
                     // setSelected={setSelected}
                     > Add Sale
@@ -176,7 +176,7 @@ const SideBar = () => {
 
                   <MenuItem 
                     icon={<PeopleOutlinedIcon />}
-                    component={<Link to="/manage" />}
+                    component={<Link to="/view_sales" />}
                     // selected={selected}
                     // setSelected={setSelected}
                     > Manage Sales

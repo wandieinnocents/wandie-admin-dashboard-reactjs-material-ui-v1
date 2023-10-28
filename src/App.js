@@ -8,9 +8,14 @@ import SideBar from "./scenes/global/SideBar";
 import Dashboard from "./scenes/dashboard";
 import Team from "./pages/Team";
 import Contacts from "./pages/Contacts";
-import Clients from "./pages/Clients";
+import AddClient from "./pages/Clients/AddClient";
+import ViewClients from "./pages/Clients/ViewClients";
 import AddProductCategory from "./pages/ProductCategories/AddProductCategory";
 import ViewProductCategories from "./pages/ProductCategories/ViewProductCategories";
+import AddPackage from "./pages/Packages/AddPackage";
+import ViewPackages from "./pages/Packages/ViewPackages";
+import AddSale from "./pages/Sales/AddSale";
+import ViewSales from "./pages/Sales/ViewSales";
 
 // import Invoices from "./scenes/invoices";
 // import Contacts from "./scenes/contacts";
@@ -52,6 +57,16 @@ function App() {
         <Route path="/contacts" element={<Contacts />} />
         <Route path="/add_product_category" element={<AddProductCategory />} />
         <Route path="/view_product_categories" element={<ViewProductCategories />} />
+        <Route path="/add_package" element={<AddPackage />} />
+        <Route path="/view_packages" element={<ViewPackages />} />
+        <Route path="/add_client" element={<AddClient/>} />
+        <Route path="/view_clients" element={<ViewClients/>} />
+        <Route path="/add_sale" element={<AddSale/>} />
+        <Route path="/view_sales" element={<ViewSales/>} />
+
+
+
+
         {/* <Route path="/clients" element={<Contacts />} /> */}
         {/* <Route path="/invoices" element={<Invoices />} /> */}
         {/* <Route path="/form" element={<Form />} /> */}

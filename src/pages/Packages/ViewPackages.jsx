@@ -2,18 +2,18 @@ import React from 'react';
 import Header from '../../components/Header';
 import { Box, Button, IconButton, Typography, useTheme } from "@mui/material";
 
-const ViewProductCategories = () => {
+const ViewPackages = () => {
   return (
     <Box m="30px">
       
       <Box>
-      <Header title="View Product Categories" subtitle="Welcome to your ProductCategories" />
+      <Header title="View ViewPackages" subtitle="Welcome to your ViewPackages" />
 
-      <p>view content of ProductCategories here</p>
+      <p>View content of ViewPackages here</p>
       
       </Box>
     </Box>
   );
 }
 
-export default ViewProductCategories;
+export default ViewPackages;
