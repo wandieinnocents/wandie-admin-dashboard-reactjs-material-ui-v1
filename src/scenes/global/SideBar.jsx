@@ -29,6 +29,7 @@ const SideBar = () => {
     {/*  Start Sidebar */}
 
       <Sidebar 
+      
       collapsed={isCollapsed}>
         <Menu iconShape="square" style={{ backgroundColor:"#6ce4fe", color:"#000000" }}>
           {/* LOGO AND MENU ICON */}
@@ -104,7 +105,7 @@ const SideBar = () => {
 
               <MenuItem 
               icon={<PeopleOutlinedIcon />}
-                component={<Link to="/addproduct" />}
+                component={<Link to="/add_product_category" />}
                 // selected={selected}
                 // setSelected={setSelected}
                 > Add Category
@@ -112,7 +113,7 @@ const SideBar = () => {
 
               <MenuItem 
               icon={<PeopleOutlinedIcon />}
-                component={<Link to="/manage" />}
+                component={<Link to="/view_product_categories" />}
                 // selected={selected}
                 // setSelected={setSelected}
                 > Manage Categories
