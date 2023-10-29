@@ -265,7 +265,7 @@ const AddProduct = () => {
                <TextField
                 fullWidth
                 type="text"
-                label="Supplier Organization "
+                label="Supplier Organization"
                 // onBlur={handleBlur}
                 onChange={(event)=>{setSupplierOrganization(event.target.value)}}
                 value={supplier_organization}
