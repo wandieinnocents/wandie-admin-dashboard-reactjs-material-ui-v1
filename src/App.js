@@ -14,6 +14,37 @@ import AddPackage from "./pages/Packages/AddPackage";
 import ViewPackages from "./pages/Packages/ViewPackages";
 import AddSale from "./pages/Sales/AddSale";
 import ViewSales from "./pages/Sales/ViewSales";
+import AddHostingProvider from "./pages/HostingProviders/AddHostingProvider";
+import ViewHostingProviders from "./pages/HostingProviders/ViewHostingProviders";
+import AddEmailReminder from "./pages/EmailReminders/AddEmailReminder";
+import ViewEmailReminders from "./pages/EmailReminders/ViewEmailReminders";
+import AddPayment from "./pages/Payments/AddPayment";
+import ViewPayments from "./pages/Payments/ViewPayments";
+import AddInvoice from "./pages/Documentation/AddInvoice";
+import ViewInvoices from "./pages/Documentation/ViewInvoices";
+import AddQuotation from "./pages/Documentation/AddQuotation";
+import ViewQuotations from "./pages/Documentation/ViewQuotations";
+import AddDebtor from "./pages/Debtors/AddDebtor";
+import ViewDebtors from "./pages/Debtors/ViewDebtors";
+import AnnualReports from "./pages/Reports/AnnualReports";
+import MonthlyReports from "./pages/Reports/MonthlyReports";
+import AddRole from "./pages/Roles/AddRole";
+import ViewRoles from "./pages/Roles/ViewRoles";
+import AddPermission from "./pages/Permissions/AddPermission";
+import ViewPermissions from "./pages/Permissions/ViewPermissions";
+import AddUser from "./pages/Users/AddUser";
+import ViewUsers from "./pages/Users/ViewUsers";
+
+
+
+
+
+
+
+
+
+
+
 
 // import Invoices from "./scenes/invoices";
 // import Contacts from "./scenes/contacts";
@@ -59,6 +90,28 @@ function App() {
         <Route path="/view_clients" element={<ViewClients/>} />
         <Route path="/add_sale" element={<AddSale/>} />
         <Route path="/view_sales" element={<ViewSales/>} />
+        <Route path="/add_hosting_provider" element={<AddHostingProvider/>} />
+        <Route path="/view_hosting_providers" element={<ViewHostingProviders/>} />
+        <Route path="/add_email_reminder" element={<AddEmailReminder/>} />
+        <Route path="/view_email_reminders" element={<ViewEmailReminders/>} />
+        <Route path="/add_payment" element={<AddPayment/>} />
+        <Route path="/view_payments" element={<ViewPayments/>} />
+        <Route path="/add_invoice" element={<AddInvoice/>} />
+        <Route path="/view_invoices" element={<ViewInvoices/>} />
+        <Route path="/add_quotation" element={<AddQuotation/>} />
+        <Route path="/view_quotations" element={<ViewQuotations/>} />
+        <Route path="/add_debtor" element={<AddDebtor/>} />
+        <Route path="/view_debtors" element={<ViewDebtors/>} />
+        <Route path="/monthly_reports" element={<MonthlyReports/>} />
+        <Route path="/annual_reports" element={<AnnualReports/>} />
+        <Route path="/add_role" element={<AddRole/>} />
+        <Route path="/view_roles" element={<ViewRoles/>} />
+        <Route path="/add_permission" element={<AddPermission/>} />
+        <Route path="/view_permissions" element={<ViewPermissions/>} />
+        <Route path="/add_user" element={<AddUser/>} />
+        <Route path="/view_users" element={<ViewUsers/>} />
+
+
 
 
 

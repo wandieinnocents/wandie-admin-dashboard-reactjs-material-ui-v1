@@ -39,7 +39,8 @@ const SideBar = () => {
             style={{
               margin: "0px 0 20px 0",
               color: "#000000",
-              backgroundColor:"#6ce4fe"
+              backgroundColor:"#91d7eb"
+              
             }}
           >
             {!isCollapsed && (
@@ -189,7 +190,7 @@ const SideBar = () => {
 
                   <MenuItem 
                     icon={<PeopleOutlinedIcon />}
-                    component={<Link to="/addproduct" />}
+                    component={<Link to="/add_hosting_provider" />}
                     // selected={selected}
                     // setSelected={setSelected}
                     > Add Provider
@@ -197,7 +198,7 @@ const SideBar = () => {
 
                   <MenuItem 
                     icon={<PeopleOutlinedIcon />}
-                    component={<Link to="/manage" />}
+                    component={<Link to="/view_hosting_providers" />}
                     // selected={selected}
                     // setSelected={setSelected}
                     > Manage Providers
@@ -210,7 +211,7 @@ const SideBar = () => {
 
                   <MenuItem 
                     icon={<PeopleOutlinedIcon />}
-                    component={<Link to="/addproduct" />}
+                    component={<Link to="/add_email_reminder" />}
                     // selected={selected}
                     // setSelected={setSelected}
                     > Add  Reminder
@@ -218,7 +219,7 @@ const SideBar = () => {
 
                   <MenuItem 
                     icon={<PeopleOutlinedIcon />}
-                    component={<Link to="/manage" />}
+                    component={<Link to="/view_email_reminders" />}
                     // selected={selected}
                     // setSelected={setSelected}
                     > Manage Reminders
@@ -231,7 +232,7 @@ const SideBar = () => {
 
                   <MenuItem 
                     icon={<PeopleOutlinedIcon />}
-                    component={<Link to="/addproduct" />}
+                    component={<Link to="/add_payment" />}
                     // selected={selected}
                     // setSelected={setSelected}
                     > Add  Payment
@@ -239,7 +240,7 @@ const SideBar = () => {
 
                   <MenuItem 
                     icon={<PeopleOutlinedIcon />}
-                    component={<Link to="/manage" />}
+                    component={<Link to="/view_payments" />}
                     // selected={selected}
                     // setSelected={setSelected}
                     > Manage Payments
@@ -252,7 +253,7 @@ const SideBar = () => {
 
                   <MenuItem 
                     icon={<PeopleOutlinedIcon />}
-                    component={<Link to="/addproduct" />}
+                    component={<Link to="/add_invoice" />}
                     // selected={selected}
                     // setSelected={setSelected}
                     > Add  Invoice
@@ -260,7 +261,7 @@ const SideBar = () => {
 
                   <MenuItem 
                     icon={<PeopleOutlinedIcon />}
-                    component={<Link to="/addproduct" />}
+                    component={<Link to="/view_invoices" />}
                     // selected={selected}
                     // setSelected={setSelected}
                     > Manage  Invoices
@@ -268,7 +269,7 @@ const SideBar = () => {
 
                   <MenuItem 
                     icon={<PeopleOutlinedIcon />}
-                    component={<Link to="/manage" />}
+                    component={<Link to="/add_quotation" />}
                     // selected={selected}
                     // setSelected={setSelected}
                     > Add Quotation 
@@ -276,7 +277,7 @@ const SideBar = () => {
 
                   <MenuItem 
                     icon={<PeopleOutlinedIcon />}
-                    component={<Link to="/manage" />}
+                    component={<Link to="/view_quotations" />}
                     // selected={selected}
                     // setSelected={setSelected}
                     > Manage Quotations
@@ -289,7 +290,7 @@ const SideBar = () => {
 
                 <MenuItem 
                   icon={<PeopleOutlinedIcon />}
-                  component={<Link to="/addproduct" />}
+                  component={<Link to="/add_debtor" />}
                   // selected={selected}
                   // setSelected={setSelected}
                   > Add  Debtor
@@ -297,7 +298,7 @@ const SideBar = () => {
 
                 <MenuItem 
                   icon={<PeopleOutlinedIcon />}
-                  component={<Link to="/manage" />}
+                  component={<Link to="/view_debtors" />}
                   // selected={selected}
                   // setSelected={setSelected}
                   > Manage Debtors
@@ -311,7 +312,7 @@ const SideBar = () => {
 
                 <MenuItem 
                   icon={<PeopleOutlinedIcon />}
-                  component={<Link to="/addproduct" />}
+                  component={<Link to="/monthly_reports" />}
                   // selected={selected}
                   // setSelected={setSelected}
                   > Monthly Reports
@@ -319,7 +320,7 @@ const SideBar = () => {
 
                 <MenuItem 
                   icon={<PeopleOutlinedIcon />}
-                  component={<Link to="/manage" />}
+                  component={<Link to="/annual_reports" />}
                   // selected={selected}
                   // setSelected={setSelected}
                   > Annual Reports
@@ -343,7 +344,7 @@ const SideBar = () => {
 
                 <MenuItem 
                   icon={<PeopleOutlinedIcon />}
-                  component={<Link to="/addproduct" />}
+                  component={<Link to="/add_role" />}
                   // selected={selected}
                   // setSelected={setSelected}
                   > Add Role
@@ -351,7 +352,7 @@ const SideBar = () => {
 
                 <MenuItem 
                   icon={<PeopleOutlinedIcon />}
-                  component={<Link to="/manage" />}
+                  component={<Link to="/view_roles" />}
                   // selected={selected}
                   // setSelected={setSelected}
                   > Manage Roles
@@ -364,7 +365,7 @@ const SideBar = () => {
 
                 <MenuItem 
                   icon={<PeopleOutlinedIcon />}
-                  component={<Link to="/addproduct" />}
+                  component={<Link to="/add_permission" />}
                   // selected={selected}
                   // setSelected={setSelected}
                   > Add Permission
@@ -372,7 +373,7 @@ const SideBar = () => {
 
                 <MenuItem 
                   icon={<PeopleOutlinedIcon />}
-                  component={<Link to="/manage" />}
+                  component={<Link to="/view_permissions" />}
                   // selected={selected}
                   // setSelected={setSelected}
                   > Manage Permissions
@@ -381,11 +382,11 @@ const SideBar = () => {
               </SubMenu>
 
               {/* Users  */}
-              <SubMenu icon={<HomeOutlinedIcon />} label="Permissions">
+              <SubMenu icon={<HomeOutlinedIcon />} label="Users">
 
                 <MenuItem 
                   icon={<PeopleOutlinedIcon />}
-                  component={<Link to="/addproduct" />}
+                  component={<Link to="/add_user" />}
                   // selected={selected}
                   // setSelected={setSelected}
                   > Add User
@@ -393,7 +394,7 @@ const SideBar = () => {
 
                 <MenuItem 
                   icon={<PeopleOutlinedIcon />}
-                  component={<Link to="/manage" />}
+                  component={<Link to="/view_users" />}
                   // selected={selected}
                   // setSelected={setSelected}
                   > Manage Users
