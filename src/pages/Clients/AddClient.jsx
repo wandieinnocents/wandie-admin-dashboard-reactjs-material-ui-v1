@@ -47,7 +47,7 @@ const AddClient = () => {
 
   return (
     <Box m="50px">
-      <Header title="ADD CLIENT " subtitle="Create a New User Profile" />
+      <Header title="ADD CLIENT " subtitle="Onboard a New User Client" />
 
       <Formik
         onSubmit={handleFormSubmit}
