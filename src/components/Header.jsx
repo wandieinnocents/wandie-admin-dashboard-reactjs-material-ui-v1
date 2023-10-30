@@ -31,6 +31,7 @@ const Header = ({ title, subtitle })=> {
   <Typography
     variant='h5'
     style={{textAlign: 'right'}}  
+    sx={{ mb: "50px" }}
     // color={colors.greenAccent[400]}
     >
     Dashboard

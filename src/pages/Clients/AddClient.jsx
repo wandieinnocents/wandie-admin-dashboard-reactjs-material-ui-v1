@@ -3,6 +3,8 @@ import { Formik } from "formik";
 import * as yup from "yup";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Header from "../../components/Header";
+import SendIcon from '@mui/icons-material/Send';
+
 
 const AddClient = () => {
   const isNonMobile = useMediaQuery("(min-width:600px)");
@@ -10,6 +12,38 @@ const AddClient = () => {
   const handleFormSubmit = (values) => {
     console.log(values);
   };
+
+
+  const initialValues = {
+    fullName: "",
+    email: "",
+    contact: "",
+    contact2: "",
+    organization: "",
+    address: "",
+
+  };
+
+  const phoneRegExp =
+  /^((\+[1-9]{1,4}[ -]?)|(\([0-9]{2,3}\)[ -]?)|([0-9]{2,4})[ -]?)*?[0-9]{3,4}[ -]?[0-9]{3,4}$/;
+
+  // validation
+  const checkoutSchema = yup.object().shape({
+    fullName: yup.string().required("required"),
+    email: yup.string().email("invalid email").required("required"),
+    contact: yup
+      .string()
+      .matches(phoneRegExp, "Phone number is not valid")
+      .required("required"),
+      contact2: yup
+      .string()
+      .matches(phoneRegExp, "Phone number 2 is not valid")
+      .required("required"),
+    address: yup.string().required("required"),
+    organization: yup.string().required("required"),
+    
+  });
+
 
   return (
     <Box m="50px">
@@ -39,33 +73,19 @@ const AddClient = () => {
             >
               <TextField
                 fullWidth
-                variant="filled"
                 type="text"
-                label="First Name"
+                label="Full Name"
                 onBlur={handleBlur}
                 onChange={handleChange}
-                value={values.firstName}
-                name="firstName"
-                error={!!touched.firstName && !!errors.firstName}
-                helperText={touched.firstName && errors.firstName}
+                value={values.fullName}
+                name="fullName"
+                error={!!touched.fullName && !!errors.fullName}
+                helperText={touched.fullName && errors.fullName}
                 sx={{ gridColumn: "span 2" }}
               />
+              
               <TextField
                 fullWidth
-                variant="filled"
-                type="text"
-                label="Last Name"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.lastName}
-                name="lastName"
-                error={!!touched.lastName && !!errors.lastName}
-                helperText={touched.lastName && errors.lastName}
-                sx={{ gridColumn: "span 2" }}
-              />
-              <TextField
-                fullWidth
-                variant="filled"
                 type="text"
                 label="Email"
                 onBlur={handleBlur}
@@ -74,38 +94,66 @@ const AddClient = () => {
                 name="email"
                 error={!!touched.email && !!errors.email}
                 helperText={touched.email && errors.email}
-                sx={{ gridColumn: "span 4" }}
+                sx={{ gridColumn: "span 2" }}
               />
+
               <TextField
                 fullWidth
-                variant="filled"
                 type="text"
-                label="Contact Number"
+                label="Contact Number 1"
                 onBlur={handleBlur}
                 onChange={handleChange}
                 value={values.contact}
                 name="contact"
                 error={!!touched.contact && !!errors.contact}
                 helperText={touched.contact && errors.contact}
-                sx={{ gridColumn: "span 4" }}
+                sx={{ gridColumn: "span 2" }}
               />
+
               <TextField
                 fullWidth
-                variant="filled"
                 type="text"
-                label="Address 1"
+                label="Contact Number 2"
                 onBlur={handleBlur}
                 onChange={handleChange}
-                value={values.address1}
-                name="address1"
-                error={!!touched.address1 && !!errors.address1}
-                helperText={touched.address1 && errors.address1}
-                sx={{ gridColumn: "span 4" }}
+                value={values.contact2}
+                name="contact2"
+                error={!!touched.contact && !!errors.contact}
+                helperText={touched.contact2 && errors.contact2}
+                sx={{ gridColumn: "span 2" }}
+              />
+
+              <TextField
+                fullWidth
+                type="text"
+                label="Organization"
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.organization}
+                name="organization"
+                error={!!touched.organization && !!errors.organization}
+                helperText={touched.organization && errors.organization}
+                sx={{ gridColumn: "span 2" }}
+              />
+
+              <TextField
+                fullWidth
+                type="text"
+                label="Address"
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.address}
+                name="address"
+                error={!!touched.address && !!errors.address}
+                helperText={touched.address && errors.address}
+                sx={{ gridColumn: "span 2" }}
               />
               
             </Box>
-            <Box display="flex" justifyContent="end" mt="20px">
-              <Button type="submit" color="secondary" variant="contained">
+
+            {/* submit button */}
+            <Box display="flex" justifyContent="start" mt="30px">
+              <Button type="submit" size="large" endIcon={<SendIcon />} style={{ backgroundColor:"#6ce4fe" }} color="secondary" variant="contained">
                 Add New Client
               </Button>
             </Box>
@@ -116,26 +164,6 @@ const AddClient = () => {
   );
 };
 
-const phoneRegExp =
-  /^((\+[1-9]{1,4}[ -]?)|(\([0-9]{2,3}\)[ -]?)|([0-9]{2,4})[ -]?)*?[0-9]{3,4}[ -]?[0-9]{3,4}$/;
 
-const checkoutSchema = yup.object().shape({
-  firstName: yup.string().required("required"),
-  lastName: yup.string().required("required"),
-  email: yup.string().email("invalid email").required("required"),
-  contact: yup
-    .string()
-    .matches(phoneRegExp, "Phone number is not valid")
-    .required("required"),
-  address1: yup.string().required("required"),
-});
-const initialValues = {
-  firstName: "",
-  lastName: "",
-  email: "",
-  contact: "",
-  address1: "",
-
-};
 
 export default AddClient;
