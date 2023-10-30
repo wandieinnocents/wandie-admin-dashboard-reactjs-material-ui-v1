@@ -42,7 +42,7 @@ const SideBar = () => {
             style={{
               margin: "0px 0 20px 0",
               color: "#000000",
-              backgroundColor:"#91d7eb"
+              backgroundColor:"#6ce4fe"
               
             }}
           >
@@ -230,63 +230,6 @@ const SideBar = () => {
 
              </SubMenu>
 
-             {/* Payments  */}
-             <SubMenu icon={<PaidOutlinedIcon />} label="Payments">
-
-                  <MenuItem 
-                    icon={<ArrowRightAltIcon />}
-                    component={<Link to="/add_payment" />}
-                    // selected={selected}
-                    // setSelected={setSelected}
-                    > Add  Payment
-                  </MenuItem>
-
-                  <MenuItem 
-                    icon={<ArrowRightAltIcon />}
-                    component={<Link to="/view_payments" />}
-                    // selected={selected}
-                    // setSelected={setSelected}
-                    > Manage Payments
-                  </MenuItem>
-
-             </SubMenu>
-
-             {/* Documentation  */}
-             <SubMenu icon={<ArticleOutlinedIcon />} label="Documention">
-
-                  <MenuItem 
-                    icon={<ArrowRightAltIcon />}
-                    component={<Link to="/add_invoice" />}
-                    // selected={selected}
-                    // setSelected={setSelected}
-                    > Add  Invoice
-                  </MenuItem>
-
-                  <MenuItem 
-                    icon={<ArrowRightAltIcon />}
-                    component={<Link to="/view_invoices" />}
-                    // selected={selected}
-                    // setSelected={setSelected}
-                    > Manage  Invoices
-                  </MenuItem>
-
-                  <MenuItem 
-                    icon={<ArrowRightAltIcon />}
-                    component={<Link to="/add_quotation" />}
-                    // selected={selected}
-                    // setSelected={setSelected}
-                    > Add Quotation 
-                  </MenuItem>
-
-                  <MenuItem 
-                    icon={<ArrowRightAltIcon />}
-                    component={<Link to="/view_quotations" />}
-                    // selected={selected}
-                    // setSelected={setSelected}
-                    > Manage Quotations
-                  </MenuItem>
-
-             </SubMenu>
 
               {/* Debtors  */}
               <SubMenu icon={<TransferWithinAStationOutlinedIcon />} label="Debtors">

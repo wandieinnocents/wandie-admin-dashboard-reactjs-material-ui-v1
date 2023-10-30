@@ -34,7 +34,7 @@ const AddProductCategory = () => {
 
 
   return (
-    <Box m="30px" >
+    <Box mt="30px" mb="60px" mr="60px" ml="60px" >
       
       <Box>
       <Header title="Add Product Categories" subtitle="Welcome to your ProductCategories" />

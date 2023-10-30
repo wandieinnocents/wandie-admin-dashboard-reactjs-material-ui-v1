@@ -46,7 +46,7 @@ const AddClient = () => {
 
 
   return (
-    <Box m="50px">
+    <Box mt="30px" mb="60px" mr="60px" ml="60px">
       <Header title="ADD CLIENT " subtitle="Onboard a New User Client" />
 
       <Formik

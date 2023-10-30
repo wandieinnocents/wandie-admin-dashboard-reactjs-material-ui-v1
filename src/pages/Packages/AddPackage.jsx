@@ -47,7 +47,7 @@ const AddPackage = () => {
 
 
   return (
-    <Box m="30px">
+    <Box mt="30px" mb="60px" mr="60px" ml="60px">
       
       <Box>
       <Header title="Add Product Categories" subtitle="Welcome to your ProductCategories" />
@@ -78,7 +78,7 @@ const AddPackage = () => {
               <TextField
                 fullWidth
                 type="text"
-                label="Full Name"
+                label="Package Name"
                 onBlur={handleBlur}
                 onChange={handleChange}
                 value={values.fullName}
@@ -91,7 +91,7 @@ const AddPackage = () => {
               <TextField
                 fullWidth
                 type="text"
-                label="Email"
+                label="Storage Space"
                 onBlur={handleBlur}
                 onChange={handleChange}
                 value={values.email}
@@ -101,56 +101,24 @@ const AddPackage = () => {
                 sx={{ gridColumn: "span 2" }}
               />
 
-              <TextField
-                fullWidth
-                type="text"
-                label="Contact Number 1"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.contact}
-                name="contact"
-                error={!!touched.contact && !!errors.contact}
-                helperText={touched.contact && errors.contact}
-                sx={{ gridColumn: "span 2" }}
-              />
+              
 
-              <TextField
-                fullWidth
-                type="text"
-                label="Contact Number 2"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.contact2}
-                name="contact2"
-                error={!!touched.contact && !!errors.contact}
-                helperText={touched.contact2 && errors.contact2}
-                sx={{ gridColumn: "span 2" }}
-              />
+              
 
-              <TextField
+                <TextField
                 fullWidth
+                // style={{ width:"100%" }}
                 type="text"
-                label="Organization"
+                multiline
+                rows={5}
+                label="Description of features"
                 onBlur={handleBlur}
                 onChange={handleChange}
-                value={values.organization}
-                name="organization"
-                error={!!touched.organization && !!errors.organization}
-                helperText={touched.organization && errors.organization}
-                sx={{ gridColumn: "span 2" }}
-              />
-
-              <TextField
-                fullWidth
-                type="text"
-                label="Address"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.address}
-                name="address"
-                error={!!touched.address && !!errors.address}
-                helperText={touched.address && errors.address}
-                sx={{ gridColumn: "span 2" }}
+                value={values.description}
+                name="description"
+                error={!!touched.description && !!errors.description}
+                helperText={touched.description && errors.description}
+                sx={{ gridColumn: "span 4" }}
               />
               
             </Box>
