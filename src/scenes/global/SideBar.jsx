@@ -16,6 +16,21 @@ import PieChartOutlineOutlinedIcon from "@mui/icons-material/PieChartOutlineOutl
 import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
+import InventoryIcon from '@mui/icons-material/InventoryOutlined';
+import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
+import Inventory2OutlinedIcon from '@mui/icons-material/Inventory2Outlined';
+import PeopleAltOutlinedIcon from '@mui/icons-material/PeopleAltOutlined';
+import ShoppingCartCheckoutOutlinedIcon from '@mui/icons-material/ShoppingCartCheckoutOutlined';
+import CloudUploadOutlinedIcon from '@mui/icons-material/CloudUploadOutlined';
+import MarkEmailUnreadOutlinedIcon from '@mui/icons-material/MarkEmailUnreadOutlined';
+import PaidOutlinedIcon from '@mui/icons-material/PaidOutlined';
+import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined';
+import TransferWithinAStationOutlinedIcon from '@mui/icons-material/TransferWithinAStationOutlined';
+import FolderOpenOutlinedIcon from '@mui/icons-material/FolderOpenOutlined';
+import AdminPanelSettingsOutlinedIcon from '@mui/icons-material/AdminPanelSettingsOutlined';
+import GroupAddOutlinedIcon from '@mui/icons-material/GroupAddOutlined';
+import SwitchAccountOutlinedIcon from '@mui/icons-material/SwitchAccountOutlined';
+
 
 
 
@@ -102,10 +117,10 @@ const SideBar = () => {
             </MenuItem>
 
             {/* Product categories  */}
-            <SubMenu icon={<HomeOutlinedIcon />} label="Product Categories">
+            <SubMenu icon={<InventoryIcon />} label="Product Categories">
 
               <MenuItem 
-              icon={<PeopleOutlinedIcon />}
+              icon={<ArrowRightAltIcon />}
                 component={<Link to="/add_product_category" />}
                 // selected={selected}
                 // setSelected={setSelected}
@@ -113,7 +128,7 @@ const SideBar = () => {
                 </MenuItem>
 
               <MenuItem 
-              icon={<PeopleOutlinedIcon />}
+              icon={<ArrowRightAltIcon />}
                 component={<Link to="/view_product_categories" />}
                 // selected={selected}
                 // setSelected={setSelected}
@@ -123,10 +138,10 @@ const SideBar = () => {
             </SubMenu>
 
             {/* Packages  */}
-            <SubMenu icon={<HomeOutlinedIcon />} label="Packages">
+            <SubMenu icon={<Inventory2OutlinedIcon />} label="Packages">
 
               <MenuItem 
-              icon={<PeopleOutlinedIcon />}
+              icon={<ArrowRightAltIcon />}
                 component={<Link to="/add_package" />}
                 // selected={selected}
                 // setSelected={setSelected}
@@ -134,7 +149,7 @@ const SideBar = () => {
                 </MenuItem>
 
               <MenuItem 
-              icon={<PeopleOutlinedIcon />}
+              icon={<ArrowRightAltIcon />}
                 component={<Link to="/view_packages" />}
                 // selected={selected}
                 // setSelected={setSelected}
@@ -144,10 +159,10 @@ const SideBar = () => {
             </SubMenu>
 
              {/* Clients  */}
-             <SubMenu icon={<HomeOutlinedIcon />} label="Clients">
+             <SubMenu icon={<PeopleAltOutlinedIcon />} label="Clients">
 
                   <MenuItem 
-                    icon={<PeopleOutlinedIcon />}
+                    icon={<ArrowRightAltIcon />}
                     component={<Link to="/add_client" />}
                     // selected={selected}
                     // setSelected={setSelected}
@@ -155,7 +170,7 @@ const SideBar = () => {
                   </MenuItem>
 
                   <MenuItem 
-                    icon={<PeopleOutlinedIcon />}
+                    icon={<ArrowRightAltIcon />}
                     component={<Link to="/view_clients" />}
                     // selected={selected}
                     // setSelected={setSelected}
@@ -165,10 +180,10 @@ const SideBar = () => {
              </SubMenu>
 
              {/* Sales  */}
-             <SubMenu icon={<HomeOutlinedIcon />} label="Sales">
+             <SubMenu icon={<ShoppingCartCheckoutOutlinedIcon />} label="Sales">
 
                   <MenuItem 
-                    icon={<PeopleOutlinedIcon />}
+                    icon={<ArrowRightAltIcon />}
                     component={<Link to="/add_sale" />}
                     // selected={selected}
                     // setSelected={setSelected}
@@ -176,7 +191,7 @@ const SideBar = () => {
                   </MenuItem>
 
                   <MenuItem 
-                    icon={<PeopleOutlinedIcon />}
+                    icon={<ArrowRightAltIcon />}
                     component={<Link to="/view_sales" />}
                     // selected={selected}
                     // setSelected={setSelected}
@@ -186,10 +201,10 @@ const SideBar = () => {
              </SubMenu>
 
              {/* Hosting Providers  */}
-             <SubMenu icon={<HomeOutlinedIcon />} label="Hosting Providers">
+             <SubMenu icon={<CloudUploadOutlinedIcon />} label="Hosting Providers">
 
                   <MenuItem 
-                    icon={<PeopleOutlinedIcon />}
+                    icon={<ArrowRightAltIcon />}
                     component={<Link to="/add_hosting_provider" />}
                     // selected={selected}
                     // setSelected={setSelected}
@@ -197,7 +212,7 @@ const SideBar = () => {
                   </MenuItem>
 
                   <MenuItem 
-                    icon={<PeopleOutlinedIcon />}
+                    icon={<ArrowRightAltIcon />}
                     component={<Link to="/view_hosting_providers" />}
                     // selected={selected}
                     // setSelected={setSelected}
@@ -207,10 +222,10 @@ const SideBar = () => {
              </SubMenu>
 
              {/* Email Reminders  */}
-             <SubMenu icon={<HomeOutlinedIcon />} label="Email Reminders">
+             <SubMenu icon={<MarkEmailUnreadOutlinedIcon />} label="Email Reminders">
 
                   <MenuItem 
-                    icon={<PeopleOutlinedIcon />}
+                    icon={<ArrowRightAltIcon />}
                     component={<Link to="/add_email_reminder" />}
                     // selected={selected}
                     // setSelected={setSelected}
@@ -218,7 +233,7 @@ const SideBar = () => {
                   </MenuItem>
 
                   <MenuItem 
-                    icon={<PeopleOutlinedIcon />}
+                    icon={<ArrowRightAltIcon />}
                     component={<Link to="/view_email_reminders" />}
                     // selected={selected}
                     // setSelected={setSelected}
@@ -228,10 +243,10 @@ const SideBar = () => {
              </SubMenu>
 
              {/* Payments  */}
-             <SubMenu icon={<HomeOutlinedIcon />} label="Payments">
+             <SubMenu icon={<PaidOutlinedIcon />} label="Payments">
 
                   <MenuItem 
-                    icon={<PeopleOutlinedIcon />}
+                    icon={<ArrowRightAltIcon />}
                     component={<Link to="/add_payment" />}
                     // selected={selected}
                     // setSelected={setSelected}
@@ -239,7 +254,7 @@ const SideBar = () => {
                   </MenuItem>
 
                   <MenuItem 
-                    icon={<PeopleOutlinedIcon />}
+                    icon={<ArrowRightAltIcon />}
                     component={<Link to="/view_payments" />}
                     // selected={selected}
                     // setSelected={setSelected}
@@ -249,10 +264,10 @@ const SideBar = () => {
              </SubMenu>
 
              {/* Documentation  */}
-             <SubMenu icon={<HomeOutlinedIcon />} label="Documention">
+             <SubMenu icon={<ArticleOutlinedIcon />} label="Documention">
 
                   <MenuItem 
-                    icon={<PeopleOutlinedIcon />}
+                    icon={<ArrowRightAltIcon />}
                     component={<Link to="/add_invoice" />}
                     // selected={selected}
                     // setSelected={setSelected}
@@ -260,7 +275,7 @@ const SideBar = () => {
                   </MenuItem>
 
                   <MenuItem 
-                    icon={<PeopleOutlinedIcon />}
+                    icon={<ArrowRightAltIcon />}
                     component={<Link to="/view_invoices" />}
                     // selected={selected}
                     // setSelected={setSelected}
@@ -268,7 +283,7 @@ const SideBar = () => {
                   </MenuItem>
 
                   <MenuItem 
-                    icon={<PeopleOutlinedIcon />}
+                    icon={<ArrowRightAltIcon />}
                     component={<Link to="/add_quotation" />}
                     // selected={selected}
                     // setSelected={setSelected}
@@ -276,7 +291,7 @@ const SideBar = () => {
                   </MenuItem>
 
                   <MenuItem 
-                    icon={<PeopleOutlinedIcon />}
+                    icon={<ArrowRightAltIcon />}
                     component={<Link to="/view_quotations" />}
                     // selected={selected}
                     // setSelected={setSelected}
@@ -286,10 +301,10 @@ const SideBar = () => {
              </SubMenu>
 
               {/* Debtors  */}
-              <SubMenu icon={<HomeOutlinedIcon />} label="Debtors">
+              <SubMenu icon={<TransferWithinAStationOutlinedIcon />} label="Debtors">
 
                 <MenuItem 
-                  icon={<PeopleOutlinedIcon />}
+                  icon={<ArrowRightAltIcon />}
                   component={<Link to="/add_debtor" />}
                   // selected={selected}
                   // setSelected={setSelected}
@@ -297,7 +312,7 @@ const SideBar = () => {
                 </MenuItem>
 
                 <MenuItem 
-                  icon={<PeopleOutlinedIcon />}
+                  icon={<ArrowRightAltIcon />}
                   component={<Link to="/view_debtors" />}
                   // selected={selected}
                   // setSelected={setSelected}
@@ -308,10 +323,10 @@ const SideBar = () => {
 
 
               {/* Reports  */}
-              <SubMenu icon={<HomeOutlinedIcon />} label="Reports">
+              <SubMenu icon={<FolderOpenOutlinedIcon />} label="Reports">
 
                 <MenuItem 
-                  icon={<PeopleOutlinedIcon />}
+                  icon={<ArrowRightAltIcon />}
                   component={<Link to="/monthly_reports" />}
                   // selected={selected}
                   // setSelected={setSelected}
@@ -319,7 +334,7 @@ const SideBar = () => {
                 </MenuItem>
 
                 <MenuItem 
-                  icon={<PeopleOutlinedIcon />}
+                  icon={<ArrowRightAltIcon />}
                   component={<Link to="/annual_reports" />}
                   // selected={selected}
                   // setSelected={setSelected}
@@ -340,10 +355,10 @@ const SideBar = () => {
             </Typography>
 
              {/* Roles  */}
-             <SubMenu icon={<HomeOutlinedIcon />} label="Roles">
+             <SubMenu icon={<AdminPanelSettingsOutlinedIcon />} label="Roles">
 
                 <MenuItem 
-                  icon={<PeopleOutlinedIcon />}
+                  icon={<ArrowRightAltIcon />}
                   component={<Link to="/add_role" />}
                   // selected={selected}
                   // setSelected={setSelected}
@@ -351,7 +366,7 @@ const SideBar = () => {
                 </MenuItem>
 
                 <MenuItem 
-                  icon={<PeopleOutlinedIcon />}
+                  icon={<ArrowRightAltIcon />}
                   component={<Link to="/view_roles" />}
                   // selected={selected}
                   // setSelected={setSelected}
@@ -361,10 +376,10 @@ const SideBar = () => {
              </SubMenu>
 
               {/* Permissions  */}
-              <SubMenu icon={<HomeOutlinedIcon />} label="Permissions">
+              <SubMenu icon={<GroupAddOutlinedIcon />} label="Permissions">
 
                 <MenuItem 
-                  icon={<PeopleOutlinedIcon />}
+                  icon={<ArrowRightAltIcon />}
                   component={<Link to="/add_permission" />}
                   // selected={selected}
                   // setSelected={setSelected}
@@ -372,7 +387,7 @@ const SideBar = () => {
                 </MenuItem>
 
                 <MenuItem 
-                  icon={<PeopleOutlinedIcon />}
+                  icon={<ArrowRightAltIcon />}
                   component={<Link to="/view_permissions" />}
                   // selected={selected}
                   // setSelected={setSelected}
@@ -382,10 +397,10 @@ const SideBar = () => {
               </SubMenu>
 
               {/* Users  */}
-              <SubMenu icon={<HomeOutlinedIcon />} label="Users">
+              <SubMenu icon={<SwitchAccountOutlinedIcon />} label="Users">
 
                 <MenuItem 
-                  icon={<PeopleOutlinedIcon />}
+                  icon={<ArrowRightAltIcon />}
                   component={<Link to="/add_user" />}
                   // selected={selected}
                   // setSelected={setSelected}
@@ -393,7 +408,7 @@ const SideBar = () => {
                 </MenuItem>
 
                 <MenuItem 
-                  icon={<PeopleOutlinedIcon />}
+                  icon={<ArrowRightAltIcon />}
                   component={<Link to="/view_users" />}
                   // selected={selected}
                   // setSelected={setSelected}
