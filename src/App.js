@@ -72,13 +72,13 @@ function App() {
       <CssBaseline />
 
 
-    <div className="app"> 
+    <div className="app" > 
 
       {/* Side bar */}
       <SideBar />
       
       {/* Main content */}
-      <main className="content">
+      <main className="content"  style={{  }}>
         <TopBar />
         <Routes>
         <Route path="/" element={<Dashboard />} />

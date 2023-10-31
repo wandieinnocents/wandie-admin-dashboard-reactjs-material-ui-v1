@@ -32,8 +32,9 @@ const SideBar = () => {
     {/*  Start Sidebar */}
 
       <Sidebar 
-      
+      style={{ height: "100vh", }}
       collapsed={isCollapsed}>
+      
         <Menu iconShape="square" style={{ backgroundColor:"#6ce4fe", color:"#000000" }}>
           {/* LOGO AND MENU ICON */}
           <MenuItem

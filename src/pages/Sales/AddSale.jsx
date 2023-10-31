@@ -199,7 +199,7 @@ const AddSale = () => {
                 sx={{ gridColumn: "span 2" }}
               />
 
-<TextField
+              <TextField
                 fullWidth
                 type="text"
                 label="Domain Name Cost"
@@ -211,7 +211,101 @@ const AddSale = () => {
                 helperText={touched.address && errors.address}
                 sx={{ gridColumn: "span 2" }}
               />
+
+<TextField
+                fullWidth
+                type="text"
+                label="Hosting Cost"
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.address}
+                name="address"
+                error={!!touched.address && !!errors.address}
+                helperText={touched.address && errors.address}
+                sx={{ gridColumn: "span 2" }}
+              />
+
+<TextField
+                fullWidth
+                type="text"
+                label="Total Cost"
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.address}
+                name="address"
+                error={!!touched.address && !!errors.address}
+                helperText={touched.address && errors.address}
+                sx={{ gridColumn: "span 2" }}
+              />
+
+<TextField
+                fullWidth
+                type="text"
+                label="Balance"
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.address}
+                name="address"
+                error={!!touched.address && !!errors.address}
+                helperText={touched.address && errors.address}
+                sx={{ gridColumn: "span 2" }}
+              />
+
+<TextField
+                fullWidth
+                type="text"
+                label="Select Payment Status"
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.address}
+                name="address"
+                error={!!touched.address && !!errors.address}
+                helperText={touched.address && errors.address}
+                sx={{ gridColumn: "span 2" }}
+              />
+
+<TextField
+                fullWidth
+                type="text"
+                label="Sale Recorded By"
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.address}
+                name="address"
+                error={!!touched.address && !!errors.address}
+                helperText={touched.address && errors.address}
+                sx={{ gridColumn: "span 2" }}
+              />
               
+              <TextField
+                fullWidth
+                type="text"
+                label="Business Address"
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.address}
+                name="address"
+                error={!!touched.address && !!errors.address}
+                helperText={touched.address && errors.address}
+                sx={{ gridColumn: "span 2" }}
+              />
+
+              <TextField
+                fullWidth
+                // style={{ width:"100%" }}
+                type="text"
+                multiline
+                rows={5}
+                label="Description"
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.description}
+                name="description"
+                error={!!touched.description && !!errors.description}
+                helperText={touched.description && errors.description}
+                sx={{ gridColumn: "span 4" }}
+              />
+
             </Box>
 
             {/* submit button */}
