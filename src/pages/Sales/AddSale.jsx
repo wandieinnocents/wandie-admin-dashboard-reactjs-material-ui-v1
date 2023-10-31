@@ -117,16 +117,15 @@ const AddSale = () => {
 
               
 
-              <TextField
-                fullWidth
-                type="text"
+            <TextField
+                id="date"
                 label="Renewal Date"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.contact2}
-                name="contact2"
-                error={!!touched.contact && !!errors.contact}
-                helperText={touched.contact2 && errors.contact2}
+                type="date"
+                name="registration_date"
+                defaultValue={currentDate}
+                InputLabelProps={{
+                  shrink: true
+                }}
                 sx={{ gridColumn: "span 2" }}
               />
 
@@ -144,29 +143,24 @@ const AddSale = () => {
               />
 
 
-              <FormControl  sx={{ gridColumn: "span 2" }} >
-                <InputLabel id="demo-simple-select-label">Select Client</InputLabel>
-                <Select
-                
-                  style={{ width:"100%" }}
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  onBlur={handleBlur}
-                  onChange={handleChangeClient}
-                  value={client}
-                  name="address"
-                  error={!!touched.address && !!errors.address}
-                  helperText={touched.address && errors.address}
-                >
-                  <MenuItem value={10}>Client one</MenuItem>
-                  <MenuItem value={20}>Client two</MenuItem>
-                  <MenuItem value={30}>Client three</MenuItem>
-                </Select>
-              </FormControl>
+            <FormControl  fullWidth sx={{ gridColumn: "span 2" }}>
+              <InputLabel id="demo-simple-select-label">Select Client</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={client}
+                label="Select Client"
+                onChange={handleChangeClient}
+              >
+                <MenuItem value={10}>Client one</MenuItem>
+                <MenuItem value={20}>Client 2</MenuItem>
+                <MenuItem value={30}>Client 3</MenuItem>
+              </Select>
+            </FormControl>
+              
 
               {/* select field for client */}
 
-              
               {/* <FormControl>
               
                 <InputLabel id="demo-simple-select-label">Age</InputLabel>
