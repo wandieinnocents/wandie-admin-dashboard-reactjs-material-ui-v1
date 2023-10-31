@@ -103,6 +103,7 @@ const AddSale = () => {
            
            
 
+              {/* Registration date */}
               <TextField
                 id="date"
                 label="Registration Date"
@@ -115,21 +116,21 @@ const AddSale = () => {
                 sx={{ gridColumn: "span 2" }}
               />
 
-              
-
-            <TextField
-                id="date"
-                label="Renewal Date"
-                type="date"
-                name="registration_date"
-                defaultValue={currentDate}
-                InputLabelProps={{
-                  shrink: true
-                }}
-                sx={{ gridColumn: "span 2" }}
-              />
-
+              {/* Renewal date */}
               <TextField
+                  id="date"
+                  label="Renewal Date"
+                  type="date"
+                  name="registration_date"
+                  defaultValue={currentDate}
+                  InputLabelProps={{
+                    shrink: true
+                  }}
+                  sx={{ gridColumn: "span 2" }}
+                />
+
+              {/* Sale serial number */}
+             <TextField
                 fullWidth
                 type="text"
                 label="Sale Serial Number"
@@ -143,46 +144,72 @@ const AddSale = () => {
               />
 
 
-            <FormControl  fullWidth sx={{ gridColumn: "span 2" }}>
-              <InputLabel id="demo-simple-select-label">Select Client</InputLabel>
-              <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                value={client}
-                label="Select Client"
-                onChange={handleChangeClient}
-              >
-                <MenuItem value={10}>Client one</MenuItem>
-                <MenuItem value={20}>Client 2</MenuItem>
-                <MenuItem value={30}>Client 3</MenuItem>
-              </Select>
-            </FormControl>
-              
-
-              {/* select field for client */}
-
-              {/* <FormControl>
-              
-                <InputLabel id="demo-simple-select-label">Age</InputLabel>
+              {/* Client */}
+              <FormControl  fullWidth sx={{ gridColumn: "span 2" }}>
+                <InputLabel id="demo-simple-select-label">Select Client</InputLabel>
                 <Select
-                
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
-                  value={age}
-                  label="Age"
-                  onChange={handleChange1}
-                  sx={{ gridColumn: "span 2" }}
+                  value={client}
+                  label="Select Client"
+                  onChange={handleChangeClient}
                 >
-                  <MenuItem value={10}>Ten</MenuItem>
-                  <MenuItem value={20}>Twenty</MenuItem>
-                  <MenuItem value={30}>Thirty</MenuItem>
+                  <MenuItem value={10}>Client one</MenuItem>
+                  <MenuItem value={20}>Client 2</MenuItem>
+                  <MenuItem value={30}>Client 3</MenuItem>
                 </Select>
-              </FormControl> */}
+              </FormControl>
 
+              {/* Hosting provider */}
+              <FormControl  fullWidth sx={{ gridColumn: "span 2" }}>
+                <InputLabel id="demo-simple-select-label">Select Hosting provider</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={client}
+                  label="Select Hosting provider"
+                  onChange={handleChangeClient}
+                >
+                  <MenuItem value={10}>Asura hosting</MenuItem>
+                  <MenuItem value={20}>Namecheap</MenuItem>
+                </Select>
+              </FormControl>
+
+                {/* sale status */}
+              <FormControl  fullWidth sx={{ gridColumn: "span 2" }}>
+                <InputLabel id="demo-simple-select-label">Select Sale Status</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={client}
+                  label="Select Sale Status"
+                  onChange={handleChangeClient}
+                >
+                  <MenuItem value={10}>Pending</MenuItem>
+                  <MenuItem value={20}>Complete</MenuItem>
+                </Select>
+              </FormControl>
+
+               {/* service status */}
+              <FormControl  fullWidth sx={{ gridColumn: "span 2" }}>
+                <InputLabel id="demo-simple-select-label">Select Service Status</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={client}
+                  label="Select Service Status"
+                  onChange={handleChangeClient}
+                >
+                  <MenuItem value={10}>Active</MenuItem>
+                  <MenuItem value={20}>Inactive</MenuItem>
+                </Select>
+              </FormControl>
+
+               {/* product name */}
                 <TextField
                 fullWidth
                 type="text"
-                label="Select Hosting Provider"
+                label="Select Product Name"
                 onBlur={handleBlur}
                 onChange={handleChange}
                 value={values.address}
@@ -192,62 +219,23 @@ const AddSale = () => {
                 sx={{ gridColumn: "span 2" }}
               />
 
-                <TextField
-                fullWidth
-                type="text"
-                label="Select Sale Satatus"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.address}
-                name="address"
-                error={!!touched.address && !!errors.address}
-                helperText={touched.address && errors.address}
-                sx={{ gridColumn: "span 2" }}
-              />
+              {/* Storage space */}
+              <FormControl  fullWidth sx={{ gridColumn: "span 2" }}>
+                <InputLabel id="demo-simple-select-label">Select Storage Space</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={client}
+                  label="Select Storage Space"
+                  onChange={handleChangeClient}
+                >
+                  <MenuItem value={10}>5 GB</MenuItem>
+                  <MenuItem value={20}>10 GB</MenuItem>
+                  <MenuItem value={20}>20 GB</MenuItem>
+                </Select>
+              </FormControl>
 
-                <TextField
-                fullWidth
-                type="text"
-                label="Select Service Status"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.address}
-                name="address"
-                error={!!touched.address && !!errors.address}
-                helperText={touched.address && errors.address}
-                sx={{ gridColumn: "span 2" }}
-              />
-
-
-
-             
-
-                <TextField
-                fullWidth
-                type="text"
-                label="Sdelect Product Name"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.address}
-                name="address"
-                error={!!touched.address && !!errors.address}
-                helperText={touched.address && errors.address}
-                sx={{ gridColumn: "span 2" }}
-              />
-
-                <TextField
-                fullWidth
-                type="text"
-                label="Select Storage Space"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.address}
-                name="address"
-                error={!!touched.address && !!errors.address}
-                helperText={touched.address && errors.address}
-                sx={{ gridColumn: "span 2" }}
-              />
-
+              {/* domain name cost */}
               <TextField
                 fullWidth
                 type="text"
@@ -261,7 +249,8 @@ const AddSale = () => {
                 sx={{ gridColumn: "span 2" }}
               />
 
-<TextField
+              {/* hosting cost */}
+              <TextField
                 fullWidth
                 type="text"
                 label="Hosting Cost"
@@ -274,7 +263,8 @@ const AddSale = () => {
                 sx={{ gridColumn: "span 2" }}
               />
 
-<TextField
+              {/* total cost */}
+              <TextField
                 fullWidth
                 type="text"
                 label="Total Cost"
@@ -287,7 +277,8 @@ const AddSale = () => {
                 sx={{ gridColumn: "span 2" }}
               />
 
-<TextField
+              {/* balance */}
+              <TextField
                 fullWidth
                 type="text"
                 label="Balance"
@@ -300,20 +291,24 @@ const AddSale = () => {
                 sx={{ gridColumn: "span 2" }}
               />
 
-<TextField
-                fullWidth
-                type="text"
-                label="Select Payment Status"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.address}
-                name="address"
-                error={!!touched.address && !!errors.address}
-                helperText={touched.address && errors.address}
-                sx={{ gridColumn: "span 2" }}
-              />
+              {/* payment status */}
+              <FormControl  fullWidth sx={{ gridColumn: "span 2" }}>
+                <InputLabel id="demo-simple-select-label">Select Payment Status</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={client}
+                  label="Select Payment Status"
+                  onChange={handleChangeClient}
+                >
+                  <MenuItem value={10}>Partial Payment</MenuItem>
+                  <MenuItem value={20}>Full Payment</MenuItem>
+                  <MenuItem value={20}>Pending</MenuItem>
+                </Select>
+              </FormControl>
 
-<TextField
+              {/* sale recorded by */}
+              <TextField
                 fullWidth
                 type="text"
                 label="Sale Recorded By"
@@ -327,7 +322,7 @@ const AddSale = () => {
               />
 
 
-              
+              {/* business address */}
               <TextField
                 fullWidth
                 type="text"
@@ -341,6 +336,7 @@ const AddSale = () => {
                 sx={{ gridColumn: "span 2" }}
               />
 
+             {/* description */}
               <TextField
                 fullWidth
                 // style={{ width:"100%" }}

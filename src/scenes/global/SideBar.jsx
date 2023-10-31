@@ -214,27 +214,6 @@ const SideBar = () => {
 
              </SubMenu>
 
-             {/* Email Reminders  */}
-             <SubMenu icon={<MarkEmailUnreadOutlinedIcon />} label="Email Reminders">
-
-                  <MenuItem 
-                    icon={<ArrowRightAltIcon />}
-                    component={<Link to="/add_email_reminder" />}
-                    // selected={selected}
-                    // setSelected={setSelected}
-                    > Add  Reminder
-                  </MenuItem>
-
-                  <MenuItem 
-                    icon={<ArrowRightAltIcon />}
-                    component={<Link to="/view_email_reminders" />}
-                    // selected={selected}
-                    // setSelected={setSelected}
-                    > Manage Reminders
-                  </MenuItem>
-
-             </SubMenu>
-
 
               {/* Debtors  */}
               <SubMenu icon={<TransferWithinAStationOutlinedIcon />} label="Debtors">
