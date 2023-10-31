@@ -78,7 +78,14 @@ function App() {
       <SideBar />
       
       {/* Main content */}
-      <main className="content"  style={{  }}>
+      <main className="content"  
+      style={{
+      overflowY: "auto",
+      maxHeight: "800px",
+      display: "flex",
+      flexGrow: 1,
+      flexDirection: "column"
+      }}>
         <TopBar />
         <Routes>
         <Route path="/" element={<Dashboard />} />

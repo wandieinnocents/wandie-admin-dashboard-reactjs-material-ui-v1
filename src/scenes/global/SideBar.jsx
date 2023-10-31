@@ -32,7 +32,11 @@ const SideBar = () => {
     {/*  Start Sidebar */}
 
       <Sidebar 
-      style={{ height: "100vh", }}
+      style={{ overflowY: "auto",
+      maxHeight: "100vh",
+      display: "flex",
+      flexGrow: 1,
+      flexDirection: "column"}}
       collapsed={isCollapsed}>
       
         <Menu iconShape="square" style={{ backgroundColor:"#6ce4fe", color:"#000000" }}>

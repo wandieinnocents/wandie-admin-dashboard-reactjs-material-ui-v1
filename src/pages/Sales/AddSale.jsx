@@ -53,7 +53,8 @@ const AddSale = () => {
 
 
   return (
-    <Box mt="30px" mb="60px" mr="60px" ml="60px">
+    <Box mt="30px" pb="60px" pr="60px" pl="60px" >
+
       <Header title="ADD SALE " subtitle="Register a New Sale" />
 
       <Formik
@@ -172,6 +173,72 @@ const AddSale = () => {
                 helperText={touched.address && errors.address}
                 sx={{ gridColumn: "span 2" }}
               />
+
+<TextField
+                fullWidth
+                type="text"
+                label="Sale Serial Number"
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.organization}
+                name="organization"
+                error={!!touched.organization && !!errors.organization}
+                helperText={touched.organization && errors.organization}
+                sx={{ gridColumn: "span 2" }}
+              />
+
+              <TextField
+                fullWidth
+                type="text"
+                label="Select Client"
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.address}
+                name="address"
+                error={!!touched.address && !!errors.address}
+                helperText={touched.address && errors.address}
+                sx={{ gridColumn: "span 2" }}
+              />
+
+                <TextField
+                fullWidth
+                type="text"
+                label="Select Hosting Provider"
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.address}
+                name="address"
+                error={!!touched.address && !!errors.address}
+                helperText={touched.address && errors.address}
+                sx={{ gridColumn: "span 2" }}
+              />
+
+                <TextField
+                fullWidth
+                type="text"
+                label="Select Sale Satatus"
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.address}
+                name="address"
+                error={!!touched.address && !!errors.address}
+                helperText={touched.address && errors.address}
+                sx={{ gridColumn: "span 2" }}
+              />
+
+                <TextField
+                fullWidth
+                type="text"
+                label="Select Service Status"
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.address}
+                name="address"
+                error={!!touched.address && !!errors.address}
+                helperText={touched.address && errors.address}
+                sx={{ gridColumn: "span 2" }}
+              />
+
 
                 <TextField
                 fullWidth
