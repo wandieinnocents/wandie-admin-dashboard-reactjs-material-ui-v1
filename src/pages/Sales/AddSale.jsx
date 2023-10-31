@@ -6,6 +6,11 @@ import Header from "../../components/Header";
 import SendIcon from '@mui/icons-material/Send';
 
 import * as React from 'react';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+
 
 
 
@@ -16,6 +21,21 @@ const AddSale = () => {
   const isNonMobile = useMediaQuery("(min-width:600px)");
   const [value, setValue] = React.useState('2022-04-17');
 
+  const [client, setClient] = React.useState('');
+
+  // date
+  const dateNow = new Date();
+  const year = dateNow.getFullYear();
+  const month = (dateNow.getUTCMonth() + 1).toString().padStart(2, '0'); // padStart ensures the month is 2 digits
+  const date = dateNow.getUTCDate().toString().padStart(2, '0'); // padStart ensures the date is 2 digits
+  const currentDate = `${year}-${month}-${date}`;
+  // end date picker
+
+  const handleChangeClient = (event) => {
+    setClient(event.target.value);
+  };
+
+  
   const handleFormSubmit = (values) => {
     console.log(values);
   };
@@ -84,17 +104,18 @@ const AddSale = () => {
            
 
               <TextField
-                fullWidth
-                type="text"
+                id="date"
                 label="Registration Date"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.contact}
-                name="contact"
-                error={!!touched.contact && !!errors.contact}
-                helperText={touched.contact && errors.contact}
+                type="date"
+                name="registration_date"
+                defaultValue={currentDate}
+                InputLabelProps={{
+                  shrink: true
+                }}
                 sx={{ gridColumn: "span 2" }}
               />
+
+              
 
               <TextField
                 fullWidth
@@ -122,18 +143,47 @@ const AddSale = () => {
                 sx={{ gridColumn: "span 2" }}
               />
 
-              <TextField
-                fullWidth
-                type="text"
-                label="Select Client"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.address}
-                name="address"
-                error={!!touched.address && !!errors.address}
-                helperText={touched.address && errors.address}
-                sx={{ gridColumn: "span 2" }}
-              />
+
+              <FormControl  sx={{ gridColumn: "span 2" }} >
+                <InputLabel id="demo-simple-select-label">Select Client</InputLabel>
+                <Select
+                
+                  style={{ width:"100%" }}
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  onBlur={handleBlur}
+                  onChange={handleChangeClient}
+                  value={client}
+                  name="address"
+                  error={!!touched.address && !!errors.address}
+                  helperText={touched.address && errors.address}
+                >
+                  <MenuItem value={10}>Client one</MenuItem>
+                  <MenuItem value={20}>Client two</MenuItem>
+                  <MenuItem value={30}>Client three</MenuItem>
+                </Select>
+              </FormControl>
+
+              {/* select field for client */}
+
+              
+              {/* <FormControl>
+              
+                <InputLabel id="demo-simple-select-label">Age</InputLabel>
+                <Select
+                
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={age}
+                  label="Age"
+                  onChange={handleChange1}
+                  sx={{ gridColumn: "span 2" }}
+                >
+                  <MenuItem value={10}>Ten</MenuItem>
+                  <MenuItem value={20}>Twenty</MenuItem>
+                  <MenuItem value={30}>Thirty</MenuItem>
+                </Select>
+              </FormControl> */}
 
                 <TextField
                 fullWidth
@@ -174,76 +224,14 @@ const AddSale = () => {
                 sx={{ gridColumn: "span 2" }}
               />
 
-<TextField
-                fullWidth
-                type="text"
-                label="Sale Serial Number"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.organization}
-                name="organization"
-                error={!!touched.organization && !!errors.organization}
-                helperText={touched.organization && errors.organization}
-                sx={{ gridColumn: "span 2" }}
-              />
 
-              <TextField
-                fullWidth
-                type="text"
-                label="Select Client"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.address}
-                name="address"
-                error={!!touched.address && !!errors.address}
-                helperText={touched.address && errors.address}
-                sx={{ gridColumn: "span 2" }}
-              />
+
+             
 
                 <TextField
                 fullWidth
                 type="text"
-                label="Select Hosting Provider"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.address}
-                name="address"
-                error={!!touched.address && !!errors.address}
-                helperText={touched.address && errors.address}
-                sx={{ gridColumn: "span 2" }}
-              />
-
-                <TextField
-                fullWidth
-                type="text"
-                label="Select Sale Satatus"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.address}
-                name="address"
-                error={!!touched.address && !!errors.address}
-                helperText={touched.address && errors.address}
-                sx={{ gridColumn: "span 2" }}
-              />
-
-                <TextField
-                fullWidth
-                type="text"
-                label="Select Service Status"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.address}
-                name="address"
-                error={!!touched.address && !!errors.address}
-                helperText={touched.address && errors.address}
-                sx={{ gridColumn: "span 2" }}
-              />
-
-
-                <TextField
-                fullWidth
-                type="text"
-                label="Select Product Name"
+                label="Sdelect Product Name"
                 onBlur={handleBlur}
                 onChange={handleChange}
                 value={values.address}
@@ -343,6 +331,8 @@ const AddSale = () => {
                 helperText={touched.address && errors.address}
                 sx={{ gridColumn: "span 2" }}
               />
+
+
               
               <TextField
                 fullWidth
@@ -378,7 +368,7 @@ const AddSale = () => {
             {/* submit button */}
             <Box display="flex" justifyContent="start" mt="30px">
               <Button type="submit" size="large" endIcon={<SendIcon />} style={{ backgroundColor:"#6ce4fe" }} color="secondary" variant="contained">
-                Add New Client
+                Add New Sale
               </Button>
             </Box>
           </form>
