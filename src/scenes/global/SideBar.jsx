@@ -214,6 +214,26 @@ const SideBar = () => {
 
              </SubMenu>
 
+             <SubMenu icon={<CloudUploadOutlinedIcon />} label="Expenses">
+
+                  <MenuItem 
+                    icon={<ArrowRightAltIcon />}
+                    component={<Link to="/add_hosting_provider" />}
+                    // selected={selected}
+                    // setSelected={setSelected}
+                    > Add Provider
+                  </MenuItem>
+
+                  <MenuItem 
+                    icon={<ArrowRightAltIcon />}
+                    component={<Link to="/view_hosting_providers" />}
+                    // selected={selected}
+                    // setSelected={setSelected}
+                    > Manage Providers
+                  </MenuItem>
+
+             </SubMenu>
+
 
               {/* Debtors  */}
               <SubMenu icon={<TransferWithinAStationOutlinedIcon />} label="Debtors">
@@ -235,6 +255,27 @@ const SideBar = () => {
                 </MenuItem>
 
               </SubMenu>
+
+               {/* Debtors  */}
+               <SubMenu icon={<TransferWithinAStationOutlinedIcon />} label="Debtors">
+
+                <MenuItem 
+                  icon={<ArrowRightAltIcon />}
+                  component={<Link to="/add_quotation" />}
+                  // selected={selected}
+                  // setSelected={setSelected}
+                  > Add  Quotation
+                </MenuItem>
+
+                <MenuItem 
+                  icon={<ArrowRightAltIcon />}
+                  component={<Link to="/view_quotations" />}
+                  // selected={selected}
+                  // setSelected={setSelected}
+                  > Manage Quotations
+                </MenuItem>
+
+                </SubMenu>
 
 
               {/* Reports  */}
