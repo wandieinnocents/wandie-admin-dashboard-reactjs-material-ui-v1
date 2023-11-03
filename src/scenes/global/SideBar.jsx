@@ -218,18 +218,34 @@ const SideBar = () => {
 
                   <MenuItem 
                     icon={<ArrowRightAltIcon />}
-                    component={<Link to="/add_hosting_provider" />}
+                    component={<Link to="/add_expense" />}
                     // selected={selected}
                     // setSelected={setSelected}
-                    > Add Provider
+                    > Add Expense Category
                   </MenuItem>
 
                   <MenuItem 
                     icon={<ArrowRightAltIcon />}
-                    component={<Link to="/view_hosting_providers" />}
+                    component={<Link to="/add_expense" />}
                     // selected={selected}
                     // setSelected={setSelected}
-                    > Manage Providers
+                    > Manage Categories
+                  </MenuItem>
+
+                  <MenuItem 
+                    icon={<ArrowRightAltIcon />}
+                    component={<Link to="/add_expense" />}
+                    // selected={selected}
+                    // setSelected={setSelected}
+                    > Add Expense
+                  </MenuItem>
+
+                  <MenuItem 
+                    icon={<ArrowRightAltIcon />}
+                    component={<Link to="/view_expenses" />}
+                    // selected={selected}
+                    // setSelected={setSelected}
+                    > Manage Expenses
                   </MenuItem>
 
              </SubMenu>
@@ -256,8 +272,10 @@ const SideBar = () => {
 
               </SubMenu>
 
-               {/* Debtors  */}
-               <SubMenu icon={<TransferWithinAStationOutlinedIcon />} label="Debtors">
+
+
+               {/* Quotations  */}
+               <SubMenu icon={<TransferWithinAStationOutlinedIcon />} label="Quotations">
 
                 <MenuItem 
                   icon={<ArrowRightAltIcon />}
