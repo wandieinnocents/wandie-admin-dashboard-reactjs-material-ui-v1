@@ -218,7 +218,7 @@ const SideBar = () => {
 
                   <MenuItem 
                     icon={<ArrowRightAltIcon />}
-                    component={<Link to="/add_expense" />}
+                    component={<Link to="/add_expense_category" />}
                     // selected={selected}
                     // setSelected={setSelected}
                     > Add Expense Category
@@ -226,7 +226,7 @@ const SideBar = () => {
 
                   <MenuItem 
                     icon={<ArrowRightAltIcon />}
-                    component={<Link to="/add_expense" />}
+                    component={<Link to="/view_expense_categories" />}
                     // selected={selected}
                     // setSelected={setSelected}
                     > Manage Categories

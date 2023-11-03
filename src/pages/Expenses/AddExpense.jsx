@@ -4,15 +4,29 @@ import * as yup from "yup";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Header from "../../components/Header";
 import SendIcon from '@mui/icons-material/Send';
+import * as React from 'react';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+
 
 
 const AddExpense = () => {
+  const [value, setValue] = React.useState('2022-04-17');
+  const [client, setClient] = React.useState('');
+
 
   const isNonMobile = useMediaQuery("(min-width:600px)");
 
   const handleFormSubmit = (values) => {
     console.log(values);
   };
+
+  const handleChangeClient = (event) => {
+    setClient(event.target.value);
+  };
+
 
   const initialValues = {
     fullName: "",
@@ -23,6 +37,14 @@ const AddExpense = () => {
     address: "",
 
   };
+
+   // date
+   const dateNow = new Date();
+   const year = dateNow.getFullYear();
+   const month = (dateNow.getUTCMonth() + 1).toString().padStart(2, '0'); // padStart ensures the month is 2 digits
+   const date = dateNow.getUTCDate().toString().padStart(2, '0'); // padStart ensures the date is 2 digits
+   const currentDate = `${year}-${month}-${date}`;
+   // end date picker
 
   const phoneRegExp =
   /^((\+[1-9]{1,4}[ -]?)|(\([0-9]{2,3}\)[ -]?)|([0-9]{2,4})[ -]?)*?[0-9]{3,4}[ -]?[0-9]{3,4}$/;
@@ -75,10 +97,26 @@ const AddExpense = () => {
                 "& > div": { gridColumn: isNonMobile ? undefined : "span 4" },
               }}
             >
+
+            {/*  date */}
+            <TextField
+                id="date"
+                label="Expense Date"
+                type="date"
+                name="expense_date"
+                defaultValue={currentDate}
+                InputLabelProps={{
+                  shrink: true
+                }}
+                sx={{ gridColumn: "span 2" }}
+              />
+
+
+
               <TextField
                 fullWidth
                 type="text"
-                label="Package Name"
+                label="Amount"
                 onBlur={handleBlur}
                 onChange={handleChange}
                 value={values.fullName}
@@ -88,18 +126,37 @@ const AddExpense = () => {
                 sx={{ gridColumn: "span 2" }}
               />
               
-              <TextField
-                fullWidth
-                type="text"
-                label="Storage Space"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.email}
-                name="email"
-                error={!!touched.email && !!errors.email}
-                helperText={touched.email && errors.email}
-                sx={{ gridColumn: "span 2" }}
-              />
+             {/* Expense Category */}
+             <FormControl  fullWidth sx={{ gridColumn: "span 2" }}>
+                <InputLabel id="demo-simple-select-label">Select Expense Category</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={client}
+                  label="Select Expense Category"
+                  onChange={handleChangeClient}
+                >
+                  <MenuItem value={10}>Client one</MenuItem>
+                  <MenuItem value={20}>Client 2</MenuItem>
+                  <MenuItem value={30}>Client 3</MenuItem>
+                </Select>
+              </FormControl>
+
+               {/* Payment Method */}
+             <FormControl  fullWidth sx={{ gridColumn: "span 2" }}>
+                <InputLabel id="demo-simple-select-label">Select Payment Method</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={client}
+                  label="Select Payment Method"
+                  onChange={handleChangeClient}
+                >
+                  <MenuItem value={10}>Client one</MenuItem>
+                  <MenuItem value={20}>Client 2</MenuItem>
+                  <MenuItem value={30}>Client 3</MenuItem>
+                </Select>
+              </FormControl>
 
               
 
@@ -111,7 +168,7 @@ const AddExpense = () => {
                 type="text"
                 multiline
                 rows={5}
-                label="Description of features"
+                label="Description of expense"
                 onBlur={handleBlur}
                 onChange={handleChange}
                 value={values.description}
@@ -126,7 +183,7 @@ const AddExpense = () => {
             {/* submit button */}
             <Box display="flex" justifyContent="start" mt="30px">
               <Button type="submit" size="large" endIcon={<SendIcon />} style={{ backgroundColor:"#6ce4fe" }} color="secondary" variant="contained">
-                Add New Client
+                Add Expense
               </Button>
             </Box>
           </form>

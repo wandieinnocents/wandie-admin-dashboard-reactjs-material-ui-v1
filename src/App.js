@@ -34,6 +34,10 @@ import AddPermission from "./pages/Permissions/AddPermission";
 import ViewPermissions from "./pages/Permissions/ViewPermissions";
 import AddUser from "./pages/Users/AddUser";
 import ViewUsers from "./pages/Users/ViewUsers";
+import AddExpense from "./pages/Expenses/AddExpense";
+import ViewExpenses from "./pages/Expenses/ViewExpenses";
+import AddExpenseCategory from "./pages/ExpenseCategory/AddExpenseCategory";
+import ViewExpenseCategories from "./pages/ExpenseCategory/ViewExpenseCategories";
 
 
 
@@ -117,6 +121,10 @@ function App() {
         <Route path="/view_permissions" element={<ViewPermissions/>} />
         <Route path="/add_user" element={<AddUser/>} />
         <Route path="/view_users" element={<ViewUsers/>} />
+        <Route path="/add_expense" element={<AddExpense/>} />
+        <Route path="/view_expenses" element={<ViewExpenses/>} />
+        <Route path="/add_expense_category" element={<AddExpenseCategory/>} />
+        <Route path="/view_expense_categories" element={<ViewExpenseCategories/>} />
 
 
 

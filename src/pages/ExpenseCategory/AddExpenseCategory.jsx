@@ -15,12 +15,9 @@ const AddExpenseCategory = () => {
   };
 
   const initialValues = {
-    fullName: "",
-    email: "",
-    contact: "",
-    contact2: "",
-    organization: "",
-    address: "",
+    product_category_name: "",
+    description: "",
+    
 
   };
 
@@ -29,30 +26,21 @@ const AddExpenseCategory = () => {
 
   // validation
   const checkoutSchema = yup.object().shape({
-    fullName: yup.string().required("required"),
-    email: yup.string().email("invalid email").required("required"),
-    contact: yup
-      .string()
-      .matches(phoneRegExp, "Phone number is not valid")
-      .required("required"),
-      contact2: yup
-      .string()
-      .matches(phoneRegExp, "Phone number 2 is not valid")
-      .required("required"),
-    address: yup.string().required("required"),
-    organization: yup.string().required("required"),
+    product_category_name: yup.string().required("required"),
+    description: yup.string().required("required"),
     
   });
 
 
 
   return (
-    <Box mt="30px" mb="60px" mr="60px" ml="60px">
+    <Box mt="30px" mb="60px" mr="60px" ml="60px" >
       
       <Box>
       <Header title="Add Product Categories" subtitle="Welcome to your ProductCategories" />
 
       {/* FORM */}
+      <Box >
       <Formik
         onSubmit={handleFormSubmit}
         initialValues={initialValues}
@@ -77,41 +65,25 @@ const AddExpenseCategory = () => {
             >
               <TextField
                 fullWidth
+                // style={{ width:"100%" }}
                 type="text"
-                label="Package Name"
+                label="Category Name"
                 onBlur={handleBlur}
                 onChange={handleChange}
-                value={values.fullName}
-                name="fullName"
-                error={!!touched.fullName && !!errors.fullName}
-                helperText={touched.fullName && errors.fullName}
-                sx={{ gridColumn: "span 2" }}
+                value={values.product_category_name}
+                name="product_category_name"
+                error={!!touched.product_category_name && !!errors.product_category_name}
+                helperText={touched.product_category_name && errors.product_category_name}
+                sx={{ gridColumn: "span 4" }}
               />
               
               <TextField
-                fullWidth
-                type="text"
-                label="Storage Space"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.email}
-                name="email"
-                error={!!touched.email && !!errors.email}
-                helperText={touched.email && errors.email}
-                sx={{ gridColumn: "span 2" }}
-              />
-
-              
-
-              
-
-                <TextField
                 fullWidth
                 // style={{ width:"100%" }}
                 type="text"
                 multiline
                 rows={5}
-                label="Description of features"
+                label="Description"
                 onBlur={handleBlur}
                 onChange={handleChange}
                 value={values.description}
@@ -120,18 +92,23 @@ const AddExpenseCategory = () => {
                 helperText={touched.description && errors.description}
                 sx={{ gridColumn: "span 4" }}
               />
+
+              
+
+              
               
             </Box>
 
             {/* submit button */}
             <Box display="flex" justifyContent="start" mt="30px">
               <Button type="submit" size="large" endIcon={<SendIcon />} style={{ backgroundColor:"#6ce4fe" }} color="secondary" variant="contained">
-                Add New Client
+                Add Expense Category
               </Button>
             </Box>
           </form>
         )}
       </Formik>
+      </Box>
 
       {/* END OF FORM */}
       </Box>
