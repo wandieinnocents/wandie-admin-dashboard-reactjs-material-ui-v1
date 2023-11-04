@@ -72,7 +72,7 @@ const AddExpense = () => {
     <Box mt="30px" mb="60px" mr="60px" ml="60px">
       
       <Box>
-      <Header title="Add Product Categories" subtitle="Welcome to your ProductCategories" />
+      <Header title="Add Expense" subtitle="Welcome to your expenses" />
 
       {/* FORM */}
       <Formik
@@ -168,7 +168,7 @@ const AddExpense = () => {
                 type="text"
                 multiline
                 rows={5}
-                label="Description of expense"
+                label="Description Of Expense"
                 onBlur={handleBlur}
                 onChange={handleChange}
                 value={values.description}
