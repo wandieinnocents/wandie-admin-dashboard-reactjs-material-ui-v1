@@ -18,16 +18,39 @@ import FolderOpenOutlinedIcon from '@mui/icons-material/FolderOpenOutlined';
 import AdminPanelSettingsOutlinedIcon from '@mui/icons-material/AdminPanelSettingsOutlined';
 import GroupAddOutlinedIcon from '@mui/icons-material/GroupAddOutlined';
 import SwitchAccountOutlinedIcon from '@mui/icons-material/SwitchAccountOutlined';
+// import { makeStyles } from '@material-ui/core/styles';
 
 
+const styles = {
+  hoverStyle: {
+    color: 'grey',
+    '&:hover': { color: '#000000' },
+  }
+};
 
 
 const SideBar = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [selected, setSelected] = useState("Dashboard");
+  // hover
+  const [isHover, setIsHover] = useState(false);
+
+   const handleMouseEnter = () => {
+      setIsHover(true);
+   };
+
+   const handleMouseLeave = () => {
+      setIsHover(false);
+   };
+
+   const menuStyle = {
+    backgroundColor: isHover ? 'lightblue' : 'rgb(0, 191, 255)',
+ };
+
+  
 
   return (
-    <Box>
+    <Box >
 
     {/*  Start Sidebar */}
 
@@ -39,7 +62,7 @@ const SideBar = () => {
       flexDirection: "column"}}
       collapsed={isCollapsed}>
       
-        <Menu iconShape="square" style={{ backgroundColor:"#6ce4fe", color:"#000000" }}>
+        <Menu iconShape="square" style={{ backgroundColor:"#06114a", color:"#ffffff" }}>
           {/* LOGO AND MENU ICON */}
           <MenuItem
             onClick={() => setIsCollapsed(!isCollapsed)}
@@ -82,6 +105,7 @@ const SideBar = () => {
 
               <Box textAlign="center">
                 <Typography
+                
                   variant="h2"
                   color="#000000"
                   fontWeight="bold"
@@ -99,12 +123,15 @@ const SideBar = () => {
           {/* Dashbord list items */}
           <Box paddingLeft={isCollapsed ? undefined : "0%"}>
             <MenuItem 
+            
               icon={<HomeOutlinedIcon />}
               component={<Link to="/" />}
               selected={selected}
+              // style={styles.hoverStyle}
+              style={menuStyle}
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
               setSelected={setSelected}
-             
-
                 > 
               Dashboard
             </MenuItem>
