@@ -17,6 +17,7 @@ import EmailIcon from "@mui/icons-material/Email";
 import PointOfSaleIcon from "@mui/icons-material/PointOfSale";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import TrafficIcon from "@mui/icons-material/Traffic";
+import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 
 
 const Dashboard = () => {
@@ -53,8 +54,10 @@ const Dashboard = () => {
           <StatBox
             title="12,361"
             subtitle="Packages"
-            progress="0.75"
-            increase="+14%"
+            // progress="0.5"
+            icon_details={
+              <ArrowRightAltIcon sx={{ color: "white", fontSize: "26px" }}  />
+            }
             icon={
               <EmailIcon
                 sx={{ color: "white", fontSize: "26px" }}
@@ -72,12 +75,14 @@ const Dashboard = () => {
           justifyContent="center"
         >
           <StatBox
-            title="431,225"
-            subtitle="Sales Obtained"
-            progress="0.50"
-            increase="+21%"
+            title="12,361"
+            subtitle="Packages"
+            // progress="0.5"
+            icon_details={
+              <ArrowRightAltIcon sx={{ color: "white", fontSize: "26px" }}  />
+            }
             icon={
-              <PointOfSaleIcon
+              <EmailIcon
                 sx={{ color: "white", fontSize: "26px" }}
               />
             }
@@ -93,12 +98,14 @@ const Dashboard = () => {
           justifyContent="center"
         >
           <StatBox
-            title="32,441"
-            subtitle="New Clients"
-            progress="0.30"
-            increase="+5%"
+            title="12,361"
+            subtitle="Packages"
+            // progress="0.5"
+            icon_details={
+              <ArrowRightAltIcon sx={{ color: "white", fontSize: "26px" }}  />
+            }
             icon={
-              <PersonAddIcon
+              <EmailIcon
                 sx={{ color: "white", fontSize: "26px" }}
               />
             }
@@ -114,12 +121,14 @@ const Dashboard = () => {
           justifyContent="center"
         >
           <StatBox
-            title="1,325,134"
-            subtitle="Traffic Received"
-            progress="0.80"
-            increase="+43%"
+            title="12,361"
+            subtitle="Packages"
+            // progress="0.5"
+            icon_details={
+              <ArrowRightAltIcon sx={{ color: "white", fontSize: "26px" }}  />
+            }
             icon={
-              <TrafficIcon
+              <EmailIcon
                 sx={{ color: "white", fontSize: "26px" }}
               />
             }
@@ -128,7 +137,7 @@ const Dashboard = () => {
 
          {/* END OF ROW 1 */}
 
-         {/* ROW 1 */}
+       {/* ROW 1 */}
 
         {/* item */}
         <Box
@@ -141,8 +150,10 @@ const Dashboard = () => {
           <StatBox
             title="12,361"
             subtitle="Packages"
-            progress="0.75"
-            increase="+14%"
+            // progress="0.5"
+            icon_details={
+              <ArrowRightAltIcon sx={{ color: "white", fontSize: "26px" }}  />
+            }
             icon={
               <EmailIcon
                 sx={{ color: "white", fontSize: "26px" }}
@@ -160,12 +171,14 @@ const Dashboard = () => {
           justifyContent="center"
         >
           <StatBox
-            title="431,225"
-            subtitle="Sales Obtained"
-            progress="0.50"
-            increase="+21%"
+            title="12,361"
+            subtitle="Packages"
+            // progress="0.5"
+            icon_details={
+              <ArrowRightAltIcon sx={{ color: "white", fontSize: "26px" }}  />
+            }
             icon={
-              <PointOfSaleIcon
+              <EmailIcon
                 sx={{ color: "white", fontSize: "26px" }}
               />
             }
@@ -181,12 +194,14 @@ const Dashboard = () => {
           justifyContent="center"
         >
           <StatBox
-            title="32,441"
-            subtitle="New Clients"
-            progress="0.30"
-            increase="+5%"
+            title="12,361"
+            subtitle="Packages"
+            // progress="0.5"
+            icon_details={
+              <ArrowRightAltIcon sx={{ color: "white", fontSize: "26px" }}  />
+            }
             icon={
-              <PersonAddIcon
+              <EmailIcon
                 sx={{ color: "white", fontSize: "26px" }}
               />
             }
@@ -202,12 +217,14 @@ const Dashboard = () => {
           justifyContent="center"
         >
           <StatBox
-            title="1,325,134"
-            subtitle="Traffic Received"
-            progress="0.80"
-            increase="+43%"
+            title="12,361"
+            subtitle="Packages"
+            // progress="0.5"
+            icon_details={
+              <ArrowRightAltIcon sx={{ color: "white", fontSize: "26px" }}  />
+            }
             icon={
-              <TrafficIcon
+              <EmailIcon
                 sx={{ color: "white", fontSize: "26px" }}
               />
             }

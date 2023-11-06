@@ -53,13 +53,6 @@ body,
   background: #555;
 }
 
-
-/* menu hover */
-/* .menu {
-  background-color: rgb(0, 191, 255);
+.active {
+  color: green;
 }
-
-.menu:hover {
-  background-color: lightblue;
-} */
-

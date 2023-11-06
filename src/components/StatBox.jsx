@@ -2,7 +2,7 @@ import { Box, Typography, useTheme } from "@mui/material";
 // import { tokens } from "../theme";
 import ProgressCircle from "./ProgressCircle";
 
-const StatBox = ({ title, subtitle, icon, progress, increase }) => {
+const StatBox = ({ title, subtitle, icon, progress, increase, icon_details }) => {
   // const theme = useTheme();
   // const colors = tokens(theme.palette.mode);
 
@@ -10,7 +10,7 @@ const StatBox = ({ title, subtitle, icon, progress, increase }) => {
     <Box width="100%" m="0 30px">
       <Box display="flex" justifyContent="space-between">
         <Box>
-          {icon}
+          {/* {icon} */}
           <Typography
             variant="h4"
             fontWeight="bold"
@@ -19,9 +19,9 @@ const StatBox = ({ title, subtitle, icon, progress, increase }) => {
             {title}
           </Typography>
         </Box>
-        <Box>
+        {/* <Box>
           <ProgressCircle progress={progress} />
-        </Box>
+        </Box> */}
       </Box>
       <Box display="flex" justifyContent="space-between" mt="2px">
         <Typography variant="h5" sx={{ color: "white" }}>
@@ -32,7 +32,7 @@ const StatBox = ({ title, subtitle, icon, progress, increase }) => {
           fontStyle="italic"
           sx={{ color: "yellow" }}
         >
-          {increase}
+          {icon_details}
         </Typography>
       </Box>
     </Box>

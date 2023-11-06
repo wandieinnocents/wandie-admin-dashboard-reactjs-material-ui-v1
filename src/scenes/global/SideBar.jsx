@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Sidebar, Menu, MenuItem , SubMenu} from "react-pro-sidebar";
 import { Box, IconButton, Typography, useTheme } from "@mui/material";
-import { Link } from "react-router-dom";
+import { useLocation,Link } from "react-router-dom";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import InventoryIcon from '@mui/icons-material/InventoryOutlined';
@@ -22,36 +22,18 @@ import SwitchAccountOutlinedIcon from '@mui/icons-material/SwitchAccountOutlined
 import '../../index.css';
 
 
-const styles = {
-  hoverStyle: {
-    color: 'grey',
-    '&:hover': { color: '#000000' },
-  }
-};
+
 
 
 const SideBar = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [selected, setSelected] = useState("Dashboard");
 
-  // hover on menu
-  const [isHover, setIsHover] = useState(false);
+  
 
-   const handleMouseEnter = () => {
-      setIsHover(true);
-   };
+  
 
-   const handleMouseLeave = () => {
-      setIsHover(false);
-   };
-
-   const menuStyle = { 
-    backgroundColor: isHover ? '#06179b' : 'rgb(0, 191, 255)',
-    
-    // #06114a
-    // #6ce4fe
-
- };
+  
 
 //  end of menu hover
 
@@ -72,6 +54,7 @@ const SideBar = () => {
       
         <Menu iconShape="square"
         style={{ backgroundColor: '#06114a', color:'#ffffff' }}
+        
           menuItemStyles={{
               button: {
                     backgroundColor: '#06114a',
@@ -80,6 +63,7 @@ const SideBar = () => {
                       backgroundColor: '#2587da',
                       color:"#ffffff"
                     },
+                   
                     
                 },
             }} 
@@ -94,6 +78,7 @@ const SideBar = () => {
               margin: "0px 0 20px 0",
               color: "#ffffff",
               backgroundColor:"#06114a"
+              
               
             }}
           >
@@ -145,20 +130,18 @@ const SideBar = () => {
           )}
 
           {/* Dashbord list items */}
-          <Box paddingLeft={isCollapsed ? undefined : "0%"}>
+          <Box paddingLeft={isCollapsed ? undefined : "0%"} >
             <MenuItem 
             
               icon={<HomeOutlinedIcon />}
               component={<Link to="/" />}
               selected={selected}
-              // style={styles.hoverStyle}
-              // style={menuStyle}
-              // onMouseEnter={handleMouseEnter}
-              // onMouseLeave={handleMouseLeave}
+              activeClassName="active"
+              
               setSelected={setSelected}
                 > 
               Dashboard
-            </MenuItem>
+          </MenuItem>
 
             {/* Product categories  */}
             <SubMenu icon={<InventoryIcon />} label="Product Categories">

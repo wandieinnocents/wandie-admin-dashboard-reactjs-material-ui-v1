@@ -93,7 +93,7 @@ function App() {
       }}>
         <TopBar />
         <Routes>
-        <Route path="/" element={<Dashboard />} />
+        <Route path="/" element={<Dashboard />} activeStyle={{backgroundColor: "red"}} />
         <Route path="/add_product_category" element={<AddProductCategory />} />
         <Route path="/view_product_categories" element={<ViewProductCategories />} />
         <Route path="/add_package" element={<AddPackage />} />
