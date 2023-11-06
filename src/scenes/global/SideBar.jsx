@@ -19,6 +19,7 @@ import AdminPanelSettingsOutlinedIcon from '@mui/icons-material/AdminPanelSettin
 import GroupAddOutlinedIcon from '@mui/icons-material/GroupAddOutlined';
 import SwitchAccountOutlinedIcon from '@mui/icons-material/SwitchAccountOutlined';
 // import { makeStyles } from '@material-ui/core/styles';
+import '../../index.css';
 
 
 const styles = {
@@ -32,7 +33,8 @@ const styles = {
 const SideBar = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [selected, setSelected] = useState("Dashboard");
-  // hover
+
+  // hover on menu
   const [isHover, setIsHover] = useState(false);
 
    const handleMouseEnter = () => {
@@ -43,9 +45,15 @@ const SideBar = () => {
       setIsHover(false);
    };
 
-   const menuStyle = {
-    backgroundColor: isHover ? 'lightblue' : 'rgb(0, 191, 255)',
+   const menuStyle = { 
+    backgroundColor: isHover ? '#06179b' : 'rgb(0, 191, 255)',
+    
+    // #06114a
+    // #6ce4fe
+
  };
+
+//  end of menu hover
 
   
 
@@ -62,15 +70,30 @@ const SideBar = () => {
       flexDirection: "column"}}
       collapsed={isCollapsed}>
       
-        <Menu iconShape="square" style={{ backgroundColor:"#06114a", color:"#ffffff" }}>
+        <Menu iconShape="square"
+        style={{ backgroundColor: '#06114a', color:'#ffffff' }}
+          menuItemStyles={{
+              button: {
+                    backgroundColor: '#06114a',
+                    color:'#ffffff',
+                    '&:hover': {
+                      backgroundColor: '#2587da',
+                      color:"#ffffff"
+                    },
+                    
+                },
+            }} 
+        
+        >
+        
           {/* LOGO AND MENU ICON */}
           <MenuItem
             onClick={() => setIsCollapsed(!isCollapsed)}
             icon={isCollapsed ? <MenuOutlinedIcon /> : undefined}
             style={{
               margin: "0px 0 20px 0",
-              color: "#000000",
-              backgroundColor:"#6ce4fe"
+              color: "#ffffff",
+              backgroundColor:"#06114a"
               
             }}
           >
@@ -79,20 +102,21 @@ const SideBar = () => {
                 display="flex"
                 justifyContent="space-between"
                 alignItems="center"
+                
                 ml="15px"
               >
-                <Typography variant="h3" color="#000000">
-                  REACT JS
+                <Typography variant="h3" color="#ffffff">
+                  ADMIN
                 </Typography>
                 <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
-                  <MenuOutlinedIcon />
+                  <MenuOutlinedIcon style={{ color:'#ffffff' }} />
                 </IconButton>
               </Box>
             )}
           </MenuItem>
 
           {!isCollapsed && (
-            <Box mb="25px">
+            <Box mb="25px" >
               <Box display="flex" justifyContent="center" alignItems="center">
                 <img
                   alt="profile-user"
@@ -107,14 +131,14 @@ const SideBar = () => {
                 <Typography
                 
                   variant="h2"
-                  color="#000000"
+                  color="#ffffff"
                   fontWeight="bold"
                   sx={{ m: "10px 0 0 0" }}
                 >
                   Wandie
                 </Typography>
-                <Typography variant="h5" color="#000000">
-                  Administrator
+                <Typography variant="h5" color="#ffffff">
+                  wandie@gmail.com
                 </Typography>
               </Box>
             </Box>
@@ -128,9 +152,9 @@ const SideBar = () => {
               component={<Link to="/" />}
               selected={selected}
               // style={styles.hoverStyle}
-              style={menuStyle}
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
+              // style={menuStyle}
+              // onMouseEnter={handleMouseEnter}
+              // onMouseLeave={handleMouseLeave}
               setSelected={setSelected}
                 > 
               Dashboard
@@ -347,13 +371,13 @@ const SideBar = () => {
             
 
 
-            <Typography
+            {/* <Typography
               variant="h6"
-              color="#000000"
+              color="#ffffff"
               sx={{ m: "15px 0 5px 20px" }}
             >
               Account
-            </Typography>
+            </Typography> */}
 
              {/* Roles  */}
              <SubMenu icon={<AdminPanelSettingsOutlinedIcon />} label="Roles">
