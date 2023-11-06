@@ -427,6 +427,39 @@ export const mockDataTeam = [
     }
   ];
   
+  export const mockPieData = [
+    {
+      "id": "rust",
+      "label": "rust",
+      "value": 187,
+      "color": "hsl(159, 70%, 50%)"
+    },
+    {
+      "id": "lisp",
+      "label": "lisp",
+      "value": 453,
+      "color": "hsl(49, 70%, 50%)"
+    },
+    {
+      "id": "make",
+      "label": "make",
+      "value": 321,
+      "color": "hsl(164, 70%, 50%)"
+    },
+    {
+      "id": "css",
+      "label": "css",
+      "value": 582,
+      "color": "hsl(227, 70%, 50%)"
+    },
+    {
+      "id": "elixir",
+      "label": "elixir",
+      "value": 278,
+      "color": "hsl(118, 70%, 50%)"
+    }
+  ];
+  
   export const mockLineData = [
     {
       id: "japan",

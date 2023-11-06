@@ -1,7 +1,7 @@
 import React from 'react';
 import { ResponsiveBar } from '@nivo/bar'
 import { mockBarData  as data } from '../../data/mockData.js'
-import { useTheme } from '@emotion/react';
+// import { useTheme } from '@emotion/react';
 
 
 const  BarChart = ()=> {
