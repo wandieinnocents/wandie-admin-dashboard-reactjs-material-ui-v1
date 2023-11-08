@@ -5,6 +5,8 @@ A fully fledged backend starter project for spinning up software projects admin 
 ## Materials 
 GITHUB : https://github.com/ed-roh/react-admin-dashboard/blob/master/src/App.js
 YOUTUBE : https://youtu.be/wYpCWwD1oz0
+CRUD : https://www.binaryboxtuts.com/reactjs-tutorials/how-to-develop-reactjs-crud-app-using-a-rest-api/
+
 
 ## Libraries used 
 - Material UI : https://mui.com/material-ui/getting-started/

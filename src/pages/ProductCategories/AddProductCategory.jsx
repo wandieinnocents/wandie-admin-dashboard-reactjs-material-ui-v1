@@ -1,35 +1,54 @@
+import React, {useState} from 'react'
 import { Box, Button, TextField } from "@mui/material";
 import { Formik } from "formik";
 import * as yup from "yup";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Header from "../../components/Header";
 import SendIcon from '@mui/icons-material/Send';
+import Swal from 'sweetalert2'
+import axios from 'axios'
 
 
 const AddProductCategory = () => {
 
   const isNonMobile = useMediaQuery("(min-width:600px)");
 
-  const handleFormSubmit = (values) => {
-    console.log(values);
-  };
+  // states for data submission
+  const [name, setName] = useState('');
+    const [description, setDescription] = useState('');
+    const [isSaving, setIsSaving] = useState(false);
 
-  const initialValues = {
-    product_category_name: "",
-    description: "",
-    
+    // handle data saving to api
+    const submitData = () => {
+      
+      // using backend validation
+      setIsSaving(true);
+      axios.post('http://127.0.0.1:8000/api/v1/product_categories/create', {
+          name: name,
+          description: description
+        })
+        .then(function (response) {
+          Swal.fire({
+              icon: 'success',
+              title: 'Category saved successfully!',
+              showConfirmButton: false,
+              timer: 1500
+          })
+          setIsSaving(false);
+          setName('') 
+          setDescription('')
+        })
+        .catch(function (error) {
+          Swal.fire({
+              icon: 'error',
+              title: 'An Error Occured!',
+              showConfirmButton: false,
+              timer: 1700
+          })
+          setIsSaving(false)
+        });
+  }
 
-  };
-
-  const phoneRegExp =
-  /^((\+[1-9]{1,4}[ -]?)|(\([0-9]{2,3}\)[ -]?)|([0-9]{2,4})[ -]?)*?[0-9]{3,4}[ -]?[0-9]{3,4}$/;
-
-  // validation
-  const checkoutSchema = yup.object().shape({
-    product_category_name: yup.string().required("required"),
-    description: yup.string().required("required"),
-    
-  });
 
 
 
@@ -41,20 +60,8 @@ const AddProductCategory = () => {
 
       {/* FORM */}
       <Box >
-      <Formik
-        onSubmit={handleFormSubmit}
-        initialValues={initialValues}
-        validationSchema={checkoutSchema}
-      >
-        {({
-          values,
-          errors,
-          touched,
-          handleBlur,
-          handleChange,
-          handleSubmit,
-        }) => (
-          <form onSubmit={handleSubmit}>
+        
+          <form >
             <Box
               display="grid"
               gap="30px"
@@ -68,12 +75,13 @@ const AddProductCategory = () => {
                 // style={{ width:"100%" }}
                 type="text"
                 label="Category Name"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.product_category_name}
-                name="product_category_name"
-                error={!!touched.product_category_name && !!errors.product_category_name}
-                helperText={touched.product_category_name && errors.product_category_name}
+                // onBlur={handleBlur}
+                onChange={(event)=>{setName(event.target.value)}}
+                value={name}
+                name="name"
+                // id="name"
+                // error={!!touched.name && !!errors.name}
+                // helperText={touched.name && errors.name}
                 sx={{ gridColumn: "span 4" }}
               />
               
@@ -84,30 +92,31 @@ const AddProductCategory = () => {
                 multiline
                 rows={5}
                 label="Description"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.description}
+                // onBlur={handleBlur}
+                onChange={(event)=>{setDescription(event.target.value)}}
+                value={description}
                 name="description"
-                error={!!touched.description && !!errors.description}
-                helperText={touched.description && errors.description}
+                // id="description"
+                // error={!!touched.description && !!errors.description}
+                // helperText={touched.description && errors.description}
                 sx={{ gridColumn: "span 4" }}
               />
-
-              
-
-              
               
             </Box>
 
             {/* submit button */}
             <Box display="flex" justifyContent="start" mt="30px">
-              <Button type="submit" size="large" endIcon={<SendIcon />} style={{ backgroundColor:"#6ce4fe" }} color="secondary" variant="contained">
-                Add Product Category
+
+              <Button 
+              disabled={isSaving}
+              onClick={submitData} 
+              type="submit" size="large" endIcon={<SendIcon />} style={{ backgroundColor:"#2587da", color:"#ffffff" }}  variant="contained">
+                Add  Category
               </Button>
             </Box>
           </form>
-        )}
-      </Formik>
+        
+     
       </Box>
 
       {/* END OF FORM */}
