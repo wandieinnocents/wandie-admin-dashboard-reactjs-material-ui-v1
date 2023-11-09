@@ -2,6 +2,8 @@
 
 A fully fledged backend starter project for spinning up software projects admin dashboards in react.js , material UI.
 
+<img src="preview.png" alt="Alt text" title="Optional title">
+
 ## Core Technologies
 - React-Js
 - Material-UI 
