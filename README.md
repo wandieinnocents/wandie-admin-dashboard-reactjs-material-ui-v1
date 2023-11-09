@@ -2,6 +2,12 @@
 
 A fully fledged backend starter project for spinning up software projects admin dashboards in react.js , material UI.
 
+## Core Technologies
+- React-Js
+- Material-UI 
+- Laravel for APIs
+
+
 ## Materials 
 - GITHUB : https://github.com/ed-roh/react-admin-dashboard/blob/master/src/App.js
 - YOUTUBE : https://youtu.be/wYpCWwD1oz0
