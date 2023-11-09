@@ -40,7 +40,7 @@ const EditProductCategory = () => {
   }, [])
 
     // handle data saving to api
-    const submitData = () => {
+    const updateData = () => {
       setIsSaving(true);
       // http://127.0.0.1:8000/api/v1/product_categories/1
       axios.put(`http://127.0.0.1:8000/api/v1/product_categories/${id}`, {
@@ -50,7 +50,7 @@ const EditProductCategory = () => {
       .then(function (response) {
           Swal.fire({
               icon: 'success',
-              title: 'Category Updated successfully!',
+              title: 'Product Category Updated successfully!',
               showConfirmButton: false,
               timer: 1500
           })
@@ -127,7 +127,7 @@ const EditProductCategory = () => {
 
               <Button 
               disabled={isSaving}
-              onClick={submitData} 
+              onClick={updateData} 
               type="submit" size="large" endIcon={<SendIcon />} style={{ backgroundColor:"#2587da", color:"#ffffff" }}  variant="contained">
                 Edit  Category
               </Button>
