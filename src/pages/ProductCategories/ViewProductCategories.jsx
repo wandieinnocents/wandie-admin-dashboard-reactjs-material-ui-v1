@@ -7,8 +7,9 @@ import axios from 'axios'
 // icons
 import CloudUploadOutlinedIcon from '@mui/icons-material/CloudUploadOutlined';
 import TransferWithinAStationOutlinedIcon from '@mui/icons-material/TransferWithinAStationOutlined';
-
-
+import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
+import ModeEditOutlinedIcon from '@mui/icons-material/ModeEditOutlined';
+import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 
 const ViewProductCategories = () => {
   const [tableData, setTableData] = useState([]);
@@ -27,11 +28,11 @@ const ViewProductCategories = () => {
     { 
       field: 'id',
       headerName: 'id', 
-      width: 200 },
+      width: 50 },
     {
       field: 'name',
       headerName: 'name',
-      width: 300,
+      width: 200,
       editable: true, 
     },
     {
@@ -39,6 +40,67 @@ const ViewProductCategories = () => {
       headerName: 'description',
       width: 400,
       editable: true,
+    },
+
+    // view action
+    {
+      field: 'actions',
+      headerName: 'View',
+      sortable: false,
+      width: 100,
+      renderCell: (params) => {
+        return (
+          <Button
+            // onClick={(e) => onButtonClick(e, params.row)}
+            style={{ backgroundColor:"#0faa50" }}
+            variant="contained"
+          >
+            {/* Edit */}
+            <RemoveRedEyeOutlinedIcon />
+          </Button>
+          
+        );
+      }
+    },
+
+    {
+      field: 'actions2',
+      headerName: 'Edit',
+      sortable: false,
+      width: 100,
+      renderCell: (params) => {
+        return (
+          <Button
+            // onClick={(e) => onButtonClick(e, params.row)}
+            style={{ backgroundColor:"#2587da" }}
+            variant="contained"
+          >
+            {/* Edit */}
+            <ModeEditOutlinedIcon />
+          </Button>
+          
+        );
+      }
+    },
+
+    {
+      field: 'actions3',
+      headerName: 'Delete',
+      sortable: false,
+      width: 100,
+      renderCell: (params) => {
+        return (
+          <Button
+            // onClick={(e) => onButtonClick(e, params.row)}
+            style={{ backgroundColor:"#da2533" }}
+            variant="contained"
+          >
+            {/* Edit */}
+            <DeleteOutlinedIcon />
+          </Button>
+          
+        );
+      }
     },
     
 
