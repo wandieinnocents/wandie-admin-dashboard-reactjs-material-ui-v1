@@ -9,7 +9,7 @@ import { mockTransactions } from '../../data/mockData';
 import StatBox from '../../components/StatBox';
 import ProgressCircle from '../../components/ProgressCircle';
 import useMediaQuery from "@mui/material/useMediaQuery";
-
+import Divider from '@mui/material/Divider';
 
 // icons
 import DownloadOutlinedIcon from "@mui/icons-material/DownloadOutlined";
@@ -27,7 +27,11 @@ const Dashboard = () => {
     <Box m="30px">
       
       <Box>
-      <Header title="DASHBOARD" subtitle="Welcome to your dashboard" />
+      <Header title="DASHBOARD" 
+       buttonTitle={"ADD PRODUCT CATEGORY"}
+       buttonURL={`/add_product_category/`}
+        />
+      {/* divider */}
       
       {/* dashboard content */}
 

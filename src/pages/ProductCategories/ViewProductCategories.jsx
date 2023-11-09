@@ -11,7 +11,10 @@ import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
 import ModeEditOutlinedIcon from '@mui/icons-material/ModeEditOutlined';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 
+
+
 const ViewProductCategories = () => {
+  // product category states
   const [productCategoryData, setproductCategoryData] = useState([]);
 
   // fetch product categories from api
@@ -34,25 +37,27 @@ const ViewProductCategories = () => {
   const columns = [
     { 
       field: 'id',
-      headerName: 'id', 
-      width: 50 },
+      headerName: '#ID', 
+      flex: 1
+    },
     {
       field: 'name',
-      headerName: 'name',
-      width: 200,
+      headerName: 'NAME',
+      // width: 200,
+      flex: 1,
       editable: true, 
     },
     {
       field: 'description',
-      headerName: 'description',
-      width: 400,
+      headerName: 'DESCRIPTION',
+      width: 500,
       editable: true,
     },
 
     // view action
     {
       field: 'actions',
-      headerName: 'View',
+      headerName: 'VIEW',
       sortable: false,
       width: 100,
       renderCell: (productCategoryData) => {
@@ -73,7 +78,7 @@ const ViewProductCategories = () => {
 
     {
       field: 'actions2',
-      headerName: 'Edit',
+      headerName: 'EDIT',
       sortable: false,
       width: 100,
       renderCell: (productCategoryData) => {
@@ -94,9 +99,10 @@ const ViewProductCategories = () => {
 
     {
       field: 'actions3',
-      headerName: 'Delete',
+      headerName: 'DELETE',
       sortable: false,
       width: 100,
+      // flex: 1,
       renderCell: (productCategoryData) => {
         return (
           <Button
@@ -151,6 +157,9 @@ const ViewProductCategories = () => {
       })
 }
 
+
+// working with modal to view data details
+
  
   
   return (
@@ -182,6 +191,14 @@ const ViewProductCategories = () => {
     </Box>
 
       {/* End table */}
+
+      {/* Start of modal */}
+
+      <div>
+      
+    </div>
+
+      {/* End of modal */}
       
       </Box>
     </Box>
