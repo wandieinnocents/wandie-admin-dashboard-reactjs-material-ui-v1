@@ -10,6 +10,8 @@ import AddClient from "./pages/Clients/AddClient";
 import ViewClients from "./pages/Clients/ViewClients";
 import AddProductCategory from "./pages/ProductCategories/AddProductCategory";
 import ViewProductCategories from "./pages/ProductCategories/ViewProductCategories";
+import EditProductCategory from "./pages/ProductCategories/EditProductCategory";
+
 import AddPackage from "./pages/Packages/AddPackage";
 import ViewPackages from "./pages/Packages/ViewPackages";
 import AddSale from "./pages/Sales/AddSale";
@@ -96,6 +98,8 @@ function App() {
         <Route path="/" element={<Dashboard />} activeStyle={{backgroundColor: "red"}} />
         <Route path="/add_product_category" element={<AddProductCategory />} />
         <Route path="/view_product_categories" element={<ViewProductCategories />} />
+        <Route path="/edit_product_category/:id" element={<EditProductCategory />} />
+
         <Route path="/add_package" element={<AddPackage />} />
         <Route path="/view_packages" element={<ViewPackages />} />
         <Route path="/add_client" element={<AddClient/>} />
