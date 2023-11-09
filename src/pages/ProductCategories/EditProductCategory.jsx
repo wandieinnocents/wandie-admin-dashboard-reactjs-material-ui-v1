@@ -20,22 +20,13 @@ const EditProductCategory = () => {
     const [description, setDescription] = useState('');
     const [isSaving, setIsSaving] = useState(false);
 
-
-    // handle data update to api
-    const updateData = () => {
-      setIsSaving(true);
-      axios.put(`http://127.0.0.1:8000/api/v1/product_categories/${id}`, {
-          name: name,
-          description: description
-      })
+    // pick existing data to form 
+    useEffect(() => {
+      axios.get(`http://127.0.0.1:8000/api/v1/product_categories/${id}`)
       .then(function (response) {
-          Swal.fire({
-              icon: 'success',
-              title: 'Product Category Updated successfully!',
-              showConfirmButton: false,
-              timer: 1500
-          })
-          setIsSaving(false);
+          let category = response.data.data
+          setName(category.name);
+          setDescription(category.description);
       })
       .catch(function (error) {
           Swal.fire({
@@ -44,11 +35,37 @@ const EditProductCategory = () => {
               showConfirmButton: false,
               timer: 1500
           })
-          setIsSaving(false)
-      });
-  }
+      })
+        
+  }, [])
 
-  
+ // handle data update to api
+ const updateData = () => {
+  setIsSaving(true);
+  axios.put(`http://127.0.0.1:8000/api/v1/product_categories/${id}`, {
+      name: name,
+      description: description
+  })
+  .then(function (response) {
+      Swal.fire({
+          icon: 'success',
+          title: 'Product Category Updated successfully!',
+          showConfirmButton: false,
+          timer: 1500
+      })
+      setIsSaving(false);
+  })
+  .catch(function (error) {
+      Swal.fire({
+           icon: 'error',
+          title: 'An Error Occured!',
+          showConfirmButton: false,
+          timer: 1500
+      })
+      setIsSaving(false)
+  });
+}
+
 
 
 
