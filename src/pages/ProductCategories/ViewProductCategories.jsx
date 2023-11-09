@@ -154,7 +154,10 @@ const ViewProductCategories = () => {
     <Box m="30px">
       
       <Box>
-      <Header title="View ViewProductCategories" subtitle="Welcome to your ViewProductCategories" />
+      <Header title="Product Categories" 
+       buttonTitle={"ADD PRODUCT CATEGORY"}
+       buttonURL={`/add_product_category/`}
+        />
 
       {/* table */}
 

@@ -1,11 +1,13 @@
 import React from 'react';
-import { Typography,Box,useTheme } from '@mui/material';
-import { tokens } from '../theme';
+import { Typography, Button, Box, useTheme } from '@mui/material';
+// import { tokens } from '../theme';
 import Grid from '@mui/material/Grid';
+import SendIcon from '@mui/icons-material/Send';
 
 
 
-const Header = ({ title, subtitle })=> {
+
+const Header = ({ title, buttonTitle, buttonURL })=> {
 
   return (
 
@@ -15,27 +17,35 @@ const Header = ({ title, subtitle })=> {
       variant='h3' 
       color="#000000" 
       fontWeight="bold" 
-      sx={{ mb: "5px" }}>
+      sx={{ mb: "15px" }}>
       { title }
     </Typography>
     
-    <Typography
-    variant='h5' 
-    // color={colors.greenAccent[400]}
-    >
-    { subtitle }
-    </Typography>
+    
   </Grid>
 
   <Grid item xs={4}>
-  <Typography
+  {/* <Typography
     variant='h5'
     style={{textAlign: 'right'}}  
     sx={{ mb: "50px" }}
     // color={colors.greenAccent[400]}
     >
     Dashboard
-    </Typography>
+    </Typography> */}
+
+    {/* Button */}
+    <Box display="flex" justifyContent="end">
+
+      <Button 
+      sx={{ mb: "15px" }}
+      href={buttonURL}
+      type="submit" size="large" endIcon={<SendIcon />} 
+      style={{ backgroundColor:"#2587da", color:"#ffffff", alignItems: 'right' }}  
+      variant="contained">
+        { buttonTitle }
+      </Button>
+    </Box>
   </Grid>
   
 </Grid>
