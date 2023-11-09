@@ -5,7 +5,7 @@ A fully fledged backend starter project for spinning up software projects admin 
 ## Core Technologies
 - React-Js
 - Material-UI 
-- Laravel for APIs
+- Php/Laravel Framework for APIs
 
 
 ## Materials 
