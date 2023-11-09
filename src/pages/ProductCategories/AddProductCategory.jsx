@@ -21,7 +21,6 @@ const AddProductCategory = () => {
     // handle data saving to api
     const submitData = () => {
       
-      // using backend validation
       setIsSaving(true);
       axios.post('http://127.0.0.1:8000/api/v1/product_categories/create', {
           name: name,
@@ -48,6 +47,7 @@ const AddProductCategory = () => {
           setIsSaving(false)
         });
   }
+  // end of  handle data saving to api
 
 
 
