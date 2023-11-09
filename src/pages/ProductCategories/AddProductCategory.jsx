@@ -56,8 +56,10 @@ const AddProductCategory = () => {
     <Box mt="30px" mb="60px" mr="60px" ml="60px" >
       
       <Box>
-      <Header title="Add Product Categories" subtitle="Welcome to your ProductCategories" />
-
+      <Header title="Add Product Category" 
+       buttonTitle={"All product Categories"}
+       buttonURL={`/view_product_categories/`}
+        />
       {/* FORM */}
       <Box >
         

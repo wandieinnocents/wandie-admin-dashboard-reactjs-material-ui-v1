@@ -11,6 +11,7 @@ import ViewClients from "./pages/Clients/ViewClients";
 import AddProductCategory from "./pages/ProductCategories/AddProductCategory";
 import ViewProductCategories from "./pages/ProductCategories/ViewProductCategories";
 import EditProductCategory from "./pages/ProductCategories/EditProductCategory";
+import ShowProductCategory from "./pages/ProductCategories/ShowProductCategory";
 
 import AddPackage from "./pages/Packages/AddPackage";
 import ViewPackages from "./pages/Packages/ViewPackages";
@@ -96,9 +97,12 @@ function App() {
         <TopBar />
         <Routes>
         <Route path="/" element={<Dashboard />} activeStyle={{backgroundColor: "red"}} />
+        
+        {/* product categories */}
         <Route path="/add_product_category" element={<AddProductCategory />} />
         <Route path="/view_product_categories" element={<ViewProductCategories />} />
         <Route path="/edit_product_category/:id" element={<EditProductCategory />} />
+        <Route path="/show_product_category/:id" element={<ShowProductCategory />} />
 
         <Route path="/add_package" element={<AddPackage />} />
         <Route path="/view_packages" element={<ViewPackages />} />

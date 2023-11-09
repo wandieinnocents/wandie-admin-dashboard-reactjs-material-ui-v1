@@ -53,10 +53,11 @@ const ViewProductCategories = () => {
       headerName: 'View',
       sortable: false,
       width: 100,
-      renderCell: (params) => {
+      renderCell: (productCategoryData) => {
         return (
           <Button
             // onClick={(e) => onButtonClick(e, params.row)}
+            href={`/show_product_category/${productCategoryData.id}`}
             style={{ backgroundColor:"#0faa50" }}
             variant="contained"
           >
@@ -73,11 +74,11 @@ const ViewProductCategories = () => {
       headerName: 'Edit',
       sortable: false,
       width: 100,
-      renderCell: (tableData) => {
+      renderCell: (productCategoryData) => {
         return (
           <Button
             // onClick={(e) => onButtonClick(e, params.row)}
-            href={`/edit_product_category/${tableData.id}`}
+            href={`/edit_product_category/${productCategoryData.id}`}
             style={{ backgroundColor:"#2587da" }}
             variant="contained"
           >
@@ -94,7 +95,7 @@ const ViewProductCategories = () => {
       headerName: 'Delete',
       sortable: false,
       width: 100,
-      renderCell: (tableData) => {
+      renderCell: (productCategoryData) => {
         return (
           <Button
             onClick={()=>handleDelete(tableData.id)}
