@@ -3,8 +3,8 @@ import Header from '../../components/Header';
 import {  Button, IconButton, Typography, useTheme } from "@mui/material";
 import Box from '@mui/material/Box';
 import { DataGrid } from '@mui/x-data-grid';
+import Swal from 'sweetalert2'
 import axios from 'axios'
-// icons
 import CloudUploadOutlinedIcon from '@mui/icons-material/CloudUploadOutlined';
 import TransferWithinAStationOutlinedIcon from '@mui/icons-material/TransferWithinAStationOutlined';
 import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
@@ -14,13 +14,18 @@ import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 const ViewProductCategories = () => {
   const [tableData, setTableData] = useState([]);
 
-
-  useEffect(() => {
+  const getProductCategories = () => {
+ 
     fetch("http://127.0.0.1:8000/api/v1/product_categories")
       .then((data) => data.json())
       .then((data) => setTableData(data.data))
-  }, [])
+ 
    console.log(tableData)
+  }
+
+  useEffect(() => {
+    getProductCategories()
+}, []);
 
 
   // columns
@@ -68,10 +73,11 @@ const ViewProductCategories = () => {
       headerName: 'Edit',
       sortable: false,
       width: 100,
-      renderCell: (params) => {
+      renderCell: (tableData) => {
         return (
           <Button
             // onClick={(e) => onButtonClick(e, params.row)}
+            href={`/edit_product_category/${tableData.id}`}
             style={{ backgroundColor:"#2587da" }}
             variant="contained"
           >
@@ -88,10 +94,10 @@ const ViewProductCategories = () => {
       headerName: 'Delete',
       sortable: false,
       width: 100,
-      renderCell: (params) => {
+      renderCell: (tableData) => {
         return (
           <Button
-            // onClick={(e) => onButtonClick(e, params.row)}
+            onClick={()=>handleDelete(tableData.id)}
             style={{ backgroundColor:"#da2533" }}
             variant="contained"
           >
@@ -106,6 +112,41 @@ const ViewProductCategories = () => {
 
     // 
   ];
+
+
+  // delete data from api
+  const handleDelete = (id) => {
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+            axios.delete(`http://127.0.0.1:8000/api/v1/product_categories/${id}`)
+            .then(function (response) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Product Category Deleted Successfully!',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+                getProductCategories()
+            })
+            .catch(function (error) {
+                Swal.fire({
+                     icon: 'error',
+                    title: 'An Error Occured!',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+            });
+        }
+      })
+}
 
  
   

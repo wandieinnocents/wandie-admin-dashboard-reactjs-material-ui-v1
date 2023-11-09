@@ -15,34 +15,15 @@ const EditProductCategory = () => {
   const isNonMobile = useMediaQuery("(min-width:600px)");
 
   // states for data submission
-    const [id, setId] = useState(useParams().id)
+    const [id, setId] = useState(useParams().id);
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [isSaving, setIsSaving] = useState(false);
 
-    // useeffect edit
-    useEffect(() => {
-      axios.get(`/api/projects/${id}`)
-      .then(function (response) {
-          let project = response.data
-          setName(project.name);
-          setDescription(project.description);
-      })
-      .catch(function (error) {
-          Swal.fire({
-               icon: 'error',
-              title: 'An Error Occured!',
-              showConfirmButton: false,
-              timer: 1500
-          })
-      })
-        
-  }, [])
 
-    // handle data saving to api
+    // handle data update to api
     const updateData = () => {
       setIsSaving(true);
-      // http://127.0.0.1:8000/api/v1/product_categories/1
       axios.put(`http://127.0.0.1:8000/api/v1/product_categories/${id}`, {
           name: name,
           description: description
@@ -66,6 +47,8 @@ const EditProductCategory = () => {
           setIsSaving(false)
       });
   }
+
+  
 
 
 
