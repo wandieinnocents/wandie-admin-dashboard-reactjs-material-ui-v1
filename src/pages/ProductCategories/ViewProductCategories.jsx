@@ -12,15 +12,17 @@ import ModeEditOutlinedIcon from '@mui/icons-material/ModeEditOutlined';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 
 const ViewProductCategories = () => {
-  const [tableData, setTableData] = useState([]);
+  const [productCategoryData, setproductCategoryData] = useState([]);
 
+  // fetch product categories from api
   const getProductCategories = () => {
- 
-    fetch("http://127.0.0.1:8000/api/v1/product_categories")
-      .then((data) => data.json())
-      .then((data) => setTableData(data.data))
- 
-   console.log(tableData)
+    axios.get('http://127.0.0.1:8000/api/v1/product_categories')
+        .then(function (response) {
+          setproductCategoryData(response.data.data);
+        })
+        .catch(function (error) {
+          console.log(error);
+        })
   }
 
   useEffect(() => {
@@ -98,7 +100,7 @@ const ViewProductCategories = () => {
       renderCell: (productCategoryData) => {
         return (
           <Button
-            onClick={()=>handleDelete(tableData.id)}
+            onClick={()=>handleDelete(productCategoryData.id)}
             style={{ backgroundColor:"#da2533" }}
             variant="contained"
           >
@@ -164,7 +166,7 @@ const ViewProductCategories = () => {
 
       <Box sx={{ height: 900, width: '100%' }}>
       <DataGrid
-        rows={tableData}
+        rows={productCategoryData}
         columns={columns}
         initialState={{
           pagination: {
