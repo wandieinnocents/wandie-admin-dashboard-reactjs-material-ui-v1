@@ -205,7 +205,7 @@ const SideBar = () => {
 
               <MenuItem 
               icon={<ArrowRightAltIcon />}
-                component={<Link to="/add_product_category" />}
+                component={<Link to="/add_parent_product_category" />}
                 // selected={selected}
                 // setSelected={setSelected}
                 > Add Parent Category
@@ -213,7 +213,7 @@ const SideBar = () => {
 
               <MenuItem 
               icon={<ArrowRightAltIcon />}
-                component={<Link to="/view_product_categories" />}
+                component={<Link to="/view_parent_product_categories" />}
                 // selected={selected}
                 // setSelected={setSelected}
                 > Parent Categories
@@ -221,7 +221,7 @@ const SideBar = () => {
 
                 <MenuItem 
                   icon={<ArrowRightAltIcon />}
-                    component={<Link to="/view_product_categories" />}
+                    component={<Link to="/add_product_category" />}
                     // selected={selected}
                     // setSelected={setSelected}
                     > Add Category

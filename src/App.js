@@ -47,6 +47,8 @@ import AddUnit from "./pages/Units/AddUnit";
 import ViewUnits from "./pages/Units/ViewUnits";
 import AddSupplier from "./pages/Suppliers/AddSupplier";
 import ViewSuppliers from "./pages/Suppliers/ViewSuppliers";
+import AddParentProductCategory from "./pages/ParentProductCategories/AddParentProductCategory";
+import ViewParentProductCategories from "./pages/ParentProductCategories/ViewParentProductCategories";
 
 // styling
 
@@ -117,6 +119,10 @@ function App() {
 
         {/* dashboard */}
         <Route path="/" element={<Dashboard />} activeStyle={{backgroundColor: "red"}} />
+
+          {/* parent product category */}
+          <Route path="/add_parent_product_category" element={<AddParentProductCategory />} />
+        <Route path="/view_parent_product_categories" element={<ViewParentProductCategories />} />
         
         {/* product categories */}
         <Route path="/add_product_category" element={<AddProductCategory />} />

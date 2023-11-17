@@ -7,6 +7,11 @@ import Header from "../../components/Header";
 import SendIcon from '@mui/icons-material/Send';
 import Swal from 'sweetalert2'
 import axios from 'axios'
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+import InputLabel from '@mui/material/InputLabel';
+
 
 
 const AddParentProductCategory = () => {
@@ -14,30 +19,40 @@ const AddParentProductCategory = () => {
   const isNonMobile = useMediaQuery("(min-width:600px)");
 
     // states for data submission
-    const [name, setName] = useState('');
-    const [description, setDescription] = useState('');
+    const [parent_product_category_name, setParentProductCategoryName] = useState('');
+    const [parent_product_category_description, setParentProductCategoryDescription] = useState('');
+    const [parent_product_category_status, setParentProductCategoryStatus] = useState('');
     const [isSaving, setIsSaving] = useState(false);
+
+    // handle drop down change
+    const handleChangeParentCategoryStatus = (event) => {
+      setParentProductCategoryStatus(event.target.value);
+    };
+  
+
 
     // handle data saving to api
     const submitData = () => {
       
       setIsSaving(true);
-      axios.post('http://127.0.0.1:8000/api/v1/product_categories/create', {
+      axios.post('http://127.0.0.1:8000/api/v1/parent_product_categories/create', {
           // database fields
-          name: name,
-          description: description
+          parent_product_category_name: parent_product_category_name,
+          parent_product_category_description: parent_product_category_description,
+          parent_product_category_status: parent_product_category_status,
         })
         // trigger sweet alerts on success
         .then(function (response) {
           Swal.fire({
               icon: 'success',
-              title: 'Category saved successfully!',
+              title: 'Parent Category saved successfully!',
               showConfirmButton: false,
               timer: 1500
           })
           setIsSaving(false);
-          setName('') 
-          setDescription('')
+          setParentProductCategoryName('') 
+          setParentProductCategoryDescription('')
+          setParentProductCategoryStatus('')
         })
         // trigger sweet alerts on failure
         .catch(function (error) {
@@ -60,9 +75,9 @@ const AddParentProductCategory = () => {
     <Box mt="30px" mb="60px" mr="60px" ml="60px" >
       
       <Box>
-      <Header title="Add Product Category" 
-       buttonTitle={"All product Categories"}
-       buttonURL={`/view_product_categories/`}
+      <Header title="Add Parent Product Category" 
+       buttonTitle={"All Parent product Categories"}
+       buttonURL={`/view_parent_  product_categories/`}
         />
       {/* FORM */}
       
@@ -81,16 +96,31 @@ const AddParentProductCategory = () => {
                 fullWidth
                 // style={{ width:"100%" }}
                 type="text"
-                label="Category Name"
+                label="Parent Category Name"
                 // onBlur={handleBlur}
-                onChange={(event)=>{setName(event.target.value)}}
-                value={name}
-                name="name"
+                onChange={(event)=>{setParentProductCategoryName(event.target.value)}}
+                value={parent_product_category_name}
+                name="parent_product_category_name"
                 // id="name"
                 // error={!!touched.name && !!errors.name}
                 // helperText={touched.name && errors.name}
-                sx={{ gridColumn: "span 4" }}
+                sx={{ gridColumn: "span 2" }}
               />
+
+              {/* status */}
+              <FormControl  fullWidth sx={{ gridColumn: "span 2" }}>
+                <InputLabel id="demo-simple-select-label">Select Status</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={parent_product_category_status}
+                  label="Select Status"
+                  onChange={handleChangeParentCategoryStatus}
+                >
+                  <MenuItem value={1}>Active</MenuItem>
+                  <MenuItem value={2}>Disabled</MenuItem>
+                </Select>
+              </FormControl>
               
               <TextField
                 fullWidth
@@ -100,9 +130,9 @@ const AddParentProductCategory = () => {
                 rows={5}
                 label="Description"
                 // onBlur={handleBlur}
-                onChange={(event)=>{setDescription(event.target.value)}}
-                value={description}
-                name="description"
+                onChange={(event)=>{setParentProductCategoryDescription(event.target.value)}}
+                value={parent_product_category_description}
+                name="parent_product_category_description"
                 // id="description"
                 // error={!!touched.description && !!errors.description}
                 // helperText={touched.description && errors.description}
@@ -118,7 +148,7 @@ const AddParentProductCategory = () => {
               disabled={isSaving}
               onClick={submitData} 
               type="submit" size="large" endIcon={<SendIcon />} style={{ backgroundColor:"#2587da", color:"#ffffff" }}  variant="contained">
-                Add  Category
+                Add Parent Category
               </Button>
             </Box>
           </form>

@@ -15,14 +15,14 @@ import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 
 const ViewParentProductCategories = () => {
   // product category states
-  const [productCategoryData, setproductCategoryData] = useState([]);
+  const [parentProductCategoryData, setParentProductCategoryData] = useState([]);
 
   // fetch data from api
-  const getProductCategories = () => {
-    axios.get('http://127.0.0.1:8000/api/v1/product_categories')
+  const getParentProductCategories = () => {
+    axios.get('http://127.0.0.1:8000/api/v1/parent_product_categories')
         .then(function (response) {
           // nested object of data.data
-          setproductCategoryData(response.data.data);
+          setParentProductCategoryData(response.data.data);
         })
         .catch(function (error) {
           console.log(error);
@@ -30,7 +30,7 @@ const ViewParentProductCategories = () => {
   }
 
   useEffect(() => {
-    getProductCategories()
+    getParentProductCategories()
 }, []);
 
 
@@ -42,16 +42,30 @@ const ViewParentProductCategories = () => {
       flex: 1
     },
     {
-      field: 'name',
-      headerName: 'NAME',
+      field: 'parent_product_category_code',
+      headerName: 'Code',
       // width: 200,
       flex: 1,
       editable: true, 
     },
     {
-      field: 'description',
-      headerName: 'DESCRIPTION',
-      width: 500,
+      field: 'parent_product_category_name',
+      headerName: 'Parent Category Name',
+      width: 200,
+      editable: true,
+    },
+
+    // {
+    //   field: 'parent_product_category_description',
+    //   headerName: 'Description',
+    //   width: 200,
+    //   editable: true,
+    // },
+
+    {
+      field: 'parent_product_category_status',
+      headerName: 'Status',
+      width: 200,
       editable: true,
     },
 
@@ -61,11 +75,11 @@ const ViewParentProductCategories = () => {
       headerName: 'VIEW',
       sortable: false,
       width: 100,
-      renderCell: (productCategoryData) => {
+      renderCell: (parentProductCategoryData) => {
         return (
           <Button
             // onClick={(e) => onButtonClick(e, params.row)}
-            href={`/show_product_category/${productCategoryData.id}`}
+            href={`/show_product_category/${parentProductCategoryData.id}`}
             style={{ backgroundColor:"#0faa50" }}
             variant="contained"
           >
@@ -82,11 +96,11 @@ const ViewParentProductCategories = () => {
       headerName: 'EDIT',
       sortable: false,
       width: 100,
-      renderCell: (productCategoryData) => {
+      renderCell: (parentProductCategoryData) => {
         return (
           <Button
             // onClick={(e) => onButtonClick(e, params.row)}
-            href={`/edit_product_category/${productCategoryData.id}`}
+            href={`/edit_product_category/${parentProductCategoryData.id}`}
             style={{ backgroundColor:"#2587da" }}
             variant="contained"
           >
@@ -104,10 +118,10 @@ const ViewParentProductCategories = () => {
       sortable: false,
       width: 100,
       // flex: 1,
-      renderCell: (productCategoryData) => {
+      renderCell: (parentProductCategoryData) => {
         return (
           <Button
-            onClick={()=>handleDelete(productCategoryData.id)}
+            onClick={()=>handleDelete(parentProductCategoryData.id)}
             style={{ backgroundColor:"#da2533" }}
             variant="contained"
           >
@@ -138,16 +152,16 @@ const ViewParentProductCategories = () => {
       }).then((result) => {
         
         if (result.isConfirmed) {
-            axios.delete(`http://127.0.0.1:8000/api/v1/product_categories/${id}`)
+            axios.delete(`http://127.0.0.1:8000/api/v1/parent_product_categories/${id}`)
             // trigger sweet alerts on successful delete
             .then(function (response) {
                 Swal.fire({
                     icon: 'success',
-                    title: 'Product Category Deleted Successfully!',
+                    title: 'Parent Product Category Deleted Successfully!',
                     showConfirmButton: false,
                     timer: 1500
                 })
-                getProductCategories()
+                getParentProductCategories()
             })
             // trigger sweet alerts on error
             .catch(function (error) {
@@ -173,8 +187,8 @@ const ViewParentProductCategories = () => {
     <Box m="30px">
       
       <Box>
-      <Header title="Product Categories" 
-       buttonTitle={"ADD PRODUCT CATEGORY"}
+      <Header title="Parent Product Categories" 
+       buttonTitle={"ADD PARENT PRODUCT CATEGORY"}
        buttonURL={`/add_product_category/`}
         />
 
@@ -182,7 +196,7 @@ const ViewParentProductCategories = () => {
 
       <Box sx={{ height: 900, width: '100%' }}>
       <DataGrid
-        rows={productCategoryData}
+        rows={parentProductCategoryData}
         columns={columns}
         initialState={{
           pagination: {
