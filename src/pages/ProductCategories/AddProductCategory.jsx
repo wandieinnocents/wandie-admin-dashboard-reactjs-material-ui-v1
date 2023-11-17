@@ -13,8 +13,8 @@ const AddProductCategory = () => {
 
   const isNonMobile = useMediaQuery("(min-width:600px)");
 
-  // states for data submission
-  const [name, setName] = useState('');
+    // states for data submission
+    const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [isSaving, setIsSaving] = useState(false);
 
@@ -23,9 +23,11 @@ const AddProductCategory = () => {
       
       setIsSaving(true);
       axios.post('http://127.0.0.1:8000/api/v1/product_categories/create', {
+          // database fields
           name: name,
           description: description
         })
+        // trigger sweet alerts on success
         .then(function (response) {
           Swal.fire({
               icon: 'success',
@@ -37,6 +39,7 @@ const AddProductCategory = () => {
           setName('') 
           setDescription('')
         })
+        // trigger sweet alerts on failure
         .catch(function (error) {
           Swal.fire({
               icon: 'error',
@@ -47,6 +50,7 @@ const AddProductCategory = () => {
           setIsSaving(false)
         });
   }
+
   // end of  handle data saving to api
 
 
@@ -61,6 +65,7 @@ const AddProductCategory = () => {
        buttonURL={`/view_product_categories/`}
         />
       {/* FORM */}
+      
       <Box >
         
           <form >

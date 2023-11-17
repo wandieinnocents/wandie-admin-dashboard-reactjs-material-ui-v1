@@ -17,10 +17,11 @@ const ViewProductCategories = () => {
   // product category states
   const [productCategoryData, setproductCategoryData] = useState([]);
 
-  // fetch product categories from api
+  // fetch data from api
   const getProductCategories = () => {
     axios.get('http://127.0.0.1:8000/api/v1/product_categories')
         .then(function (response) {
+          // nested object of data.data
           setproductCategoryData(response.data.data);
         })
         .catch(function (error) {
@@ -125,6 +126,7 @@ const ViewProductCategories = () => {
 
   // delete data from api
   const handleDelete = (id) => {
+    // trigger sweet alerts on delete
     Swal.fire({
         title: 'Are you sure?',
         text: "You won't be able to revert this!",
@@ -134,8 +136,10 @@ const ViewProductCategories = () => {
         cancelButtonColor: '#d33',
         confirmButtonText: 'Yes, delete it!'
       }).then((result) => {
+        
         if (result.isConfirmed) {
             axios.delete(`http://127.0.0.1:8000/api/v1/product_categories/${id}`)
+            // trigger sweet alerts on successful delete
             .then(function (response) {
                 Swal.fire({
                     icon: 'success',
@@ -145,6 +149,7 @@ const ViewProductCategories = () => {
                 })
                 getProductCategories()
             })
+            // trigger sweet alerts on error
             .catch(function (error) {
                 Swal.fire({
                      icon: 'error',
@@ -157,8 +162,10 @@ const ViewProductCategories = () => {
       })
 }
 
+  // end of delete data from api
 
-// working with modal to view data details
+
+
 
  
   

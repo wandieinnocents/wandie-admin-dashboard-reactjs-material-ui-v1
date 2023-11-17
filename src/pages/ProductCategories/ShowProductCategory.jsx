@@ -17,15 +17,17 @@ import axios from 'axios'
 
 
 export default function RowAndColumnSpacing() {
-  // states
-  const [id, setId] = useState(useParams().id)
+    // states
+    const [id, setId] = useState(useParams().id)
     const [productCategory, setProductCategory] = useState({name:'', description:''})
  
+    // retrieve single data by id
     useEffect(() => {
         axios.get(`http://127.0.0.1:8000/api/v1/product_categories/${id}`)
         .then(function (response) {
           setProductCategory(response.data.data)
         })
+        // console log error on failure
         .catch(function (error) {
           console.log(error);
         })

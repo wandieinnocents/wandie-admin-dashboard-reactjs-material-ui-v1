@@ -143,15 +143,72 @@ const SideBar = () => {
               Dashboard
           </MenuItem>
 
-            {/* Product categories  */}
-            <SubMenu icon={<InventoryIcon />} label="Product Categories">
+           {/* Brands  */}
+           <SubMenu icon={<InventoryIcon />} label="Brands">
+
+            <MenuItem 
+            icon={<ArrowRightAltIcon />}
+              component={<Link to="/add_brand" />}
+              // selected={selected}
+              // setSelected={setSelected}
+              > Add Brand
+              </MenuItem>
+
+            <MenuItem 
+            icon={<ArrowRightAltIcon />}
+              component={<Link to="/view_brands" />}
+              > Manage Brands
+              </MenuItem>
+
+            </SubMenu>
+
+              {/* Units  */}
+           <SubMenu icon={<InventoryIcon />} label="Units">
+
+            <MenuItem 
+            icon={<ArrowRightAltIcon />}
+              component={<Link to="/add_unit" />}
+              > Add Unit
+              </MenuItem>
+
+            <MenuItem 
+            icon={<ArrowRightAltIcon />}
+              component={<Link to="/view_units" />}
+              > Manage Units
+              </MenuItem>
+
+            </SubMenu>
+
+             {/* Suppliers  */}
+           <SubMenu icon={<InventoryIcon />} label="Suppliers">
+
+            <MenuItem 
+            icon={<ArrowRightAltIcon />}
+              component={<Link to="/add_unit" />}
+              > Add Supplier
+              </MenuItem>
+
+            <MenuItem 
+            icon={<ArrowRightAltIcon />}
+              component={<Link to="/view_units" />}
+              > Manage Suppliers
+              </MenuItem>
+
+            </SubMenu>
+
+
+
+
+
+            {/* Products  */}
+            <SubMenu icon={<InventoryIcon />} label="Products">
 
               <MenuItem 
               icon={<ArrowRightAltIcon />}
                 component={<Link to="/add_product_category" />}
                 // selected={selected}
                 // setSelected={setSelected}
-                > Add Category
+                > Add Parent Category
                 </MenuItem>
 
               <MenuItem 
@@ -159,31 +216,44 @@ const SideBar = () => {
                 component={<Link to="/view_product_categories" />}
                 // selected={selected}
                 // setSelected={setSelected}
-                > Manage Categories
+                > Parent Categories
+                </MenuItem>
+
+                <MenuItem 
+                  icon={<ArrowRightAltIcon />}
+                    component={<Link to="/view_product_categories" />}
+                    // selected={selected}
+                    // setSelected={setSelected}
+                    > Add Category
+                    </MenuItem>
+
+                    <MenuItem 
+                  icon={<ArrowRightAltIcon />}
+                    component={<Link to="/view_product_categories" />}
+                    // selected={selected}
+                    // setSelected={setSelected}
+                    > Manage Categories
+                </MenuItem>
+
+                <MenuItem 
+                  icon={<ArrowRightAltIcon />}
+                    component={<Link to="/view_product_categories" />}
+                    // selected={selected}
+                    // setSelected={setSelected}
+                    > Add Product
+                    </MenuItem>
+
+                    <MenuItem 
+                  icon={<ArrowRightAltIcon />}
+                    component={<Link to="/view_product_categories" />}
+                    // selected={selected}
+                    // setSelected={setSelected}
+                    > Manage Products
                 </MenuItem>
 
             </SubMenu>
 
-            {/* Packages  */}
-            <SubMenu icon={<Inventory2OutlinedIcon />} label="Packages">
-
-              <MenuItem 
-              icon={<ArrowRightAltIcon />}
-                component={<Link to="/add_package" />}
-                // selected={selected}
-                // setSelected={setSelected}
-                > Add Package
-                </MenuItem>
-
-              <MenuItem 
-              icon={<ArrowRightAltIcon />}
-                component={<Link to="/view_packages" />}
-                // selected={selected}
-                // setSelected={setSelected}
-                > Manage Packages
-                </MenuItem>
-
-            </SubMenu>
+        
 
              {/* Clients  */}
              <SubMenu icon={<PeopleAltOutlinedIcon />} label="Clients">

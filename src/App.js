@@ -41,6 +41,10 @@ import AddExpense from "./pages/Expenses/AddExpense";
 import ViewExpenses from "./pages/Expenses/ViewExpenses";
 import AddExpenseCategory from "./pages/ExpenseCategory/AddExpenseCategory";
 import ViewExpenseCategories from "./pages/ExpenseCategory/ViewExpenseCategories";
+import AddBrand from "./pages/Brands/AddBrand";
+import ViewBrands from "./pages/Brands/ViewBrands";
+import AddUnit from "./pages/Units/AddUnit";
+import ViewUnits from "./pages/Units/ViewUnits";
 
 // styling
 
@@ -96,6 +100,16 @@ function App() {
       }}>
         <TopBar />
         <Routes>
+
+       {/* brands */}
+        <Route path="/add_brand" element={<AddBrand />} />
+        <Route path="/view_brands" element={<ViewBrands />} />
+
+        {/* units */}
+        <Route path="/add_unit" element={<AddUnit />} />
+        <Route path="/view_units" element={<ViewUnits />} />
+
+        {/* dashboard */}
         <Route path="/" element={<Dashboard />} activeStyle={{backgroundColor: "red"}} />
         
         {/* product categories */}

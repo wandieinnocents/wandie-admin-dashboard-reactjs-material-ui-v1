@@ -20,14 +20,16 @@ const EditProductCategory = () => {
     const [description, setDescription] = useState('');
     const [isSaving, setIsSaving] = useState(false);
 
-    // pick existing data to form 
+    // pick existing data to form as form value
     useEffect(() => {
       axios.get(`http://127.0.0.1:8000/api/v1/product_categories/${id}`)
       .then(function (response) {
+          // handle database fields to set form values
           let category = response.data.data
           setName(category.name);
           setDescription(category.description);
       })
+      // trigger sweet alerts on error
       .catch(function (error) {
           Swal.fire({
                icon: 'error',
@@ -43,9 +45,11 @@ const EditProductCategory = () => {
  const updateData = () => {
   setIsSaving(true);
   axios.put(`http://127.0.0.1:8000/api/v1/product_categories/${id}`, {
+      // database fields to update
       name: name,
       description: description
   })
+  // trigger sweet alerts on success
   .then(function (response) {
       Swal.fire({
           icon: 'success',
@@ -55,6 +59,7 @@ const EditProductCategory = () => {
       })
       setIsSaving(false);
   })
+  // trigger sweet alerts on error
   .catch(function (error) {
       Swal.fire({
            icon: 'error',
