@@ -45,6 +45,8 @@ import AddBrand from "./pages/Brands/AddBrand";
 import ViewBrands from "./pages/Brands/ViewBrands";
 import AddUnit from "./pages/Units/AddUnit";
 import ViewUnits from "./pages/Units/ViewUnits";
+import AddSupplier from "./pages/Suppliers/AddSupplier";
+import ViewSuppliers from "./pages/Suppliers/ViewSuppliers";
 
 // styling
 
@@ -108,6 +110,10 @@ function App() {
         {/* units */}
         <Route path="/add_unit" element={<AddUnit />} />
         <Route path="/view_units" element={<ViewUnits />} />
+
+        {/* suppliers */}
+        <Route path="/add_supplier" element={<AddSupplier />} />
+        <Route path="/view_suppliers" element={<ViewSuppliers />} />
 
         {/* dashboard */}
         <Route path="/" element={<Dashboard />} activeStyle={{backgroundColor: "red"}} />

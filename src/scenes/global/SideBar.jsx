@@ -184,13 +184,13 @@ const SideBar = () => {
 
             <MenuItem 
             icon={<ArrowRightAltIcon />}
-              component={<Link to="/add_unit" />}
+              component={<Link to="/add_supplier" />}
               > Add Supplier
               </MenuItem>
 
             <MenuItem 
             icon={<ArrowRightAltIcon />}
-              component={<Link to="/view_units" />}
+              component={<Link to="/view_suppliers" />}
               > Manage Suppliers
               </MenuItem>
 
