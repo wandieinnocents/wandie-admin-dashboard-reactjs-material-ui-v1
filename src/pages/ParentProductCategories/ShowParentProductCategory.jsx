@@ -13,19 +13,29 @@ import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
 import Divider from '@mui/material/Divider';
 import axios from 'axios'
+import Chip from '@mui/material/Chip';
 
 
 
 export default function ShowParentProductCategory() {
     // states
     const [id, setId] = useState(useParams().id)
-    const [productCategory, setProductCategory] = useState({name:'', description:''})
+    const [parentProductCategory, setparentProductCategory] =
+     useState(
+      {
+        parent_product_category_code:'', 
+        parent_product_category_name:'',
+        parent_product_category_description:'',
+        parent_product_category_status:'',
+       }
+      )
  
     // retrieve single data by id
     useEffect(() => {
-        axios.get(`http://127.0.0.1:8000/api/v1/product_categories/${id}`)
+        axios.get(`http://127.0.0.1:8000/api/v1/parent_product_categories/${id}`)
         .then(function (response) {
-          setProductCategory(response.data.data)
+          setparentProductCategory(response.data.data)
+          console.log(response.data.data)
         })
         // console log error on failure
         .catch(function (error) {
@@ -40,9 +50,9 @@ export default function ShowParentProductCategory() {
     <Box m="30px">
       
     <Box>
-    <Header title="Category Details" 
-       buttonTitle={"ADD PRODUCT CATEGORY"}
-       buttonURL={`/add_product_category/`}
+    <Header title="Parent Category Details" 
+       buttonTitle={"ADD PARENT PRODUCT CATEGORY"}
+       buttonURL={`/add_parent_product_category/`}
         />
     <Divider style={{ marginBottom:"30px" }} />
 
@@ -58,28 +68,66 @@ export default function ShowParentProductCategory() {
        
         <CardContent>
           <Typography gutterBottom variant="h4" component="div">
-            Category Name
+            Parent Category Code
           </Typography>
           {/* divider */}
           <Divider style={{ marginBottom:"10px",marginTop:"10px" }} />
           
           <Typography  color="text.secondary">
-           {productCategory.name}
+           {parentProductCategory.parent_product_category_code}
           </Typography>
           
            {/* divider */}
            <Divider style={{ marginBottom:"10px",marginTop:"10px" }} />
 
           <Typography gutterBottom variant="h4" component="div">
-            Description
+          Parent Category Name
           </Typography>
          
           {/* divider */}
           <Divider style={{ marginBottom:"10px",marginTop:"10px" }} />
           
           <Typography  color="text.secondary">
-           {productCategory.description}
+           {parentProductCategory.parent_product_category_name}
           </Typography>
+
+           {/* divider */}
+           <Divider style={{ marginBottom:"10px",marginTop:"10px" }} />
+
+          <Typography gutterBottom variant="h4" component="div">
+          Parent Category Status
+          </Typography>
+         
+          {/* divider */}
+          <Divider style={{ marginBottom:"10px",marginTop:"10px" }} />
+          
+          <Typography  color="text.secondary">
+           
+           <Chip label={parentProductCategory.parent_product_category_status} style={{ backgroundColor:'green', color:'#FFFFFF' }} />
+           
+          </Typography>
+
+           {/* divider */}
+           <Divider style={{ marginBottom:"10px",marginTop:"10px" }} />
+
+
+          <Typography gutterBottom variant="h4" component="div">
+          Parent Category Description
+          </Typography>
+         
+          {/* divider */}
+          <Divider style={{ marginBottom:"10px",marginTop:"10px" }} />
+          
+          <Typography  color="text.secondary">
+           {parentProductCategory.parent_product_category_description}
+          </Typography>
+
+
+
+
+
+
+
         </CardContent>
       </CardActionArea>
     </Card>

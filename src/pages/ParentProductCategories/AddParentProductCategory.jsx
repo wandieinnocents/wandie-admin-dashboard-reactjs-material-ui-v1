@@ -56,9 +56,11 @@ const AddParentProductCategory = () => {
         })
         // trigger sweet alerts on failure
         .catch(function (error) {
+
+
           Swal.fire({
               icon: 'error',
-              title: 'An Error Occured!',
+              title: 'Error, Missing Data !',
               showConfirmButton: false,
               timer: 1700
           })
@@ -77,7 +79,7 @@ const AddParentProductCategory = () => {
       <Box>
       <Header title="Add Parent Product Category" 
        buttonTitle={"All Parent product Categories"}
-       buttonURL={`/view_parent_  product_categories/`}
+       buttonURL={`/view_parent_product_categories/`}
         />
       {/* FORM */}
       
@@ -96,7 +98,7 @@ const AddParentProductCategory = () => {
                 fullWidth
                 // style={{ width:"100%" }}
                 type="text"
-                label="Parent Category Name"
+                label="Parent Category Name *"
                 // onBlur={handleBlur}
                 onChange={(event)=>{setParentProductCategoryName(event.target.value)}}
                 value={parent_product_category_name}

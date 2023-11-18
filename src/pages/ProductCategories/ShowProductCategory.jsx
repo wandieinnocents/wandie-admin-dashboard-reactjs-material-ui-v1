@@ -16,7 +16,7 @@ import axios from 'axios'
 
 
 
-export default function RowAndColumnSpacing() {
+export default function ShowProductCategory() {
     // states
     const [id, setId] = useState(useParams().id)
     const [productCategory, setProductCategory] = useState({name:'', description:''})

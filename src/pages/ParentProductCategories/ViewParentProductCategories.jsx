@@ -55,12 +55,7 @@ const ViewParentProductCategories = () => {
       editable: true,
     },
 
-    // {
-    //   field: 'parent_product_category_description',
-    //   headerName: 'Description',
-    //   width: 200,
-    //   editable: true,
-    // },
+    
 
     {
       field: 'parent_product_category_status',
@@ -79,7 +74,8 @@ const ViewParentProductCategories = () => {
         return (
           <Button
             // onClick={(e) => onButtonClick(e, params.row)}
-            href={`/show_product_category/${parentProductCategoryData.id}`}
+            // href={`/show_parent_product_categories/${parentProductCategoryData.id}`}
+            href={`/show_parent_product_category/${parentProductCategoryData.id}`}
             style={{ backgroundColor:"#0faa50" }}
             variant="contained"
           >
@@ -100,7 +96,7 @@ const ViewParentProductCategories = () => {
         return (
           <Button
             // onClick={(e) => onButtonClick(e, params.row)}
-            href={`/edit_product_category/${parentProductCategoryData.id}`}
+            href={`/edit_parent_product_category/${parentProductCategoryData.id}`}
             style={{ backgroundColor:"#2587da" }}
             variant="contained"
           >
@@ -165,6 +161,7 @@ const ViewParentProductCategories = () => {
             })
             // trigger sweet alerts on error
             .catch(function (error) {
+              // add validation here
                 Swal.fire({
                      icon: 'error',
                     title: 'An Error Occured!',
@@ -177,10 +174,6 @@ const ViewParentProductCategories = () => {
 }
 
   // end of delete data from api
-
-
-
-
  
   
   return (
@@ -189,7 +182,7 @@ const ViewParentProductCategories = () => {
       <Box>
       <Header title="Parent Product Categories" 
        buttonTitle={"ADD PARENT PRODUCT CATEGORY"}
-       buttonURL={`/add_product_category/`}
+       buttonURL={`/add_parent_product_category/`}
         />
 
       {/* table */}
@@ -206,7 +199,7 @@ const ViewParentProductCategories = () => {
           },
         }}
         pageSizeOptions={[5]}
-        checkboxSelection
+        // checkboxSelection
         disableRowSelectionOnClick
       />
     </Box>

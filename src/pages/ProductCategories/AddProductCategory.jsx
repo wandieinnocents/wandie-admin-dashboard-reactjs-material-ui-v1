@@ -7,6 +7,11 @@ import Header from "../../components/Header";
 import SendIcon from '@mui/icons-material/Send';
 import Swal from 'sweetalert2'
 import axios from 'axios'
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+import InputLabel from '@mui/material/InputLabel';
+
 
 
 const AddProductCategory = () => {
@@ -14,36 +19,55 @@ const AddProductCategory = () => {
   const isNonMobile = useMediaQuery("(min-width:600px)");
 
     // states for data submission
-    const [name, setName] = useState('');
-    const [description, setDescription] = useState('');
+    const [parent_product_category_id, setParentProductCategoryId] = useState('');
+    const [product_category_name, setProductCategoryName] = useState('');
+    const [product_category_status, setProductCategoryStatus] = useState('');
+    const [product_category_description, setProductCategoryDescription] = useState('');
+
     const [isSaving, setIsSaving] = useState(false);
+
+
+    // handle drop down change
+    const handleChangeCategoryStatus = (event) => {
+      setProductCategoryStatus(event.target.value);
+    };
+  
+
 
     // handle data saving to api
     const submitData = () => {
       
       setIsSaving(true);
-      axios.post('http://127.0.0.1:8000/api/v1/product_categories/create', {
+      axios.post('http://127.0.0.1:8000/api/v1/parent_product_categories/create', {
           // database fields
-          name: name,
-          description: description
+          parent_product_category_id: parent_product_category_id,
+          product_category_name: product_category_name,
+          product_category_description: product_category_description,
+          product_category_status: product_category_status,
+
+
         })
         // trigger sweet alerts on success
         .then(function (response) {
           Swal.fire({
               icon: 'success',
-              title: 'Category saved successfully!',
+              title: 'Parent Category saved successfully!',
               showConfirmButton: false,
               timer: 1500
           })
           setIsSaving(false);
-          setName('') 
-          setDescription('')
+          setParentProductCategoryId('')
+          setProductCategoryName('') 
+          setProductCategoryDescription('')
+          setProductCategoryStatus('')
         })
         // trigger sweet alerts on failure
         .catch(function (error) {
+
+
           Swal.fire({
               icon: 'error',
-              title: 'An Error Occured!',
+              title: 'Error, Missing Data !',
               showConfirmButton: false,
               timer: 1700
           })
@@ -61,7 +85,7 @@ const AddProductCategory = () => {
       
       <Box>
       <Header title="Add Product Category" 
-       buttonTitle={"All product Categories"}
+       buttonTitle={"All Product Categories"}
        buttonURL={`/view_product_categories/`}
         />
       {/* FORM */}
@@ -72,41 +96,76 @@ const AddProductCategory = () => {
             <Box
               display="grid"
               gap="30px"
-              gridTemplateColumns="repeat(4, minmax(0, 1fr))"
+              gridTemplateColumns="repeat(12, minmax(0, 1fr))"
               sx={{
-                "& > div": { gridColumn: isNonMobile ? undefined : "span 4" },
+                "& > div": { gridColumn: isNonMobile ? undefined : "span 12" },
               }}
             >
+
+
+              {/* parent category id */}
+              <FormControl  fullWidth sx={{ gridColumn: "span 4" }}>
+                <InputLabel id="demo-simple-select-label">Select Parent Category</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={parent_product_category_id}
+                  label="Select Parent Category"
+                  onChange={handleChangeCategoryStatus}
+                >
+                  <MenuItem value={1}>Change here</MenuItem>
+                  <MenuItem value={2}>Disabled</MenuItem>
+                </Select>
+              </FormControl>
+
+              {/* product category name */}
               <TextField
                 fullWidth
                 // style={{ width:"100%" }}
                 type="text"
-                label="Category Name"
+                label="Category Name *"
                 // onBlur={handleBlur}
-                onChange={(event)=>{setName(event.target.value)}}
-                value={name}
-                name="name"
+                onChange={(event)=>{setProductCategoryName(event.target.value)}}
+                value={product_category_name}
+                name="parent_product_category_name"
                 // id="name"
                 // error={!!touched.name && !!errors.name}
                 // helperText={touched.name && errors.name}
                 sx={{ gridColumn: "span 4" }}
               />
-              
+
+
+              {/* product category status */}
+              <FormControl  fullWidth sx={{ gridColumn: "span 4" }}>
+                <InputLabel id="demo-simple-select-label">Select Status</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={product_category_status}
+                  label="Select Status"
+                  onChange={handleChangeCategoryStatus}
+                >
+                  <MenuItem value={1}>Active</MenuItem>
+                  <MenuItem value={2}>Disabled</MenuItem>
+                </Select>
+              </FormControl>
+
+              {/* product category description */}
               <TextField
                 fullWidth
                 // style={{ width:"100%" }}
                 type="text"
                 multiline
                 rows={5}
-                label="Description"
+                label="Product Category Description"
                 // onBlur={handleBlur}
-                onChange={(event)=>{setDescription(event.target.value)}}
-                value={description}
-                name="description"
+                onChange={(event)=>{setProductCategoryDescription(event.target.value)}}
+                value={product_category_description}
+                name="parent_product_category_description"
                 // id="description"
                 // error={!!touched.description && !!errors.description}
                 // helperText={touched.description && errors.description}
-                sx={{ gridColumn: "span 4" }}
+                sx={{ gridColumn: "span 12" }}
               />
               
             </Box>
@@ -118,7 +177,7 @@ const AddProductCategory = () => {
               disabled={isSaving}
               onClick={submitData} 
               type="submit" size="large" endIcon={<SendIcon />} style={{ backgroundColor:"#2587da", color:"#ffffff" }}  variant="contained">
-                Add  Category
+                Add Category
               </Button>
             </Box>
           </form>
