@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import { Box, Button, TextField } from "@mui/material";
 import { Formik } from "formik";
 import * as yup from "yup";
@@ -19,18 +19,52 @@ const AddProductCategory = () => {
   const isNonMobile = useMediaQuery("(min-width:600px)");
 
     // states for data submission
-    const [parent_product_category_id, setParentProductCategoryId] = useState('');
+    const [isSaving, setIsSaving] = useState(false);
+
+    // const [parent_product_category_id, setParentProductCategoryId] = useState('');
+    const [parent_product_category_id, setParentProductCategoryIdData] = useState([]);
+    const [parent_product_category_id_value, setParentProductCategoryIdValue] = useState(null);
+
+
+
     const [product_category_name, setProductCategoryName] = useState('');
     const [product_category_status, setProductCategoryStatus] = useState('');
     const [product_category_description, setProductCategoryDescription] = useState('');
 
-    const [isSaving, setIsSaving] = useState(false);
+    // image upload
+    const [product_category_image, setProductCategoryImageFile] = useState(null);
 
+    const handleFileChange = (event) => {
+      setProductCategoryImageFile(event.target.files[0]);
+    };
+  
+
+
+    // handle drop down change shelter id
+    const handleChangeProductCategoryId = (event) => {
+      // setParentProductCategoryIdData(event.target.value);
+      setParentProductCategoryIdValue(event.target.value);
+    };
 
     // handle drop down change
     const handleChangeCategoryStatus = (event) => {
       setProductCategoryStatus(event.target.value);
     };
+
+
+    // drop down parent category id data api data fetch and insert in drop down picker
+  useEffect(() => {
+    axios.get('http://127.0.0.1:8000/api/v1/parent_product_categories')
+      .then(response => {
+        // pick from data array (data.data)
+        const data = response.data.data;
+        setParentProductCategoryIdData(data);
+        console.log("Drop down parent category  data", data);
+      })
+      .catch(error => {
+        console.error('Error fetching parent category data:', error);
+      });
+  }, []);
   
 
 
@@ -38,25 +72,33 @@ const AddProductCategory = () => {
     const submitData = () => {
       
       setIsSaving(true);
-      axios.post('http://127.0.0.1:8000/api/v1/parent_product_categories/create', {
+      axios.post('http://127.0.0.1:8000/api/v1/product_categories/create', {
           // database fields
-          parent_product_category_id: parent_product_category_id,
+          parent_product_category_id: parent_product_category_id_value,
           product_category_name: product_category_name,
           product_category_description: product_category_description,
           product_category_status: product_category_status,
+          product_category_image: product_category_image,
 
-
-        })
+        }, {
+          // headers
+          headers: {
+            // 'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Content-Type': 'multipart/form-data',
+            // other headers...
+          }})
+          
         // trigger sweet alerts on success
         .then(function (response) {
           Swal.fire({
               icon: 'success',
-              title: 'Parent Category saved successfully!',
+              title: 'Product Category saved successfully!',
               showConfirmButton: false,
               timer: 1500
           })
           setIsSaving(false);
-          setParentProductCategoryId('')
+          setParentProductCategoryIdValue('')
           setProductCategoryName('') 
           setProductCategoryDescription('')
           setProductCategoryStatus('')
@@ -104,17 +146,22 @@ const AddProductCategory = () => {
 
 
               {/* parent category id */}
-              <FormControl  fullWidth sx={{ gridColumn: "span 4" }}>
+              <FormControl  fullWidth sx={{ gridColumn: "span 6" }}>
                 <InputLabel id="demo-simple-select-label">Select Parent Category</InputLabel>
                 <Select
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
-                  value={parent_product_category_id}
+                  value={parent_product_category_id_value}
                   label="Select Parent Category"
-                  onChange={handleChangeCategoryStatus}
+                  onChange={handleChangeProductCategoryId}
                 >
-                  <MenuItem value={1}>Change here</MenuItem>
-                  <MenuItem value={2}>Disabled</MenuItem>
+                   {parent_product_category_id.map((item) => (
+
+                  <MenuItem key={item.id} value={item.id} >{item.parent_product_category_name}</MenuItem>
+                 
+
+                  ))}
+
                 </Select>
               </FormControl>
 
@@ -131,12 +178,12 @@ const AddProductCategory = () => {
                 // id="name"
                 // error={!!touched.name && !!errors.name}
                 // helperText={touched.name && errors.name}
-                sx={{ gridColumn: "span 4" }}
+                sx={{ gridColumn: "span 6" }}
               />
 
 
               {/* product category status */}
-              <FormControl  fullWidth sx={{ gridColumn: "span 4" }}>
+              <FormControl  fullWidth sx={{ gridColumn: "span 6" }}>
                 <InputLabel id="demo-simple-select-label">Select Status</InputLabel>
                 <Select
                   labelId="demo-simple-select-label"
@@ -149,6 +196,34 @@ const AddProductCategory = () => {
                   <MenuItem value={2}>Disabled</MenuItem>
                 </Select>
               </FormControl>
+
+               {/* product category image */}
+               <InputLabel id="demo-simple-select-label">Select Image</InputLabel>
+               <input 
+                  id="demo-simple-select"
+                  // value={product_category_image}
+                  type="file" 
+                  onChange={handleFileChange}
+                   />
+
+               {/* <FormControl  fullWidth sx={{ gridColumn: "span 6" }}>
+                <InputLabel id="demo-simple-select-label">Select Status</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={product_category_status}
+                  label="Select Status"
+                  onChange={handleChangeCategoryStatus}
+                >
+                  <MenuItem value={1}>Active</MenuItem>
+                  <MenuItem value={2}>Disabled</MenuItem>
+                </Select>
+              </FormControl> */}
+
+
+
+
+
 
               {/* product category description */}
               <TextField

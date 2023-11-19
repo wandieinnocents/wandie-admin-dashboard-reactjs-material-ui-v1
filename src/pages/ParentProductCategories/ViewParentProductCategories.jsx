@@ -10,10 +10,17 @@ import TransferWithinAStationOutlinedIcon from '@mui/icons-material/TransferWith
 import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
 import ModeEditOutlinedIcon from '@mui/icons-material/ModeEditOutlined';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
+// progress bar
+import CircularProgress from '@mui/material/CircularProgress';
+import Stack from '@mui/material/Stack';
+
 
 
 
 const ViewParentProductCategories = () => {
+  // data grid states
+  const [gridData, setGridData] = useState([]);
+
   // product category states
   const [parentProductCategoryData, setParentProductCategoryData] = useState([]);
 
@@ -134,45 +141,43 @@ const ViewParentProductCategories = () => {
   ];
 
 
-  // delete data from api
-  const handleDelete = (id) => {
-    // trigger sweet alerts on delete
-    Swal.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
-      }).then((result) => {
-        
-        if (result.isConfirmed) {
-            axios.delete(`http://127.0.0.1:8000/api/v1/parent_product_categories/${id}`)
-            // trigger sweet alerts on successful delete
-            .then(function (response) {
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Parent Product Category Deleted Successfully!',
-                    showConfirmButton: false,
-                    timer: 1500
-                })
-                getParentProductCategories()
-            })
-            // trigger sweet alerts on error
-            .catch(function (error) {
-              // add validation here
-                Swal.fire({
-                     icon: 'error',
-                    title: 'An Error Occured!',
-                    showConfirmButton: false,
-                    timer: 1500
-                })
-            });
-        }
-      })
+ // delete data from api
+ const handleDelete = (id) => {
+  // trigger sweet alerts on delete
+  Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      
+      if (result.isConfirmed) {
+          axios.delete(`http://127.0.0.1:8000/api/v1/parent_product_categories/${id}`)
+          // trigger sweet alerts on successful delete
+          .then(function (response) {
+              Swal.fire({
+                  icon: 'success',
+                  title: 'Parent Product Category Deleted Successfully!',
+                  showConfirmButton: false,
+                  timer: 1500
+              })
+              getParentProductCategories()
+          })
+          // trigger sweet alerts on error
+          .catch(function (error) {
+              Swal.fire({
+                   icon: 'error',
+                  title: 'An Error Occured!',
+                  showConfirmButton: false,
+                  timer: 1500
+              })
+          });
+      }
+    })
 }
-
   // end of delete data from api
  
   
@@ -188,7 +193,42 @@ const ViewParentProductCategories = () => {
       {/* table */}
 
       <Box sx={{ height: 900, width: '100%' }}>
-      <DataGrid
+
+       {parentProductCategoryData ? (
+          <DataGrid 
+              rows={parentProductCategoryData} 
+              columns={columns}
+              initialState={{
+              pagination: {
+                paginationModel: {
+                  pageSize: 15,
+                },
+              },
+            }}
+            pageSizeOptions={[5]}
+            checkboxSelection
+            disableRowSelectionOnClick
+
+            />
+        ) : (
+
+          <> 
+              <center>
+              <p style={{ marginTop:'200px' }}>Data is Empty / Loading...</p>
+              {/* <CircularProgress color="secondary" /> */}
+              <CircularProgress color="success" />
+              </center>
+          </>
+
+        )}  
+      
+
+     
+
+      
+
+
+      {/* <DataGrid
         rows={parentProductCategoryData}
         columns={columns}
         initialState={{
@@ -199,9 +239,9 @@ const ViewParentProductCategories = () => {
           },
         }}
         pageSizeOptions={[5]}
-        // checkboxSelection
+        checkboxSelection
         disableRowSelectionOnClick
-      />
+      /> */}
     </Box>
 
       {/* End table */}
