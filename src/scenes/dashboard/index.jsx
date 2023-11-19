@@ -28,7 +28,7 @@ const Dashboard = () => {
       
       <Box>
       <Header title="DASHBOARD" 
-       buttonTitle={"ADD PRODUCT CATEGORY"}
+       buttonTitle={"ADD PRODUCT"}
        buttonURL={`/add_product_category/`}
         />
       {/* divider */}
@@ -56,8 +56,8 @@ const Dashboard = () => {
           justifyContent="center"
         >
           <StatBox
-            title="12,361"
-            subtitle="Packages"
+            title="1400"
+            subtitle="Sales"
             // progress="0.5"
             icon_details={
               <ArrowRightAltIcon sx={{ color: "white", fontSize: "26px" }}  />
@@ -79,8 +79,8 @@ const Dashboard = () => {
           justifyContent="center"
         >
           <StatBox
-            title="12,361"
-            subtitle="Packages"
+            title="200"
+            subtitle="Purchases"
             // progress="0.5"
             icon_details={
               <ArrowRightAltIcon sx={{ color: "white", fontSize: "26px" }}  />
@@ -102,8 +102,8 @@ const Dashboard = () => {
           justifyContent="center"
         >
           <StatBox
-            title="12,361"
-            subtitle="Packages"
+            title="30"
+            subtitle="Product Categories"
             // progress="0.5"
             icon_details={
               <ArrowRightAltIcon sx={{ color: "white", fontSize: "26px" }}  />
@@ -125,8 +125,8 @@ const Dashboard = () => {
           justifyContent="center"
         >
           <StatBox
-            title="12,361"
-            subtitle="Packages"
+            title="100"
+            subtitle="Suppliers"
             // progress="0.5"
             icon_details={
               <ArrowRightAltIcon sx={{ color: "white", fontSize: "26px" }}  />
@@ -175,8 +175,8 @@ const Dashboard = () => {
           justifyContent="center"
         >
           <StatBox
-            title="12,361"
-            subtitle="Packages"
+            title="3000"
+            subtitle="Clients"
             // progress="0.5"
             icon_details={
               <ArrowRightAltIcon sx={{ color: "white", fontSize: "26px" }}  />
@@ -198,8 +198,8 @@ const Dashboard = () => {
           justifyContent="center"
         >
           <StatBox
-            title="12,361"
-            subtitle="Packages"
+            title="12"
+            subtitle="Debtors"
             // progress="0.5"
             icon_details={
               <ArrowRightAltIcon sx={{ color: "white", fontSize: "26px" }}  />
@@ -221,8 +221,8 @@ const Dashboard = () => {
           justifyContent="center"
         >
           <StatBox
-            title="12,361"
-            subtitle="Packages"
+            title="198"
+            subtitle="Quotations"
             // progress="0.5"
             icon_details={
               <ArrowRightAltIcon sx={{ color: "white", fontSize: "26px" }}  />
@@ -264,14 +264,14 @@ const Dashboard = () => {
                 fontWeight="600"
                 color={"black"}
               >
-                Revenue Generated
+                Annual Revenue 
               </Typography>
               <Typography
                 variant="h3"
                 fontWeight="bold"
                 color={"blue"}
               >
-                $59,342.32
+                UGX 23,000,000
               </Typography>
             </Box>
             <Box>

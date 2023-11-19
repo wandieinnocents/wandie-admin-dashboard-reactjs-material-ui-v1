@@ -40,7 +40,7 @@ const AddProductCategory = () => {
   
 
 
-    // handle drop down change shelter id
+    // handle drop down change parent product category id
     const handleChangeProductCategoryId = (event) => {
       // setParentProductCategoryIdData(event.target.value);
       setParentProductCategoryIdValue(event.target.value);
@@ -91,6 +91,7 @@ const AddProductCategory = () => {
           
         // trigger sweet alerts on success
         .then(function (response) {
+          
           Swal.fire({
               icon: 'success',
               title: 'Product Category saved successfully!',
@@ -155,7 +156,9 @@ const AddProductCategory = () => {
                   label="Select Parent Category"
                   onChange={handleChangeProductCategoryId}
                 >
-                   {parent_product_category_id.map((item) => (
+
+                   {parent_product_category_id?.map((item) => (
+
 
                   <MenuItem key={item.id} value={item.id} >{item.parent_product_category_name}</MenuItem>
                  

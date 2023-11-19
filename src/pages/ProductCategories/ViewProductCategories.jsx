@@ -10,6 +10,8 @@ import TransferWithinAStationOutlinedIcon from '@mui/icons-material/TransferWith
 import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
 import ModeEditOutlinedIcon from '@mui/icons-material/ModeEditOutlined';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
+// progress bar
+import CircularProgress from '@mui/material/CircularProgress';
 
 
 
@@ -39,21 +41,48 @@ const ViewProductCategories = () => {
     { 
       field: 'id',
       headerName: '#ID', 
+      //  width: 100,
       flex: 1
     },
+    
     {
-      field: 'name',
-      headerName: 'NAME',
+      field: 'product_category_code',
+      headerName: 'Code',
       // width: 200,
       flex: 1,
       editable: true, 
     },
+    
     {
-      field: 'description',
-      headerName: 'DESCRIPTION',
-      width: 500,
-      editable: true,
+      field: 'parent_product_category_id',
+      headerName: 'Parent Category',
+      // width: 200,
+      flex: 1,
+      editable: true, 
     },
+
+    {
+      field: 'product_category_name',
+      headerName: 'Category Name',
+      // width: 200,
+      flex: 1,
+      editable: true, 
+    },
+
+    {
+      field: 'product_category_status',
+      headerName: 'Status',
+      // width: 200,
+      flex: 1,
+      editable: true, 
+    },
+
+    // {
+    //   field: 'description',
+    //   headerName: 'DESCRIPTION',
+    //   width: 500,
+    //   editable: true,
+    // },
 
     // view action
     {
@@ -181,20 +210,35 @@ const ViewProductCategories = () => {
       {/* table */}
 
       <Box sx={{ height: 900, width: '100%' }}>
-      <DataGrid
-        rows={productCategoryData}
-        columns={columns}
-        initialState={{
-          pagination: {
-            paginationModel: {
-              pageSize: 15,
-            },
-          },
-        }}
-        pageSizeOptions={[5]}
-        checkboxSelection
-        disableRowSelectionOnClick
-      />
+      {productCategoryData ? (
+          <DataGrid 
+              rows={productCategoryData} 
+              columns={columns}
+              initialState={{
+              pagination: {
+                paginationModel: {
+                  pageSize: 15,
+                },
+              },
+            }}
+            pageSizeOptions={[5]}
+            checkboxSelection
+            disableRowSelectionOnClick
+
+            />
+        ) : (
+          
+          
+          <> 
+              <center>
+              <Typography style={{ marginTop:'200px', fontSize:'20px' }}>Data is Empty / Loading...</Typography>
+              <CircularProgress color="success" style={{ marginTop:'30px', fontSize:'20px' }} />
+              </center>
+          </>
+
+        )}  
+
+
     </Box>
 
       {/* End table */}

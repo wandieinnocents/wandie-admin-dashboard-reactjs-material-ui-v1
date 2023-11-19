@@ -12,7 +12,6 @@ import ModeEditOutlinedIcon from '@mui/icons-material/ModeEditOutlined';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 // progress bar
 import CircularProgress from '@mui/material/CircularProgress';
-import Stack from '@mui/material/Stack';
 
 
 
@@ -211,12 +210,12 @@ const ViewParentProductCategories = () => {
 
             />
         ) : (
-
+          
+          
           <> 
               <center>
-              <p style={{ marginTop:'200px' }}>Data is Empty / Loading...</p>
-              {/* <CircularProgress color="secondary" /> */}
-              <CircularProgress color="success" />
+              <Typography style={{ marginTop:'200px', fontSize:'20px' }}>Data is Empty / Loading...</Typography>
+              <CircularProgress color="success" style={{ marginTop:'30px', fontSize:'20px' }} />
               </center>
           </>
 

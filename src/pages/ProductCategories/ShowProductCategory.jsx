@@ -57,29 +57,77 @@ export default function ShowProductCategory() {
       <CardActionArea>
        
         <CardContent>
+        <Typography gutterBottom variant="h4" component="div">
+            Category Image
+          </Typography>
+         
+          {/* divider */}
+          <Divider style={{ marginBottom:"10px",marginTop:"10px" }} />
+
+          <img src={productCategory.product_category_image} alt="Image" style={{
+              resizeMode: 'cover',
+              // height: 200,
+              width: '100%',
+            }} />
+          
+            {/* divider */}
+            <Divider style={{ marginBottom:"10px",marginTop:"10px" }}  />
+
+
           <Typography gutterBottom variant="h4" component="div">
-            Category Name
+            Parent Category Name
           </Typography>
           {/* divider */}
           <Divider style={{ marginBottom:"10px",marginTop:"10px" }} />
           
           <Typography  color="text.secondary">
-           {productCategory.name}
+           {productCategory.parent_product_category_id}
           </Typography>
           
            {/* divider */}
            <Divider style={{ marginBottom:"10px",marginTop:"10px" }} />
 
           <Typography gutterBottom variant="h4" component="div">
-            Description
+            Category Name
           </Typography>
          
           {/* divider */}
           <Divider style={{ marginBottom:"10px",marginTop:"10px" }} />
           
           <Typography  color="text.secondary">
-           {productCategory.description}
+           {productCategory.product_category_name}
           </Typography>
+
+          <Typography gutterBottom variant="h4" component="div">
+            Category Status
+          </Typography>
+         
+          {/* divider */}
+          <Divider style={{ marginBottom:"10px",marginTop:"10px" }} />
+          
+          <Typography  color="text.secondary">
+           {productCategory.product_category_status}
+          </Typography>
+
+           {/* divider */}
+           <Divider style={{ marginBottom:"10px",marginTop:"10px" }} />
+
+          <Typography gutterBottom variant="h4" component="div">
+            Category Description
+          </Typography>
+         
+          {/* divider */}
+          <Divider style={{ marginBottom:"10px",marginTop:"10px" }} />
+          
+          <Typography  color="text.secondary">
+           {productCategory.product_category_description}
+          </Typography>
+
+         
+
+
+
+
         </CardContent>
       </CardActionArea>
     </Card>

@@ -271,20 +271,20 @@ export const mockDataTeam = [
   export const mockTransactions = [
     {
       txId: "01e4dsa",
-      user: "johndoe",
-      date: "2021-09-01",
-      cost: "43.95",
+      user: "Williams",
+      date: "2023-02-01",
+      cost: "25,000",
     },
     {
       txId: "0315dsaa",
-      user: "jackdower",
-      date: "2022-04-01",
+      user: "Jackson",
+      date: "2023-03-01",
       cost: "133.45",
     },
     {
       txId: "01e4dsa",
-      user: "aberdohnny",
-      date: "2021-09-01",
+      user: "Kavuma",
+      date: "2023-07-01",
       cost: "43.95",
     },
     {

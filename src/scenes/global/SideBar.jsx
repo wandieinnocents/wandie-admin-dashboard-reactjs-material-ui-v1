@@ -298,7 +298,7 @@ const SideBar = () => {
              </SubMenu>
 
              {/* Hosting Providers  */}
-             <SubMenu icon={<CloudUploadOutlinedIcon />} label="Hosting Providers">
+             {/* <SubMenu icon={<CloudUploadOutlinedIcon />} label="Hosting Providers">
 
                   <MenuItem 
                     icon={<ArrowRightAltIcon />}
@@ -316,7 +316,7 @@ const SideBar = () => {
                     > Manage Providers
                   </MenuItem>
 
-             </SubMenu>
+             </SubMenu> */}
 
              <SubMenu icon={<CloudUploadOutlinedIcon />} label="Expenses">
 
