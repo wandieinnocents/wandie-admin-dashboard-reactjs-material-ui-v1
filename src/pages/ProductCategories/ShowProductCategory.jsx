@@ -19,7 +19,13 @@ import axios from 'axios'
 export default function ShowProductCategory() {
     // states
     const [id, setId] = useState(useParams().id)
-    const [productCategory, setProductCategory] = useState({name:'', description:''})
+    const [productCategory, setProductCategory] = useState({
+                parent_product_category_id:'', 
+                product_category_name:'',
+                product_category_description:'',
+                product_category_status:'',
+                product_category_image:'',
+              });
  
     // retrieve single data by id
     useEffect(() => {
@@ -32,6 +38,9 @@ export default function ShowProductCategory() {
           console.log(error);
         })
     }, [])
+
+    // fallback image
+
 
 
   return (
@@ -64,11 +73,15 @@ export default function ShowProductCategory() {
           {/* divider */}
           <Divider style={{ marginBottom:"10px",marginTop:"10px" }} />
 
-          <img src={productCategory.product_category_image} alt="Image" style={{
+          <img src={productCategory.product_category_image} alt="Image" 
+             style={{
               resizeMode: 'cover',
               // height: 200,
               width: '100%',
-            }} />
+            }} 
+
+
+            />
           
             {/* divider */}
             <Divider style={{ marginBottom:"10px",marginTop:"10px" }}  />

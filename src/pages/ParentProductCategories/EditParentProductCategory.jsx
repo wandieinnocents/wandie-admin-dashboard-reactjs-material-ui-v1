@@ -55,7 +55,7 @@ const EditParentProductCategory = () => {
         .catch(function (error) {
             Swal.fire({
                  icon: 'error',
-                title: 'An Error Occured!',
+                title: 'Error picking existing data!',
                 showConfirmButton: false,
                 timer: 1500
             })

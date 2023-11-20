@@ -103,6 +103,12 @@ const AddProductCategory = () => {
           setProductCategoryName('') 
           setProductCategoryDescription('')
           setProductCategoryStatus('')
+
+          // response
+          console.log("Submit Success Data", response.data)
+          
+
+
         })
         // trigger sweet alerts on failure
         .catch(function (error) {
@@ -115,6 +121,7 @@ const AddProductCategory = () => {
               timer: 1700
           })
           setIsSaving(false)
+          console.log("Error Data", error.response.data)
         });
   }
 
@@ -201,13 +208,16 @@ const AddProductCategory = () => {
               </FormControl>
 
                {/* product category image */}
-               <InputLabel id="demo-simple-select-label">Select Image</InputLabel>
-               <input 
+               {/* <InputLabel id="demo-simple-select-label">Select Image</InputLabel> */}
+               <div sx={{ gridColumn: "span 6" }}>
+              <input 
                   id="demo-simple-select"
+                  
                   // value={product_category_image}
                   type="file" 
                   onChange={handleFileChange}
                    />
+              </div>
 
                {/* <FormControl  fullWidth sx={{ gridColumn: "span 6" }}>
                 <InputLabel id="demo-simple-select-label">Select Status</InputLabel>

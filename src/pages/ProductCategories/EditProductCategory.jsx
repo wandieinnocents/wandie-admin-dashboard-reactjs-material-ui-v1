@@ -16,13 +16,12 @@ import InputLabel from '@mui/material/InputLabel';
 
 
 
-const AddProductCategory = () => {
+const EditProductCategory = () => {
 
   const isNonMobile = useMediaQuery("(min-width:600px)");
-
+  const [id, setId] = useState(useParams().id);
     // states for data submission
     const [isSaving, setIsSaving] = useState(false);
-    const [id, setId] = useState(useParams().id);
 
     // const [parent_product_category_id, setParentProductCategoryId] = useState('');
     const [parent_product_category_id, setParentProductCategoryIdData] = useState([]);
@@ -66,64 +65,131 @@ const AddProductCategory = () => {
       })
       .catch(error => {
         console.error('Error fetching parent category data:', error);
+        console.error('Status:', error.response.status);
+        console.error('Response Data:', error.response.data);
       });
   }, []);
   
 
-  // pick existing data to form as form value
-  useEffect(() => {
-    axios.get(`http://127.0.0.1:8000/api/v1/product_categories/${id}`)
-    .then(function (response) {
-        // handle database fields to set form values
-        let category = response.data.data
-        setProductCategoryName(category.product_category_name);
-        setProductCategoryDescription(category.product_category_description);
-        setProductCategoryStatus(category.product_category_status);
-    })
-    // trigger sweet alerts on error
-    .catch(function (error) {
-        Swal.fire({
-             icon: 'error',
-            title: 'An Error Occured!',
-            showConfirmButton: false,
-            timer: 1500
-        })
-    })
-      
-}, [])
+      // pick existing data to form as form value
+      useEffect(() => {
+        axios.get(`http://127.0.0.1:8000/api/v1/product_categories/${id}`)
+        .then(function (response) {
+            // handle database fields to set form values
+            let category = response.data.data
+            setParentProductCategoryIdValue(category.parent_product_category_id_value);
+            setProductCategoryName(category.product_category_name);
+            setProductCategoryDescription(category.product_category_description);
+            setProductCategoryStatus(category.product_category_status);
+            setProductCategoryImageFile(category.product_category_image);
 
-    // handle data update to api
+        })
+        // trigger sweet alerts on error
+        .catch(function (error) {
+            Swal.fire({
+                 icon: 'error',
+                title: 'Error picking existing data!',
+                showConfirmButton: false,
+                timer: 1500
+            })
+        })
+          
+    }, [])
+  
+
+  
+    // handle data saving to api
     const updateData = () => {
+      
       setIsSaving(true);
-      axios.put(`http://127.0.0.1:8000/api/v1/product_categories/${id}`, {
-          // database fields to update
+      axios.post(`http://127.0.0.1:8000/api/v1/product_categories/${id}`, {
+          // database fields
+          parent_product_category_id: parent_product_category_id_value,
           product_category_name: product_category_name,
           product_category_description: product_category_description,
           product_category_status: product_category_status,
-      })
-      // trigger sweet alerts on success
-      .then(function (response) {
+          product_category_image: product_category_image,
+
+        }, {
+          // headers
+          headers: {
+            // 'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Content-Type': 'multipart/form-data',
+            // other headers...
+          }})
+          
+        // trigger sweet alerts on success
+        .then(function (response) {
+          
           Swal.fire({
               icon: 'success',
-              title: 'Product Category Updated successfully!',
+              title: 'Product Category saved successfully!',
               showConfirmButton: false,
               timer: 1500
           })
           setIsSaving(false);
-      })
-      // trigger sweet alerts on error
-      .catch(function (error) {
+          // setParentProductCategoryIdValue('')
+          // setProductCategoryName('') 
+          // setProductCategoryDescription('')
+          // setProductCategoryStatus('')
+
+          // response
+          console.log("Submit Success Data", response.data)
+          
+
+
+        })
+        // trigger sweet alerts on failure
+        .catch(function (error) {
+
+
           Swal.fire({
-               icon: 'error',
-              title: 'An Error Occured!',
+              icon: 'error',
+              title: 'Error, Missing Data !',
               showConfirmButton: false,
-              timer: 1500
+              timer: 1700
           })
           setIsSaving(false)
-      });
-    }
+          console.log("Error Data", error.response.data)
+        });
+  }
+
+  // end of  handle data saving to api
+
+      // const formData = new FormData();
+      // formData.append('product_category_image', product_category_image); 
+      // formData.append('product_category_status', product_category_status); 
+      // formData.append('product_category_description', product_category_description); 
+      // formData.append('product_category_name', product_category_name); 
+      // formData.append('parent_product_category_id', parent_product_category_id_value); 
+
+     
+      
+
+    //   const updateData = () => {
+
+    //     axios.put(`http://127.0.0.1:8000/api/v1/product_categories/${id}`, config, 
+    //     {
+    //             // database fields to update
+    //             parent_product_category_id: parent_product_category_id_value,
+    //             product_category_name: product_category_name,
+    //             product_category_description: product_category_description,
+    //             product_category_status: product_category_status,
+    //             product_category_image: product_category_image,
+    //         })
+    //     .then(response => {
+    //       // response
+    //       console.log('Success on data', response.data);
+    //     })
+    //     .catch(error => {
+    //       // error response
+    //       console.error('Error updating file:', error);
+    //     });
+
+    // }
     
-    
+
   // end of  handle data saving to api
 
 
@@ -207,13 +273,16 @@ const AddProductCategory = () => {
               </FormControl>
 
                {/* product category image */}
-               <InputLabel id="demo-simple-select-label">Select Image</InputLabel>
-               <input 
+               {/* <InputLabel id="demo-simple-select-label">Select Image</InputLabel> */}
+              <div sx={{ gridColumn: "span 6" }}>
+              <input 
                   id="demo-simple-select"
+                  
                   // value={product_category_image}
                   type="file" 
                   onChange={handleFileChange}
                    />
+              </div>
 
                {/* <FormControl  fullWidth sx={{ gridColumn: "span 6" }}>
                 <InputLabel id="demo-simple-select-label">Select Status</InputLabel>
@@ -275,4 +344,4 @@ const AddProductCategory = () => {
   );
 }
 
-export default AddProductCategory;
+export default EditProductCategory;
