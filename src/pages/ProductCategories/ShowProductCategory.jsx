@@ -13,20 +13,27 @@ import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
 import Divider from '@mui/material/Divider';
 import axios from 'axios'
+// progress bar
+import CircularProgress from '@mui/material/CircularProgress';
 
 
 
 export default function ShowProductCategory() {
     // states
-    const [id, setId] = useState(useParams().id)
-    const [productCategory, setProductCategory] = useState({
-                parent_product_category_id:'', 
-                product_category_name:'',
-                product_category_description:'',
-                product_category_status:'',
-                product_category_image:'',
-              });
+    // const [id, setId] = useState(useParams().id)
+    const { id } = useParams();
+    const [productCategory, setProductCategory] = useState(null);
+
+
+    // const [productCategory, setProductCategory] = useState({
+    //             parent_product_category_id:'', 
+    //             product_category_name:'',
+    //             product_category_description:'',
+    //             product_category_status:'',
+    //             product_category_image:'',
+    //           });
  
+
     // retrieve single data by id
     useEffect(() => {
         axios.get(`http://127.0.0.1:8000/api/v1/product_categories/${id}`)
@@ -38,9 +45,25 @@ export default function ShowProductCategory() {
         .catch(function (error) {
           console.log(error);
         })
-    }, [])
+    }, [id])
 
-    // fallback image
+    // useEffect(() => {
+    //   const fetchProductDetails = async () => {
+    //     try {
+    //       const response = await fetch(`http://127.0.0.1:8000/api/v1/product_categories/${id}`);
+    //       const data = await response.data.data;
+    //       setProductCategory(data);
+    //       console.log("Single item Data", response.data.data)
+
+    //     } catch (error) {
+    //       console.error('Error fetching data:', error);
+    //     }
+    //   };
+  
+    //   fetchProductDetails();
+    // }, [id]);
+
+  
 
 
 
@@ -96,7 +119,8 @@ export default function ShowProductCategory() {
           <Divider style={{ marginBottom:"10px",marginTop:"10px" }} />
           
           <Typography  color="text.secondary">
-           {productCategory.parent_product_category_id}
+          {/* nested category fetch */}
+           {productCategory.parent_product_category.parent_product_category_name}
           </Typography>
           
            {/* divider */}
@@ -153,9 +177,16 @@ export default function ShowProductCategory() {
       
       </Grid>
     </Box>
-    ) : (
-                <p>Loading...</p>
-            )}
+
+
+
+     ) : ( <> 
+          <center>
+          <Typography style={{ marginTop:'200px', fontSize:'20px' }}>Data is Empty / Loading...</Typography>
+          <CircularProgress color="success" style={{ marginTop:'30px', fontSize:'20px' }} />
+          </center>
+
+          </> )}
     
     </Box>
   </Box>

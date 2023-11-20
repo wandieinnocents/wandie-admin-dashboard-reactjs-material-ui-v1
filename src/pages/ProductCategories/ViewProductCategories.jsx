@@ -52,6 +52,7 @@ useEffect(() => {
         // (backend fetch ) ->
         // $product_categories = ProductCategory::with('parent_product_category')->get();
 
+
       const formattedData = data.map(product_category => ({
         id: product_category.id,
         product_category_code: product_category.product_category_code,
@@ -81,6 +82,8 @@ useEffect(() => {
 
 
 
+
+
   // columns
   const columns = [
     { 
@@ -104,6 +107,7 @@ useEffect(() => {
       // width: 200,
       flex: 1,
       editable: true, 
+     
     },
 
     {
