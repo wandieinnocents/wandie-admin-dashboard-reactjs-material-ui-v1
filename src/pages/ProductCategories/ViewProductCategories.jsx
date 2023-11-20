@@ -20,20 +20,65 @@ const ViewProductCategories = () => {
   const [productCategoryData, setproductCategoryData] = useState([]);
 
   // fetch data from api
-  const getProductCategories = () => {
-    axios.get('http://127.0.0.1:8000/api/v1/product_categories')
-        .then(function (response) {
-          // nested object of data.data
-          setproductCategoryData(response.data.data);
-        })
-        .catch(function (error) {
-          console.log(error);
-        })
-  }
+//   const getProductCategories = () => {
 
-  useEffect(() => {
-    getProductCategories()
+//     axios.get('http://127.0.0.1:8000/api/v1/product_categories')
+//         .then(function (response) {
+//           // nested object of data.data
+//           setproductCategoryData(response.data.data);
+//         })
+//         .catch(function (error) {
+//           console.log(error);
+//         })
+
+
+//   }
+
+//   useEffect(() => {
+//     getProductCategories()
+// }, []);
+
+useEffect(() => {
+  const getProductCategories = async () => {
+    try {
+      // const response = await fetch('http://127.0.0.1:8000/api/v1/product_categories');
+      // const data = await response.json();
+
+      axios.get('http://127.0.0.1:8000/api/v1/product_categories')
+        .then(function (response) {
+           const data =  response.data.data;
+        // Assuming your data structure includes a 'category' property within each 'product'
+        // fetch the data with its relationship  here
+        // (backend fetch ) ->
+        // $product_categories = ProductCategory::with('parent_product_category')->get();
+
+      const formattedData = data.map(product_category => ({
+        id: product_category.id,
+        product_category_code: product_category.product_category_code,
+        // pick the nested data in relationship here
+        parent_product_category_id: product_category.parent_product_category.parent_product_category_name,
+        product_category_name: product_category.product_category_name,
+        product_category_description: product_category.product_category_description,
+        product_category_status: product_category.product_category_status,
+        product_category_image: product_category.product_category_image,
+
+      }));
+
+      console.log("Data retrieved successfully", data)
+
+      setproductCategoryData(formattedData);
+
+        })
+
+    } catch (error) {
+      console.error('Error fetching products:', error);
+    }
+  };
+
+  getProductCategories();
 }, []);
+
+
 
 
   // columns
@@ -176,7 +221,7 @@ const ViewProductCategories = () => {
                     showConfirmButton: false,
                     timer: 1500
                 })
-                getProductCategories()
+                // getProductCategories()
             })
             // trigger sweet alerts on error
             .catch(function (error) {

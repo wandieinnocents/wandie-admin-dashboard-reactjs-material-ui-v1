@@ -32,6 +32,7 @@ export default function ShowProductCategory() {
         axios.get(`http://127.0.0.1:8000/api/v1/product_categories/${id}`)
         .then(function (response) {
           setProductCategory(response.data.data)
+          console.log("Single item Data", response.data.data)
         })
         // console log error on failure
         .catch(function (error) {
@@ -55,6 +56,7 @@ export default function ShowProductCategory() {
         />
     <Divider style={{ marginBottom:"30px" }} />
 
+    {productCategory ? (
     <Box sx={{ width: '100%', paddingLeft:"20px",paddingRight:"20px" }}>
       <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}
       columns={{ xs: 1, sm: 3, md: 12 }}>
@@ -67,7 +69,7 @@ export default function ShowProductCategory() {
        
         <CardContent>
         <Typography gutterBottom variant="h4" component="div">
-            Category Image
+           Photo
           </Typography>
          
           {/* divider */}
@@ -151,6 +153,9 @@ export default function ShowProductCategory() {
       
       </Grid>
     </Box>
+    ) : (
+                <p>Loading...</p>
+            )}
     
     </Box>
   </Box>
