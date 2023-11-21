@@ -11,6 +11,8 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import InputLabel from '@mui/material/InputLabel';
+import FormHelperText from '@mui/material/FormHelperText';
+
 
 
 
@@ -20,20 +22,35 @@ const AddProductCategory = () => {
 
     // states for data submission
     const [isSaving, setIsSaving] = useState(false);
+    // const [error, setError] = useState(false);
 
     // const [parent_product_category_id, setParentProductCategoryId] = useState('');
     const [parent_product_category_id, setParentProductCategoryIdData] = useState([]);
     const [parent_product_category_id_value, setParentProductCategoryIdValue] = useState(null);
+     // error handling
+     const [parentProductCategoryIdError, setParentProductCategoryIdError] = useState('');
 
-
-
+    // product_category name state
     const [product_category_name, setProductCategoryName] = useState('');
+    // error handling
+    const [productCategoryNameError, setProductCategoryNameError] = useState('');
+
+    // product_category_status
     const [product_category_status, setProductCategoryStatus] = useState('');
+    // error handling
+    const [productCategoryStatusError, setProductCategoryStatusError] = useState('');
+
+
+    // product category description
     const [product_category_description, setProductCategoryDescription] = useState('');
+    const [productCategoryDescriptionError, setProductCategoryDescriptionError] = useState('');
+
 
     // image upload
     const [product_category_image, setProductCategoryImageFile] = useState(null);
+  
 
+    // handle change
     const handleFileChange = (event) => {
       setProductCategoryImageFile(event.target.files[0]);
     };
@@ -68,6 +85,8 @@ const AddProductCategory = () => {
   
 
 
+  
+
     // handle data saving to api
     const submitData = () => {
       
@@ -88,10 +107,11 @@ const AddProductCategory = () => {
             'Content-Type': 'multipart/form-data',
             // other headers...
           }})
-          
+        
         // trigger sweet alerts on success
         .then(function (response) {
-          
+         
+
           Swal.fire({
               icon: 'success',
               title: 'Product Category saved successfully!',
@@ -113,19 +133,62 @@ const AddProductCategory = () => {
         // trigger sweet alerts on failure
         .catch(function (error) {
 
+          // validate inputs inline form
+          // validateInputs();
 
           Swal.fire({
               icon: 'error',
-              title: 'Error, Missing Data !',
+              // title: 'Error, Missing Data !',
+              title: error.response.data.message,
               showConfirmButton: false,
               timer: 1700
           })
+
           setIsSaving(false)
           console.log("Error Data", error.response.data)
         });
   }
 
   // end of  handle data saving to api
+
+  // validation
+  const validateInputs = () => {
+    let isValid = true;
+  
+    // Validate product_category_name
+    if (product_category_name.trim() === '') {
+      setProductCategoryNameError('Product category name  is required');
+      isValid = false;
+    } else {
+      setProductCategoryNameError('');
+    }
+
+    // Validate product_category_status
+    // if (product_category_status.trim() === '') {
+    //   setProductCategoryStatusError('Product category status  is required');
+    //   isValid = false;
+    // } else {
+    //   setProductCategoryStatusError('');
+    // }
+
+    // Validate product_category_description
+    if (product_category_description.trim() === '') {
+      setProductCategoryDescriptionError('Product category description  is required');
+      isValid = false;
+    } else {
+      setProductCategoryDescriptionError('');
+    }
+
+     
+
+
+
+
+   
+    // Add more validation for other input fields
+  
+    return isValid;
+  };
 
 
 
@@ -155,14 +218,16 @@ const AddProductCategory = () => {
 
               {/* parent category id */}
               <FormControl  fullWidth sx={{ gridColumn: "span 6" }}>
-                <InputLabel id="demo-simple-select-label">Select Parent Category</InputLabel>
+                <InputLabel id="demo-simple-select-label">Select Parent Category *</InputLabel>
                 <Select
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
                   value={parent_product_category_id_value}
-                  label="Select Parent Category"
+                  label="Select Parent Category *"
                   onChange={handleChangeProductCategoryId}
+                  helperText=<span style={{ color:'red' }}> {parentProductCategoryIdError} </span>
                 >
+                <FormHelperText>{parentProductCategoryIdError}</FormHelperText>
 
                    {parent_product_category_id?.map((item) => (
 
@@ -178,20 +243,17 @@ const AddProductCategory = () => {
               {/* product category name */}
               <TextField
                 fullWidth
-                // style={{ width:"100%" }}
                 type="text"
                 label="Category Name *"
-                // onBlur={handleBlur}
                 onChange={(event)=>{setProductCategoryName(event.target.value)}}
                 value={product_category_name}
-                name="parent_product_category_name"
-                // id="name"
-                // error={!!touched.name && !!errors.name}
-                // helperText={touched.name && errors.name}
+                name="product_category_name"
                 sx={{ gridColumn: "span 6" }}
+                // helperText={productCategoryNameError}
+                // helperText=<span style={{ color:'red' }}> {productCategoryNameError} </span>
+
               />
-
-
+            
               {/* product category status */}
               <FormControl  fullWidth sx={{ gridColumn: "span 6" }}>
                 <InputLabel id="demo-simple-select-label">Select Status</InputLabel>
@@ -201,11 +263,17 @@ const AddProductCategory = () => {
                   value={product_category_status}
                   label="Select Status"
                   onChange={handleChangeCategoryStatus}
+                
                 >
+                  {/* <MenuItem value="">
+                    <em>None</em>
+                  </MenuItem> */}
                   <MenuItem value={1}>Active</MenuItem>
                   <MenuItem value={2}>Disabled</MenuItem>
                 </Select>
+                
               </FormControl>
+              
 
                {/* product category image */}
                {/* <InputLabel id="demo-simple-select-label">Select Image</InputLabel> */}
@@ -216,44 +284,24 @@ const AddProductCategory = () => {
                   // value={product_category_image}
                   type="file" 
                   onChange={handleFileChange}
+                  // helperText=<span style={{ color:'red' }}> {productCategoryImageError} </span>
+
                    />
               </div>
-
-               {/* <FormControl  fullWidth sx={{ gridColumn: "span 6" }}>
-                <InputLabel id="demo-simple-select-label">Select Status</InputLabel>
-                <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  value={product_category_status}
-                  label="Select Status"
-                  onChange={handleChangeCategoryStatus}
-                >
-                  <MenuItem value={1}>Active</MenuItem>
-                  <MenuItem value={2}>Disabled</MenuItem>
-                </Select>
-              </FormControl> */}
-
-
-
-
-
 
               {/* product category description */}
               <TextField
                 fullWidth
-                // style={{ width:"100%" }}
                 type="text"
                 multiline
                 rows={5}
                 label="Product Category Description"
-                // onBlur={handleBlur}
                 onChange={(event)=>{setProductCategoryDescription(event.target.value)}}
                 value={product_category_description}
                 name="parent_product_category_description"
-                // id="description"
-                // error={!!touched.description && !!errors.description}
-                // helperText={touched.description && errors.description}
                 sx={{ gridColumn: "span 12" }}
+                // helperText=<span style={{ color:'red' }}> {productCategoryDescriptionError} </span>
+
               />
               
             </Box>

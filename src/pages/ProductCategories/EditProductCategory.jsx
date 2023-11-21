@@ -83,12 +83,15 @@ const EditProductCategory = () => {
             setProductCategoryStatus(category.product_category_status);
             setProductCategoryImageFile(category.product_category_image);
 
+            // console log data for editing
+            console.log("Data for editing", response.data.data);
+
         })
         // trigger sweet alerts on error
         .catch(function (error) {
             Swal.fire({
                  icon: 'error',
-                title: 'Error picking existing data!',
+                title: error.response.data.message,
                 showConfirmButton: false,
                 timer: 1500
             })
@@ -124,7 +127,7 @@ const EditProductCategory = () => {
           
           Swal.fire({
               icon: 'success',
-              title: 'Product Category saved successfully!',
+              title: 'Product Category Updated successfully!',
               showConfirmButton: false,
               timer: 1500
           })
@@ -146,7 +149,7 @@ const EditProductCategory = () => {
 
           Swal.fire({
               icon: 'error',
-              title: 'Error, Missing Data !',
+              title: error.response.data.message,
               showConfirmButton: false,
               timer: 1700
           })

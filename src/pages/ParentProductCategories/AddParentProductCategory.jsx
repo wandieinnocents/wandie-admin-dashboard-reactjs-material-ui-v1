@@ -60,7 +60,7 @@ const AddParentProductCategory = () => {
 
           Swal.fire({
               icon: 'error',
-              title: 'Error, Missing Data !',
+              title: error.response.data.message,
               showConfirmButton: false,
               timer: 1700
           })

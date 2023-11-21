@@ -47,13 +47,15 @@ useEffect(() => {
       axios.get('http://127.0.0.1:8000/api/v1/product_categories')
         .then(function (response) {
            const data =  response.data.data;
+          //  const data = response.data !== null ? response.data : 'Default Data';
         // Assuming your data structure includes a 'category' property within each 'product'
         // fetch the data with its relationship  here
         // (backend fetch ) ->
         // $product_categories = ProductCategory::with('parent_product_category')->get();
 
+      
+      const formattedData = data?.map(product_category => ({
 
-      const formattedData = data.map(product_category => ({
         id: product_category.id,
         product_category_code: product_category.product_category_code,
         // pick the nested data in relationship here
@@ -62,6 +64,7 @@ useEffect(() => {
         product_category_description: product_category.product_category_description,
         product_category_status: product_category.product_category_status,
         product_category_image: product_category.product_category_image,
+        
 
       }));
 

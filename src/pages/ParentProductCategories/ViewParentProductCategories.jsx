@@ -18,7 +18,6 @@ import CircularProgress from '@mui/material/CircularProgress';
 
 const ViewParentProductCategories = () => {
   // data grid states
-  const [gridData, setGridData] = useState([]);
 
   // product category states
   const [parentProductCategoryData, setParentProductCategoryData] = useState([]);
