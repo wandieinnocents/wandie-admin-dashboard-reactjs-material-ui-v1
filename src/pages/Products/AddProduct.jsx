@@ -236,7 +236,7 @@ const AddProduct = () => {
               />
 
 
-               {/* supplier city */}
+               {/* supplier city  */}
                <TextField
                 fullWidth
                 // style={{ width:"100%" }}
@@ -323,7 +323,7 @@ const AddProduct = () => {
 
 
             {/* submit button */}
-            
+
             <Box display="flex" justifyContent="start" mt="30px">
               <Button 
               disabled={isSaving}
