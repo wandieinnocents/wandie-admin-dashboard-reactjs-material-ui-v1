@@ -241,7 +241,7 @@ const AddProduct = () => {
                 fullWidth
                 // style={{ width:"100%" }}
                 type="text"
-                label="Supplier City "
+                label="Supplier City"
                 // onBlur={handleBlur}
                 onChange={(event)=>{setSupplierCity(event.target.value)}}
                 value={supplier_city}
