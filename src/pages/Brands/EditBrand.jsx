@@ -223,7 +223,7 @@ const AddBrand = () => {
                         resizeMode: 'cover',
                         // height: 200,
                           width: '20%',
-                        }} />
+                       }} />
 
 
                     <input 

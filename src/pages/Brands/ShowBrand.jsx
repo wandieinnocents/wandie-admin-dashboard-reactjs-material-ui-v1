@@ -17,6 +17,8 @@ import axios from 'axios'
 import CircularProgress from '@mui/material/CircularProgress';
 import Chip from '@mui/material/Chip';
 
+// default image if no photo in db
+import DefaultImage from "../../images/no_photo.jpeg";
 
 
 
@@ -100,20 +102,18 @@ export default function ShowBrand() {
           {/* divider */}
           <Divider style={{ marginBottom:"10px",marginTop:"10px" }} />
 
-          <img src={brand.brand_image} alt="Image" 
-             style={{
-              resizeMode: 'cover',
-              // height: 200,
-              width: '100%',
-            }} 
+          <img src={brand.brand_image}  alt="" style={{resizeMode: 'cover',width: '100%',}} />
+          {brand.brand_image ? (
+              <img src={brand.brand_image} alt="" />
+            ) : (
+              <img src={DefaultImage} alt="Default Placeholder" />
+            )}
 
-
-            />
+            {/* divider */}
+            <Divider style={{ marginBottom:"10px",marginTop:"10px" }}  />
+            
 
             {/* brand code */}
-              {/* divider */}
-              <Divider style={{ marginBottom:"10px",marginTop:"10px" }}  />
-
             <Typography gutterBottom variant="h4" component="div">
               Brand Code
             </Typography>
@@ -122,7 +122,7 @@ export default function ShowBrand() {
 
             <Typography  color="text.secondary">
             {/* nested category fetch */}
-            {brand.brand_code}
+            {brand.brand_code || 'No Brand Code Assigned'}
             </Typography>
 
           
@@ -138,13 +138,28 @@ export default function ShowBrand() {
           
           <Typography  color="text.secondary">
           {/* nested category fetch */}
-           {brand.brand_name}
+           {brand.brand_name || 'No Brand Name Added'}
           </Typography>
+
+           {/* divider */}
+           <Divider style={{ marginBottom:"10px",marginTop:"10px" }}  />
+
+          {/* brand date */}
+          <Typography gutterBottom variant="h4" component="div">
+            Created Date
+          </Typography>
+          {/* divider */}
+          <Divider style={{ marginBottom:"10px",marginTop:"10px" }} />
+
+          <Typography  color="text.secondary">
+          {/* nested category fetch */}
+          {brand.brand_register_date || 'No Brand Registered Date '}
+          </Typography>
+
           
            {/* divider */}
            <Divider style={{ marginBottom:"10px",marginTop:"10px" }} />
 
-    
 
           <Typography gutterBottom variant="h4" component="div">
             Brand Status
@@ -154,8 +169,8 @@ export default function ShowBrand() {
           <Divider style={{ marginBottom:"10px",marginTop:"10px" }} />
           
           <Typography  color="text.secondary">
-
-          <Chip label={brand.brand_status} style={{ backgroundColor:'green', color:'#FFFFFF' }} />
+         
+          <Chip label={brand.brand_status || 'No Status Chosen'} style={{ backgroundColor:'green', color:'#FFFFFF' }} />
            
            </Typography>
 
@@ -163,14 +178,14 @@ export default function ShowBrand() {
            <Divider style={{ marginBottom:"10px",marginTop:"10px" }} />
 
           <Typography gutterBottom variant="h4" component="div">
-            Category Description
+            Brand Description
           </Typography>
          
           {/* divider */}
           <Divider style={{ marginBottom:"10px",marginTop:"10px" }} />
           
           <Typography  color="text.secondary">
-           {brand.brand_description}
+           {brand.brand_description || 'No Brand Description Added'}
           </Typography>
 
          

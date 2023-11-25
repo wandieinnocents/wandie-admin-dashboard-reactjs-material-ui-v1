@@ -12,6 +12,8 @@ import ModeEditOutlinedIcon from '@mui/icons-material/ModeEditOutlined';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 // progress bar
 import CircularProgress from '@mui/material/CircularProgress';
+import Chip from '@mui/material/Chip';
+
 
 
 
@@ -56,12 +58,12 @@ useEffect(() => {
       
       const formattedData = data?.map(brand_data => ({
 
-        id: brand_data.id,
-        brand_code: brand_data.brand_code,
-        brand_name: brand_data.brand_name,
-        brand_status: brand_data.brand_status,
-        brand_image: brand_data.brand_image,
-        brand_register_date:brand_data.brand_register_date,
+        id: brand_data.id || 'No Id ',
+        brand_code: brand_data.brand_code || 'No Code ',
+        brand_name: brand_data.brand_name || 'No Brand  Name ',
+        brand_status: brand_data.brand_status || 'No Status ',
+        brand_image: brand_data.brand_image || 'No Image ',
+        brand_register_date:brand_data.brand_register_date || 'No Date ',
         
         
 
@@ -103,6 +105,7 @@ useEffect(() => {
       editable: true, 
     },
     
+    
     {
       field: 'brand_name',
       headerName: 'Brand Name',
@@ -118,6 +121,9 @@ useEffect(() => {
       // width: 200,
       flex: 1,
       editable: true, 
+     
+      //  <Chip label={brand.brand_status || 'No Status Chosen'} style={{ backgroundColor:'green', color:'#FFFFFF' }} />
+           
     },
 
     // {
@@ -261,12 +267,12 @@ useEffect(() => {
               initialState={{
               pagination: {
                 paginationModel: {
-                  pageSize: 20,
+                  pageSize: 100,
                 },
               },
             }}
             pageSizeOptions={[5]}
-            checkboxSelection
+            // checkboxSelection
             disableRowSelectionOnClick
 
             />
