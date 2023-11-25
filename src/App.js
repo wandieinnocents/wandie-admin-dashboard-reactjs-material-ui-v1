@@ -41,8 +41,11 @@ import AddExpense from "./pages/Expenses/AddExpense";
 import ViewExpenses from "./pages/Expenses/ViewExpenses";
 import AddExpenseCategory from "./pages/ExpenseCategory/AddExpenseCategory";
 import ViewExpenseCategories from "./pages/ExpenseCategory/ViewExpenseCategories";
+
 import AddBrand from "./pages/Brands/AddBrand";
 import ViewBrands from "./pages/Brands/ViewBrands";
+import ShowBrand from "./pages/Brands/ShowBrand";
+
 import AddUnit from "./pages/Units/AddUnit";
 import ViewUnits from "./pages/Units/ViewUnits";
 import AddSupplier from "./pages/Suppliers/AddSupplier";
@@ -112,6 +115,8 @@ function App() {
        {/* brands */}
         <Route path="/add_brand" element={<AddBrand />} />
         <Route path="/view_brands" element={<ViewBrands />} />
+        {/* <Route path="/edit_product_category/:id" element={<EditProductCategory />} /> */}
+        <Route path="/show_brand/:id" element={<ShowBrand />} />
 
         {/* units */}
         <Route path="/add_unit" element={<AddUnit />} />
