@@ -117,73 +117,65 @@ export default function ShowBrand() {
             {/* divider */}
             <Divider style={{ marginBottom:"10px",marginTop:"10px" }} />
 
-            <Typography  color="text.secondary">
-            {/* nested category fetch */}
-            {brand.brand_code || 'No Brand Code Assigned'}
-            </Typography>
-
+            { brand.brand_code ? (
+            <Typography  color="text.secondary">{brand.brand_code }</Typography>
+            ) : (<Chip label='No Brand Code Assigned ' style={{ backgroundColor:'red', color:'#FFFFFF' }} /> )
+          }
           
             {/* divider */}
             <Divider style={{ marginBottom:"10px",marginTop:"10px" }}  />
 
+           <Typography gutterBottom variant="h4" component="div">Brand Name</Typography>
 
-          <Typography gutterBottom variant="h4" component="div">
-            Brand Name
-          </Typography>
           {/* divider */}
           <Divider style={{ marginBottom:"10px",marginTop:"10px" }} />
           
-          <Typography  color="text.secondary">
-          {/* nested category fetch */}
-           {brand.brand_name || 'No Brand Name Added'}
-          </Typography>
+          { brand.brand_status ? (
+            <Typography  color="text.secondary">{brand.brand_name }</Typography>
+            ) : (<Chip label='No Brand Name ' style={{ backgroundColor:'red', color:'#FFFFFF' }} /> )
+          }
 
            {/* divider */}
            <Divider style={{ marginBottom:"10px",marginTop:"10px" }}  />
 
           {/* brand date */}
-          <Typography gutterBottom variant="h4" component="div">
-            Created Date
-          </Typography>
+          <Typography gutterBottom variant="h4" component="div">Created Date</Typography>
+
           {/* divider */}
           <Divider style={{ marginBottom:"10px",marginTop:"10px" }} />
 
-          <Typography  color="text.secondary">
-          {/* nested category fetch */}
-          {brand.brand_register_date || 'No Brand Registered Date '}
-          </Typography>
-
+          { brand.brand_status ? (
+            <Typography  color="text.secondary">{brand.brand_register_date }</Typography>
+            ) : (<Chip label='No Brand Registered Date ' style={{ backgroundColor:'red', color:'#FFFFFF' }} /> )
+          }
           
            {/* divider */}
            <Divider style={{ marginBottom:"10px",marginTop:"10px" }} />
 
 
-          <Typography gutterBottom variant="h4" component="div">
-            Brand Status
-          </Typography>
+          <Typography gutterBottom variant="h4" component="div"> Brand Status</Typography>
          
           {/* divider */}
           <Divider style={{ marginBottom:"10px",marginTop:"10px" }} />
           
-          <Typography  color="text.secondary">
-         
-          <Chip label={brand.brand_status || 'No Status Chosen'} style={{ backgroundColor:'green', color:'#FFFFFF' }} />
-           
-           </Typography>
+          { brand.brand_status ? (
+            <Chip label={brand.brand_status || 'No Status Chosen'} style={{ backgroundColor:'green', color:'#FFFFFF' }} />
+            ) : (<Chip label={brand.brand_status || 'No Status Chosen'} style={{ backgroundColor:'red', color:'#FFFFFF' }} /> )
+          }
 
+        
            {/* divider */}
            <Divider style={{ marginBottom:"10px",marginTop:"10px" }} />
 
-          <Typography gutterBottom variant="h4" component="div">
-            Brand Description
-          </Typography>
+          <Typography gutterBottom variant="h4" component="div"> Brand Description </Typography>
          
           {/* divider */}
           <Divider style={{ marginBottom:"10px",marginTop:"10px" }} />
           
-          <Typography  color="text.secondary">
-           {brand.brand_description || 'No Brand Description Added'}
-          </Typography>
+          { brand.brand_description ? (
+            <Typography  color="text.secondary">{brand.brand_description }</Typography>
+            ) : (<Chip label='No Brand Description ' style={{ backgroundColor:'red', color:'#FFFFFF' }} /> )
+          }
 
          
 

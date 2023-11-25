@@ -5,7 +5,8 @@ import { Box, Button, TextField } from "@mui/material";
 import { Formik } from "formik";
 import * as yup from "yup";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import Header from "../../components/Header";
+import HeaderEdit from "../../components/HeaderEdit";
+
 import SendIcon from '@mui/icons-material/Send';
 import Swal from 'sweetalert2'
 import axios from 'axios'
@@ -144,13 +145,27 @@ const AddBrand = () => {
     <Box mt="30px" mb="60px" mr="60px" ml="60px" >
       
       <Box>
-      <Header title="Update Brand" 
+      <HeaderEdit 
+       title="Update Brand" 
+      //  view 
        buttonTitle={"All Brands"}
        buttonURL={`/view_brands/`}
+
+      //  edit brand
+      //  buttonTitleEdit={"Edit Brand"}
+      //  buttonURLEdit={`/edit_brand/${id}`}
+
+       //  add brand
+       buttonTitleAdd={"Add Brand"}
+       buttonURLAdd={`/add_brand`}
+
+
+
         />
+
       {/* FORM */}
       
-      <Box >
+      <Box style={{ marginTop:'20px' }}>
         
           <form >
             <Box

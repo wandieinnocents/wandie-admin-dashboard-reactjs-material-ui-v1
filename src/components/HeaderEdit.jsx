@@ -47,22 +47,13 @@ const Header = ({ title, buttonTitle, buttonURL, buttonURLEdit, buttonTitleEdit,
           { buttonTitle }
       </Button>
 
-    {/* edit */}
-      <Button 
-        sx={{ mb: "15px" }}
-        href={buttonURLEdit}
-        type="submit" size="large" endIcon={<SendIcon />} 
-        style={{ backgroundColor:"#2587da", color:"#ffffff", alignItems: 'right', marginLeft:'10px' }}  
-        variant="contained">
-          { buttonTitleEdit }
-      </Button>
 
       {/* add */}
       <Button 
         sx={{ mb: "15px" }}
         href={buttonURLAdd}
         type="submit" size="large" endIcon={<SendIcon />} 
-        style={{ backgroundColor:"#2587da", color:"#ffffff", alignItems: 'right', marginLeft:'10px' }}  
+        style={{ backgroundColor:"green", color:"#ffffff", alignItems: 'right', marginLeft:'10px' }}  
         variant="contained">
           { buttonTitleAdd }
       </Button>
