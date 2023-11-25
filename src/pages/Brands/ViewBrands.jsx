@@ -158,7 +158,7 @@ useEffect(() => {
         return (
           <Button
             // onClick={(e) => onButtonClick(e, params.row)}
-            href={`/edit_product_category/${brandData.id}`}
+            href={`/edit_brand/${brandData.id}`}
             style={{ backgroundColor:"#2587da" }}
             variant="contained"
           >
