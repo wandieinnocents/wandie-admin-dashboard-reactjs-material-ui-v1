@@ -28,16 +28,6 @@ export default function ShowBrand() {
     const { id } = useParams();
     const [brand, setBrand] = useState(null);
 
-
-    // const [productCategory, setProductCategory] = useState({
-    //             parent_product_category_id:'', 
-    //             product_category_name:'',
-    //             product_category_description:'',
-    //             product_category_status:'',
-    //             product_category_image:'',
-    //           });
- 
-
     // retrieve single data by id
     useEffect(() => {
         axios.get(`http://127.0.0.1:8000/api/v1/brands/${id}`)
@@ -51,24 +41,7 @@ export default function ShowBrand() {
         })
     }, [id])
 
-    // useEffect(() => {
-    //   const fetchProductDetails = async () => {
-    //     try {
-    //       const response = await fetch(`http://127.0.0.1:8000/api/v1/product_categories/${id}`);
-    //       const data = await response.data.data;
-    //       setProductCategory(data);
-    //       console.log("Single item Data", response.data.data)
-
-    //     } catch (error) {
-    //       console.error('Error fetching data:', error);
-    //     }
-    //   };
-  
-    //   fetchProductDetails();
-    // }, [id]);
-
-  
-
+ 
 
 
   return (

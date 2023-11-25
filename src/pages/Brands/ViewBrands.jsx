@@ -87,8 +87,6 @@ useEffect(() => {
 
 
 
-
-
   // columns
   const columns = [
     { 
@@ -121,9 +119,26 @@ useEffect(() => {
       headerName: 'Brand Status',
       // width: 200,
       flex: 1,
-      editable: true, 
-     
-      //  <Chip label={brand.brand_status || 'No Status Chosen'} style={{ backgroundColor:'green', color:'#FFFFFF' }} />
+      editable: true, renderCell: (params) => {
+        const status = params.value;
+        let chipColor = '';
+  
+        switch (status) {
+          case 'active':
+            chipColor = '#4CAF50'; // Green
+            break;
+          case 'disabled':
+            chipColor = '#F44336'; // Red
+            break;
+          case 'pending':
+            chipColor = '#FFC107'; // Yellow
+            break;
+          default:
+            chipColor = '#000000'; // Black (default color)
+        }
+  
+        return <Chip label={status} style={{ backgroundColor: chipColor, color: '#ffffff' }} />;
+      },
            
     },
 

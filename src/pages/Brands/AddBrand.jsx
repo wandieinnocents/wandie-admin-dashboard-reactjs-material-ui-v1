@@ -20,11 +20,11 @@ const AddBrand = () => {
 
     // states for data submission
     const [brand_name, setBrandName] = useState('');
+    
     const [brand_description, setBrandDescription] = useState('');
     const [brand_status, setBrandStatus] = useState('');
     const [brand_image, setBrandImage] = useState(null);
     const [brand_register_date, setBrandRegisterDate] = useState('');
-
 
     const [isSaving, setIsSaving] = useState(false);
 
@@ -32,8 +32,7 @@ const AddBrand = () => {
     const handleChangeBrandStatus = (event) => {
       setBrandStatus(event.target.value);
     };
-
-   
+    
     // brand image change
       const handleFileChange = (event) => {
       setBrandImage(event.target.files[0]);
@@ -43,7 +42,6 @@ const AddBrand = () => {
   const handleBrandDateChange = (event) => {
     setBrandRegisterDate(event.target.value);
   };
-
 
   
     // handle data saving to api
