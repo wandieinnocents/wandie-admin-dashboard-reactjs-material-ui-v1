@@ -18,6 +18,8 @@ import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import Divider from '@mui/material/Divider';
 
+// default image if no photo in db
+import DefaultImage from "../../images/no_photo.jpeg";
 
 
 // stack 
@@ -218,12 +220,10 @@ const AddBrand = () => {
                     >
 
                     {/* preview */}
-                    <img src={brand_image} alt="" 
-                      style={{
-                        resizeMode: 'cover',
-                        // height: 200,
-                          width: '20%',
-                       }} />
+                   
+                    { brand_image ? (<img src={brand_image} alt="" style={{resizeMode: 'cover',width: '15%',}}/>) : (
+                                  <img src={DefaultImage} alt="Default Placeholder" style={{resizeMode: 'cover',width: '15%',}} />
+                                )}
 
 
                     <input 

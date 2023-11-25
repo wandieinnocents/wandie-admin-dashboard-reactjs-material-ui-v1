@@ -102,11 +102,8 @@ export default function ShowBrand() {
           {/* divider */}
           <Divider style={{ marginBottom:"10px",marginTop:"10px" }} />
 
-          <img src={brand.brand_image}  alt="" style={{resizeMode: 'cover',width: '100%',}} />
-          {brand.brand_image ? (
-              <img src={brand.brand_image} alt="" />
-            ) : (
-              <img src={DefaultImage} alt="Default Placeholder" />
+          { brand.brand_image ? (<img src={brand.brand_image} alt="" style={{resizeMode: 'cover',width: '100%',}}/>) : (
+              <img src={DefaultImage} alt="Default Placeholder" style={{resizeMode: 'cover',width: '100%',}} />
             )}
 
             {/* divider */}
