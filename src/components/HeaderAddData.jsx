@@ -7,7 +7,7 @@ import SendIcon from '@mui/icons-material/Send';
 
 
 
-const Header = ({ title, buttonTitle, buttonURL, buttonURLEdit, buttonTitleEdit, buttonURLAdd, buttonTitleAdd })=> {
+const HeaderAddData = ({ title, buttonTitle, buttonURL, buttonURLEdit, buttonTitleEdit, buttonURLAdd, buttonTitleAdd })=> {
 
   return (
 
@@ -58,14 +58,14 @@ const Header = ({ title, buttonTitle, buttonURL, buttonURLEdit, buttonTitleEdit,
       </Button> */}
 
       {/* add */}
-      <Button 
+      {/* <Button 
         sx={{ mb: "15px" }}
         href={buttonURLAdd}
         type="submit" size="large" endIcon={<SendIcon />} 
         style={{ backgroundColor:"#0faa50", color:"#ffffff", alignItems: 'right', marginLeft:'10px' }}  
         variant="contained">
           { buttonTitleAdd }
-      </Button>
+      </Button> */}
 
 
     </Box>
@@ -78,4 +78,4 @@ const Header = ({ title, buttonTitle, buttonURL, buttonURLEdit, buttonTitleEdit,
   );
 }
 
-export default Header;
+export default HeaderAddData;

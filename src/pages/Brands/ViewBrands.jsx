@@ -1,5 +1,6 @@
 import React, {useState, useEffect } from 'react'
-import Header from '../../components/Header';
+import HeaderViewTableData from '../../components/HeaderViewTableData';
+
 import {  Button, IconButton, Typography, useTheme } from "@mui/material";
 import Box from '@mui/material/Box';
 import { DataGrid } from '@mui/x-data-grid';
@@ -252,9 +253,11 @@ useEffect(() => {
     <Box m="30px">
       
       <Box>
-      <Header title="Product Brands" 
-       buttonTitle={"ADD BRAND"}
-       buttonURL={`/add_brand/`}
+      <HeaderViewTableData 
+       title="Product Brands" 
+
+       buttonTitleAdd={"Add Brand"}
+       buttonURLAdd={`/add_brand`}
         />
 
       {/* table */}

@@ -7,7 +7,7 @@ import SendIcon from '@mui/icons-material/Send';
 
 
 
-const Header = ({ title, buttonTitle, buttonURL, buttonURLEdit, buttonTitleEdit, buttonURLAdd, buttonTitleAdd })=> {
+const HeaderViewTableData = ({ title, buttonTitle, buttonURL, buttonURLEdit, buttonTitleEdit, buttonURLAdd, buttonTitleAdd })=> {
 
   return (
 
@@ -38,14 +38,14 @@ const Header = ({ title, buttonTitle, buttonURL, buttonURLEdit, buttonTitleEdit,
     <Box display="flex" justifyContent="end">
 
       {/* view all */}
-      <Button 
+      {/* <Button 
         sx={{ mb: "15px" }}
         href={buttonURL}
         type="submit" size="large" endIcon={<SendIcon />} 
         style={{ backgroundColor:"#2587da", color:"#ffffff", alignItems: 'right' }}  
         variant="contained">
           { buttonTitle }
-      </Button>
+      </Button> */}
 
     {/* edit */}
       {/* <Button 
@@ -78,4 +78,4 @@ const Header = ({ title, buttonTitle, buttonURL, buttonURLEdit, buttonTitleEdit,
   );
 }
 
-export default Header;
+export default HeaderViewTableData;
