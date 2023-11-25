@@ -128,13 +128,11 @@ useEffect(() => {
             chipColor = '#4CAF50'; // Green
             break;
           case 'disabled':
-            chipColor = '#F44336'; // Red
+            chipColor = '#f6968f'; // Red 
             break;
-          case 'pending':
-            chipColor = '#FFC107'; // Yellow
-            break;
+          
           default:
-            chipColor = '#000000'; // Black (default color)
+            chipColor = '#F44336'; // Black (default color)
         }
   
         return <Chip label={status} style={{ backgroundColor: chipColor, color: '#ffffff' }} />;
