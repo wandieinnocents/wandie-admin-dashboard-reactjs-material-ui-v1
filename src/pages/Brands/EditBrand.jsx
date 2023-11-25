@@ -208,38 +208,37 @@ const AddBrand = () => {
               {/* brand image */}
              
             
-              <div sx={{ gridColumn: "span 6" }}>
-
-              <Stack
-              direction="row"
-              divider={<Divider orientation="vertical" flexItem />}
-              spacing={2}
-            >
+            {/* image */}
+            <FormControl  fullWidth sx={{ gridColumn: "span 2" }}>
           
-               {/* preview */}
-               <img src={brand_image} alt="Image" 
-                style={{
-                  resizeMode: 'cover',
-                  // height: 200,
-                    width: '30%',
-                  }} />
+                    <Stack
+                      direction="row"
+                      divider={<Divider orientation="vertical" flexItem />}
+                      spacing={2}
+                    >
 
-              
-              <input 
+                    {/* preview */}
+                    <img src={brand_image} alt="" 
+                      style={{
+                        resizeMode: 'cover',
+                        // height: 200,
+                          width: '20%',
+                        }} />
+
+
+                    <input 
                     id="demo-simple-select"
                     // value={brand_image}
+                    style={{ marginTop:'15px' }}
                     type="file"
                     onChange={handleFileChange}
-                    // helperText=<span style={{ color:'red' }}> {productCategoryImageError} </span>
-
                     />
-              
-              
-            </Stack>
-          
-            
-              </div>
-              
+
+
+                    </Stack>
+
+                </FormControl>
+                                  
               <TextField
                 fullWidth
                 // style={{ width:"100%" }}

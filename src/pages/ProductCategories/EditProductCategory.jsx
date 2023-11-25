@@ -13,8 +13,20 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import InputLabel from '@mui/material/InputLabel';
+import { styled } from '@mui/material/styles';
+import Paper from '@mui/material/Paper';
+import Divider from '@mui/material/Divider';
+import Stack from '@mui/material/Stack';
 
 
+// stack 
+const Item = styled(Paper)(({ theme }) => ({
+  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: 'center',
+  color: theme.palette.text.secondary,
+}));
 
 const EditProductCategory = () => {
 
@@ -274,32 +286,34 @@ const EditProductCategory = () => {
                   <MenuItem value={2}>Disabled</MenuItem>
                 </Select>
               </FormControl>
+              
+              {/* image */}
+              <FormControl  fullWidth sx={{ gridColumn: "span 6" }}>
 
-               {/* product category image */}
-               {/* <InputLabel id="demo-simple-select-label">Select Image</InputLabel> */}
-              <div sx={{ gridColumn: "span 6" }}>
-              <input 
-                  id="demo-simple-select"
-                  
-                  // value={product_category_image}
-                  type="file" 
-                  onChange={handleFileChange}
-                   />
-              </div>
+                    <Stack
+                      direction="row"
+                      divider={<Divider orientation="vertical" flexItem />}
+                      spacing={2}
+                    >
 
-               {/* <FormControl  fullWidth sx={{ gridColumn: "span 6" }}>
-                <InputLabel id="demo-simple-select-label">Select Status</InputLabel>
-                <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  value={product_category_status}
-                  label="Select Status"
-                  onChange={handleChangeCategoryStatus}
-                >
-                  <MenuItem value={1}>Active</MenuItem>
-                  <MenuItem value={2}>Disabled</MenuItem>
-                </Select>
-              </FormControl> */}
+                      {/* preview */}
+                      <img src={product_category_image} alt="" 
+                        style={{
+                          resizeMode: 'cover',
+                          // height: 200,
+                            width: '20%',
+                          }} />
+
+
+                      <input 
+                      id="demo-simple-select"
+                      // value={brand_image}
+                      style={{ marginTop:'15px' }}
+                      type="file"
+                      onChange={handleFileChange}
+                      />
+                      </Stack>
+              </FormControl> 
 
 
 
