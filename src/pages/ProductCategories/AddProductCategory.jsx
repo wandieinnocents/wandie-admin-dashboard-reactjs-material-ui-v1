@@ -278,15 +278,15 @@ const AddProductCategory = () => {
                {/* product category image */}
                {/* <InputLabel id="demo-simple-select-label">Select Image</InputLabel> */}
                <div sx={{ gridColumn: "span 6" }}>
-              <input 
-                  id="demo-simple-select"
-                  
-                  // value={product_category_image}
-                  type="file" 
-                  onChange={handleFileChange}
-                  // helperText=<span style={{ color:'red' }}> {productCategoryImageError} </span>
+                <input 
+                    id="demo-simple-select"
+                    
+                    // value={product_category_image}
+                    type="file"
+                    onChange={handleFileChange}
+                    // helperText=<span style={{ color:'red' }}> {productCategoryImageError} </span>
 
-                   />
+                    />
               </div>
 
               {/* product category description */}
