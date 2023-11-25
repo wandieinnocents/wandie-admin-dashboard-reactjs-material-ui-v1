@@ -4,7 +4,7 @@ import { styled } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
-import Header from '../../components/Header';
+import HeaderShowSingleData from '../../components/Headers/HeaderShowSingleData';
 
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -77,9 +77,14 @@ export default function ShowBrand() {
     <Box m="30px">
       
     <Box>
-    <Header title="Brand Details" 
-       buttonTitle={"ADD BRAND"}
-       buttonURL={`/add_brand/`}
+    <HeaderShowSingleData title="Brand Details"
+    // add
+       buttonTitleEdit={"EDIT BRAND"}
+       buttonURLEdit={`/edit_brand/${id}`}
+
+      //  EDIT
+      buttonTitleAdd={"ADD BRAND"}
+       buttonURLAdd={`/add_brand/`}
         />
     <Divider style={{ marginBottom:"30px" }} />
 

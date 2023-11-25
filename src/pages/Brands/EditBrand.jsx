@@ -5,7 +5,7 @@ import { Box, Button, TextField } from "@mui/material";
 import { Formik } from "formik";
 import * as yup from "yup";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import HeaderEdit from "../../components/HeaderEdit";
+import HeaderEdit from "../../components/Headers/HeaderEdit";
 
 import SendIcon from '@mui/icons-material/Send';
 import Swal from 'sweetalert2'

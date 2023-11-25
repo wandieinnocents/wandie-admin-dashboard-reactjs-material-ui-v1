@@ -1,5 +1,5 @@
 import React, {useState, useEffect } from 'react'
-import HeaderViewTableData from '../../components/HeaderViewTableData';
+import HeaderViewTableData from '../../components/Headers/HeaderViewTableData';
 
 import {  Button, IconButton, Typography, useTheme } from "@mui/material";
 import Box from '@mui/material/Box';

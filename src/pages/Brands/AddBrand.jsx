@@ -3,7 +3,7 @@ import { Box, Button, TextField } from "@mui/material";
 import { Formik } from "formik";
 import * as yup from "yup";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import HeaderAddData from "../../components/HeaderAddData";
+import HeaderAddData from "../../components/Headers/HeaderAddData";
 import SendIcon from '@mui/icons-material/Send';
 import Swal from 'sweetalert2'
 import axios from 'axios'
