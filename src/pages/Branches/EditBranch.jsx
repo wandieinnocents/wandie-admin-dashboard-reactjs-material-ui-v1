@@ -39,49 +39,31 @@ const EditBranch = () => {
 
     // states for data submission
     const [id, setId] = useState(useParams().id);
-    const [brand_name, setBrandName] = useState('');
-    const [brand_description, setBrandDescription] = useState('');
-    const [brand_status, setBrandStatus] = useState('');
-    const [brand_image, setBrandImage] = useState(null);
-    const [brand_register_date, setBrandRegisterDate] = useState('');
+    // states for data submission
+    // branch name
+    const [branch_name, setBranchName] = useState('');
+  // address
+    const [branch_address, setBranchAddress] = useState('');
+
 
 
     const [isSaving, setIsSaving] = useState(false);
 
-    // handle drop down change
-    const handleChangeBrandStatus = (event) => {
-      setBrandStatus(event.target.value);
-    };
-
-   
-    // brand image change
-      const handleFileChange = (event) => {
-      setBrandImage(event.target.files[0]);
-    };
-
-    // handle date input
-  const handleBrandDateChange = (event) => {
-    setBrandRegisterDate(event.target.value);
-  };
-
 
   // pick existing data to form as form value
   useEffect(() => {
-    axios.get(`http://127.0.0.1:8000/api/v1/brands/${id}`)
+    axios.get(`http://127.0.0.1:8000/api/v1/branches/${id}`)
     .then(function (response) {
         // handle database fields to set form values
-        let brand = response.data.data
-        setBrandName(brand.brand_name);
-        setBrandStatus(brand.brand_status);
-        setBrandDescription(brand.brand_description);
-        setBrandRegisterDate(brand.brand_register_date);
-        setBrandImage(brand.brand_image);
+        let branch = response.data.data
+        setBranchName(branch.branch_name);
+        setBranchAddress(branch.branch_address);
     })
     // trigger sweet alerts on error
     .catch(function (error) {
         Swal.fire({
              icon: 'error',
-            title: 'Error picking existing data!',
+            title: 'Error picking existing branch data!',
             showConfirmButton: false,
             timer: 1500
         })
@@ -94,13 +76,11 @@ const EditBranch = () => {
     const updateData = () => {
       
       setIsSaving(true);
-      axios.post(`http://127.0.0.1:8000/api/v1/brands/${id}`, {
+      axios.post(`http://127.0.0.1:8000/api/v1/branches/${id}`, {
           // database fields
-          brand_name: brand_name,
-          brand_description: brand_description,
-          brand_status: brand_status,
-          brand_image:brand_image,
-          brand_register_date:brand_register_date,
+          branch_name: branch_name,
+          branch_address: branch_address,
+
         }, {
           // headers
           headers: {
@@ -146,18 +126,18 @@ const EditBranch = () => {
       
       <Box>
       <HeaderEdit 
-       title="Update Brand" 
+       title="Update Branch" 
       //  view 
-       buttonTitle={"All Brands"}
-       buttonURL={`/view_brands/`}
+       buttonTitle={"All BRANCHES"}
+       buttonURL={`/view_branches/`}
 
       //  edit brand
       //  buttonTitleEdit={"Edit Brand"}
       //  buttonURLEdit={`/edit_brand/${id}`}
 
        //  add brand
-       buttonTitleAdd={"Add Brand"}
-       buttonURLAdd={`/add_brand`}
+       buttonTitleAdd={"Add BRANCH"}
+       buttonURLAdd={`/add_branch`}
 
 
 
@@ -167,7 +147,7 @@ const EditBranch = () => {
       
       <Box style={{ marginTop:'20px' }}>
         
-          <form >
+      <form >
             <Box
               display="grid"
               gap="30px"
@@ -180,94 +160,25 @@ const EditBranch = () => {
                 fullWidth
                 // style={{ width:"100%" }}
                 type="text"
-                label="Brand  Name *"
-                // onBlur={handleBlur}
-                onChange={(event)=>{setBrandName(event.target.value)}}
-                value={brand_name}
-                name="brand_name"
-                // id="name"
-                // error={!!touched.name && !!errors.name}
-                // helperText={touched.name && errors.name}
-                sx={{ gridColumn: "span 2" }}
+                label="Branch  Name *"
+                onChange={(event)=>{setBranchName(event.target.value)}}
+                value={branch_name}
+                name="branch_name"
+                sx={{ gridColumn: "span 4" }}
               />
 
-              {/* status */}
-              <FormControl  fullWidth sx={{ gridColumn: "span 2" }}>
-                <InputLabel id="demo-simple-select-label">Select Status</InputLabel>
-                <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  value={brand_status}
-                  label="Select Status"
-                  onChange={handleChangeBrandStatus}
-                >
-                  <MenuItem value={1}>Active</MenuItem>
-                  <MenuItem value={2}>Disabled</MenuItem>
-                </Select>
-              </FormControl>
-
-              {/* date */}
-               {/*  date */}
-            <TextField
-                id="date"
-                label="Brand Register Date"
-                type="date"
-                name="brand_register_date"
-                value={brand_register_date}
-                // defaultValue={currentDate}
-                onChange={handleBrandDateChange}
-                InputLabelProps={{
-                  shrink: true
-                }}
-                sx={{ gridColumn: "span 2" }}
-              />
-
-              {/* brand image */}
-             
-            
-            {/* image */}
-            <FormControl  fullWidth sx={{ gridColumn: "span 2" }}>
-          
-                    <Stack
-                      direction="row"
-                      divider={<Divider orientation="vertical" flexItem />}
-                      spacing={2}
-                    >
-
-                    {/* preview */}
-                   
-                    { brand_image ? (<img src={brand_image} alt="" style={{resizeMode: 'cover',width: '15%',}}/>) : (
-                                  <img src={DefaultImage} alt="Default Placeholder" style={{resizeMode: 'cover',width: '15%',}} />
-                                )}
-
-
-                    <input 
-                    id="demo-simple-select"
-                    // value={brand_image}
-                    style={{ marginTop:'15px' }}
-                    type="file"
-                    onChange={handleFileChange}
-                    />
-
-
-                    </Stack>
-
-                </FormControl>
-                                  
+              
               <TextField
                 fullWidth
                 // style={{ width:"100%" }}
                 type="text"
                 multiline
                 rows={5}
-                label="Description"
+                label="Address"
                 // onBlur={handleBlur}
-                onChange={(event)=>{setBrandDescription(event.target.value)}}
-                value={brand_description}
-                name="brand_description"
-                // id="description"
-                // error={!!touched.description && !!errors.description}
-                // helperText={touched.description && errors.description}
+                onChange={(event)=>{setBranchAddress(event.target.value)}}
+                value={branch_address}
+                name="branch_address"
                 sx={{ gridColumn: "span 4" }}
               />
               
@@ -280,7 +191,7 @@ const EditBranch = () => {
               disabled={isSaving}
               onClick={updateData} 
               type="submit" size="large" endIcon={<SendIcon />} style={{ backgroundColor:"#2587da", color:"#ffffff" }}  variant="contained">
-                Update Brand
+                Update Branch
               </Button>
             </Box>
           </form>
