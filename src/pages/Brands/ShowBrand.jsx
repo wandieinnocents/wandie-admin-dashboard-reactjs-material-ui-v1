@@ -108,7 +108,7 @@ export default function ShowBrand() {
           {/* divider */}
           <Divider style={{ marginBottom:"10px",marginTop:"10px" }} />
           
-          { brand.brand_status ? (
+          { brand.brand_name ? (
             <Typography  color="text.secondary">{brand.brand_name }</Typography>
             ) : (<Chip label='No Brand Name ' style={{ backgroundColor:'red', color:'#FFFFFF' }} /> )
           }
@@ -122,7 +122,7 @@ export default function ShowBrand() {
           {/* divider */}
           <Divider style={{ marginBottom:"10px",marginTop:"10px" }} />
 
-          { brand.brand_status ? (
+          { brand.brand_register_date ? (
             <Typography  color="text.secondary">{brand.brand_register_date }</Typography>
             ) : (<Chip label='No Brand Registered Date ' style={{ backgroundColor:'red', color:'#FFFFFF' }} /> )
           }

@@ -26,14 +26,14 @@ export default function ShowBranch() {
     // states
     // const [id, setId] = useState(useParams().id)
     const { id } = useParams();
-    const [brand, setBrand] = useState(null);
+    const [branch, setBranch] = useState(null);
 
     // retrieve single data by id
     useEffect(() => {
-        axios.get(`http://127.0.0.1:8000/api/v1/brands/${id}`)
+        axios.get(`http://127.0.0.1:8000/api/v1/branches/${id}`)
         .then(function (response) {
-          setBrand(response.data.data)
-          console.log("Single item Data", response.data.data)
+          setBranch(response.data.data)
+          console.log("Single Branch item Data", response.data.data)
         })
         // console log error on failure
         .catch(function (error) {
@@ -50,18 +50,18 @@ export default function ShowBranch() {
     <Box m="30px">
       
     <Box>
-    <HeaderShowSingleData title="Brand Details"
+    <HeaderShowSingleData title="Branch Details"
     // add
-       buttonTitleEdit={"EDIT BRAND"}
-       buttonURLEdit={`/edit_brand/${id}`}
+       buttonTitleEdit={"EDIT BRANCH"}
+       buttonURLEdit={`/edit_branch/${id}`}
 
       //  EDIT
-      buttonTitleAdd={"ADD BRAND"}
-       buttonURLAdd={`/add_brand/`}
+      buttonTitleAdd={"ADD BRANCH"}
+       buttonURLAdd={`/add_branch/`}
         />
     <Divider style={{ marginBottom:"30px" }} />
 
-    {brand ? (
+    {branch ? (
     <Box sx={{ width: '100%', paddingLeft:"20px",paddingRight:"20px" }}>
       <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}
       columns={{ xs: 1, sm: 3, md: 12 }}>
@@ -73,89 +73,48 @@ export default function ShowBranch() {
       <CardActionArea>
        
         <CardContent>
-        <Typography gutterBottom variant="h4" component="div">
-           Photo
-          </Typography>
-         
-          {/* divider */}
-          <Divider style={{ marginBottom:"10px",marginTop:"10px" }} />
+        
 
-          { brand.brand_image ? (<img src={brand.brand_image} alt="" style={{resizeMode: 'cover',width: '100%',}}/>) : (
-              <img src={DefaultImage} alt="Default Placeholder" style={{resizeMode: 'cover',width: '100%',}} />
-            )}
-
-            {/* divider */}
-            <Divider style={{ marginBottom:"10px",marginTop:"10px" }}  />
-            
-
-            {/* brand code */}
+            {/* branch code */}
             <Typography gutterBottom variant="h4" component="div">
-              Brand Code
+              Branch Code
             </Typography>
             {/* divider */}
             <Divider style={{ marginBottom:"10px",marginTop:"10px" }} />
 
-            { brand.brand_code ? (
-            <Typography  color="text.secondary">{brand.brand_code }</Typography>
-            ) : (<Chip label='No Brand Code Assigned ' style={{ backgroundColor:'red', color:'#FFFFFF' }} /> )
+            { branch.branch_code ? (
+            <Typography  color="text.secondary">{branch.branch_code }</Typography>
+            ) : (<Chip label='No branch Code Assigned ' style={{ backgroundColor:'red', color:'#FFFFFF' }} /> )
           }
           
             {/* divider */}
             <Divider style={{ marginBottom:"10px",marginTop:"10px" }}  />
 
-           <Typography gutterBottom variant="h4" component="div">Brand Name</Typography>
+           <Typography gutterBottom variant="h4" component="div">Branch Name</Typography>
 
           {/* divider */}
           <Divider style={{ marginBottom:"10px",marginTop:"10px" }} />
           
-          { brand.brand_status ? (
-            <Typography  color="text.secondary">{brand.brand_name }</Typography>
-            ) : (<Chip label='No Brand Name ' style={{ backgroundColor:'red', color:'#FFFFFF' }} /> )
+          { branch.branch_name ? (
+            <Typography  color="text.secondary">{branch.branch_name }</Typography>
+            ) : (<Chip label='No branch Name ' style={{ backgroundColor:'red', color:'#FFFFFF' }} /> )
           }
 
-           {/* divider */}
-           <Divider style={{ marginBottom:"10px",marginTop:"10px" }}  />
+          {/* branch description */}
+            {/* divider */}
+            <Divider style={{ marginBottom:"10px",marginTop:"10px" }}  />
 
-          {/* brand date */}
-          <Typography gutterBottom variant="h4" component="div">Created Date</Typography>
+           <Typography gutterBottom variant="h4" component="div">Branch Address</Typography>
 
           {/* divider */}
           <Divider style={{ marginBottom:"10px",marginTop:"10px" }} />
-
-          { brand.brand_status ? (
-            <Typography  color="text.secondary">{brand.brand_register_date }</Typography>
-            ) : (<Chip label='No Brand Registered Date ' style={{ backgroundColor:'red', color:'#FFFFFF' }} /> )
-          }
           
-           {/* divider */}
-           <Divider style={{ marginBottom:"10px",marginTop:"10px" }} />
-
-
-          <Typography gutterBottom variant="h4" component="div"> Brand Status</Typography>
-         
-          {/* divider */}
-          <Divider style={{ marginBottom:"10px",marginTop:"10px" }} />
-          
-          { brand.brand_status ? (
-            <Chip label={brand.brand_status || 'No Status Chosen'} style={{ backgroundColor:'green', color:'#FFFFFF' }} />
-            ) : (<Chip label={brand.brand_status || 'No Status Chosen'} style={{ backgroundColor:'red', color:'#FFFFFF' }} /> )
+          { branch.branch_address ? (
+            <Typography  color="text.secondary">{branch.branch_address }</Typography>
+            ) : (<Chip label='No Branch Description ' style={{ backgroundColor:'red', color:'#FFFFFF' }} /> )
           }
 
-        
-           {/* divider */}
-           <Divider style={{ marginBottom:"10px",marginTop:"10px" }} />
 
-          <Typography gutterBottom variant="h4" component="div"> Brand Description </Typography>
-         
-          {/* divider */}
-          <Divider style={{ marginBottom:"10px",marginTop:"10px" }} />
-          
-          { brand.brand_description ? (
-            <Typography  color="text.secondary">{brand.brand_description }</Typography>
-            ) : (<Chip label='No Brand Description ' style={{ backgroundColor:'red', color:'#FFFFFF' }} /> )
-          }
-
-         
 
 
 

@@ -10,7 +10,7 @@ import Dashboard from "./scenes/dashboard";
 // branches
 import AddBranch from "./pages/Branches/AddBranch";
 import EditBranch from "./pages/Branches/EditBranch";
-import ShowBranch from "./pages/Branches/AddBranch";
+import ShowBranch from "./pages/Branches/ShowBranch";
 import ViewBranches from "./pages/Branches/ViewBranches";
 
 import AddClient from "./pages/Clients/AddClient";

@@ -20,16 +20,16 @@ import Chip from '@mui/material/Chip';
 
 const ViewBranches = () => {
   // product category states
-  const [brandData, setBrandData] = useState([]);
+  const [branchData, setBranchData] = useState([]);
 
 
 useEffect(() => {
-  const getBrandData = async () => {
+  const getBranchData = async () => {
     try {
       // const response = await fetch('http://127.0.0.1:8000/api/v1/product_categories');
       // const data = await response.json();
 
-      axios.get('http://127.0.0.1:8000/api/v1/brands')
+      axios.get('http://127.0.0.1:8000/api/v1/branches')
         .then(function (response) {
            const data =  response.data.data;
           //  const data = response.data !== null ? response.data : 'Default Data';
@@ -37,33 +37,28 @@ useEffect(() => {
         // fetch the data with its relationship  here
         // (backend fetch ) ->
         // $product_categories = ProductCategory::with('parent_product_category')->get();
-
       
-      const formattedData = data?.map(brand_data => ({
+      const formattedData = data?.map(branch_data => ({
 
-        id: brand_data.id || 'No Id ',
-        brand_code: brand_data.brand_code || 'No Code ',
-        brand_name: brand_data.brand_name || 'No Brand  Name ',
-        brand_status: brand_data.brand_status || 'No Status ',
-        brand_image: brand_data.brand_image || 'No Image ',
-        brand_register_date:brand_data.brand_register_date || 'No Date ',
-        
-        
+        id: branch_data.id || 'No Id ',
+        branch_code: branch_data.branch_code || 'No Code ',
+        branch_name: branch_data.branch_name || 'No Branch  Name ',
+        branch_address: branch_data.branch_address || 'No Address ',
 
       }));
 
-      console.log("Data retrieved successfully", data)
+      console.log("Branches retrieved successfully", data)
 
-      setBrandData(formattedData);
+      setBranchData(formattedData);
 
         })
 
     } catch (error) {
-      console.error('Error fetching brands:', error);
+      console.error('Error fetching branches:', error);
     }
   };
 
-  getBrandData();
+  getBranchData();
 }, []);
 
 
@@ -79,7 +74,7 @@ useEffect(() => {
     },
     
     {
-      field: 'brand_code',
+      field: 'branch_code',
       headerName: 'Code',
       // width: 200,
       flex: 1,
@@ -88,46 +83,14 @@ useEffect(() => {
     
     
     {
-      field: 'brand_name',
-      headerName: 'Brand Name',
+      field: 'branch_name',
+      headerName: 'Branch Name',
       // width: 200,
       flex: 1,
       editable: true, 
      
     },
 
-    {
-      field: 'brand_status',
-      headerName: 'Brand Status',
-      // width: 200,
-      flex: 1,
-      editable: true, renderCell: (params) => {
-        const brand_status = params.value;
-        let chipColor = '';
-  
-        switch (brand_status) {
-          case 'active':
-            chipColor = '#4CAF50'; // Green
-            break;
-          case 'disabled':
-            chipColor = '#f6968f'; // Red 
-            break;
-          
-          default:
-            chipColor = '#F44336'; // Black (default color)
-        }
-  
-        return <Chip label={brand_status} style={{ backgroundColor: chipColor, color: '#ffffff' }} />;
-      },
-           
-    },
-
-    // {
-    //   field: 'description',
-    //   headerName: 'DESCRIPTION',
-    //   width: 500,
-    //   editable: true,
-    // },
 
     // view action
     {
@@ -135,11 +98,11 @@ useEffect(() => {
       headerName: 'VIEW',
       sortable: false,
       width: 100,
-      renderCell: (brandData) => {
+      renderCell: (branchData) => {
         return (
           <Button
             // onClick={(e) => onButtonClick(e, params.row)}
-            href={`/show_brand/${brandData.id}`}
+            href={`/show_branch/${branchData.id}`}
             style={{ backgroundColor:"#0faa50" }}
             variant="contained"
           >
@@ -156,11 +119,11 @@ useEffect(() => {
       headerName: 'EDIT',
       sortable: false,
       width: 100,
-      renderCell: (brandData) => {
+      renderCell: (branchData) => {
         return (
           <Button
             // onClick={(e) => onButtonClick(e, params.row)}
-            href={`/edit_brand/${brandData.id}`}
+            href={`/edit_branch/${branchData.id}`}
             style={{ backgroundColor:"#2587da" }}
             variant="contained"
           >
@@ -178,10 +141,10 @@ useEffect(() => {
       sortable: false,
       width: 100,
       // flex: 1,
-      renderCell: (brandData) => {
+      renderCell: (branchData) => {
         return (
           <Button
-            onClick={()=>handleDelete(brandData.id)}
+            onClick={()=>handleDelete(branchData.id)}
             style={{ backgroundColor:"#da2533" }}
             variant="contained"
           >
@@ -212,17 +175,16 @@ useEffect(() => {
       }).then((result) => {
         
         if (result.isConfirmed) {
-            axios.delete(`http://127.0.0.1:8000/api/v1/brands/${id}`)
+            axios.delete(`http://127.0.0.1:8000/api/v1/branches/${id}`)
             // trigger sweet alerts on successful delete
             .then(function (response) {
                 Swal.fire({
                     icon: 'success',
-                    title: 'Brand Deleted Successfully!',
+                    title: 'Branch Deleted Successfully!',
                     showConfirmButton: false,
                     timer: 1500
                 })
-                // getBrandData()
-                console.log("Brand deleted", response.data.message)
+                console.log("Branch deleted", response.data.message)
             })
             // trigger sweet alerts on error
             .catch(function (error) {
@@ -249,18 +211,18 @@ useEffect(() => {
       
       <Box>
       <HeaderViewTableData 
-       title="Product Brands" 
+       title="Branches" 
 
-       buttonTitleAdd={"Add Brand"}
-       buttonURLAdd={`/add_brand`}
+       buttonTitleAdd={"Add Branch"}
+       buttonURLAdd={`/add_branch`}
         />
 
       {/* table */}
 
       <Box sx={{ height: 900, width: '100%' }}>
-      {brandData ? (
+      {branchData ? (
           <DataGrid 
-              rows={brandData} 
+              rows={branchData} 
               columns={columns}
               initialState={{
               pagination: {
