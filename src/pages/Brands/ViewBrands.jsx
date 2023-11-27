@@ -22,24 +22,6 @@ const ViewBrands = () => {
   // product category states
   const [brandData, setBrandData] = useState([]);
 
-  // fetch data from api
-//   const getBrandData = () => {
-
-//     axios.get('http://127.0.0.1:8000/api/v1/product_categories')
-//         .then(function (response) {
-//           // nested object of data.data
-//           setBrandData(response.data.data);
-//         })
-//         .catch(function (error) {
-//           console.log(error);
-//         })
-
-
-//   }
-
-//   useEffect(() => {
-//     getBrandData()
-// }, []);
 
 useEffect(() => {
   const getBrandData = async () => {
@@ -120,10 +102,10 @@ useEffect(() => {
       // width: 200,
       flex: 1,
       editable: true, renderCell: (params) => {
-        const status = params.value;
+        const brand_status = params.value;
         let chipColor = '';
   
-        switch (status) {
+        switch (brand_status) {
           case 'active':
             chipColor = '#4CAF50'; // Green
             break;
@@ -135,7 +117,7 @@ useEffect(() => {
             chipColor = '#F44336'; // Black (default color)
         }
   
-        return <Chip label={status} style={{ backgroundColor: chipColor, color: '#ffffff' }} />;
+        return <Chip label={brand_status} style={{ backgroundColor: chipColor, color: '#ffffff' }} />;
       },
            
     },
