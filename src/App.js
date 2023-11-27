@@ -6,6 +6,13 @@ import { ColorModeContext, useMode } from "./theme";
 import TopBar from "./scenes/global/TopBar";
 import SideBar from "./scenes/global/SideBar";
 import Dashboard from "./scenes/dashboard";
+
+// branches
+import AddBranch from "./pages/Branches/AddBranch";
+import EditBranch from "./pages/Branches/EditBranch";
+import ShowBranch from "./pages/Branches/AddBranch";
+import ViewBranches from "./pages/Branches/ViewBranches";
+
 import AddClient from "./pages/Clients/AddClient";
 import ViewClients from "./pages/Clients/ViewClients";
 import AddProductCategory from "./pages/ProductCategories/AddProductCategory";
@@ -113,6 +120,12 @@ function App() {
       }}>
         <TopBar />
         <Routes>
+
+        {/* branches */}
+        <Route path="/add_branch" element={<AddBranch />} />
+        <Route path="/view_branches" element={<ViewBranches />} />
+        <Route path="/edit_branch/:id" element={<EditBranch />} />
+        <Route path="/show_branch/:id" element={<ShowBranch />} />
 
        {/* brands */}
         <Route path="/add_brand" element={<AddBrand />} />

@@ -143,6 +143,25 @@ const SideBar = () => {
               Dashboard
           </MenuItem>
 
+          {/* Branches  */}
+          <SubMenu icon={<InventoryIcon />} label="Branches">
+
+              <MenuItem 
+              icon={<ArrowRightAltIcon />}
+                component={<Link to="/add_branch" />}
+                // selected={selected}
+                // setSelected={setSelected}
+                > Add Branch
+                </MenuItem>
+
+              <MenuItem 
+              icon={<ArrowRightAltIcon />}
+                component={<Link to="/view_branches" />}
+                > Manage Branches
+                </MenuItem>
+
+              </SubMenu>
+
            {/* Brands  */}
            <SubMenu icon={<InventoryIcon />} label="Brands">
 
