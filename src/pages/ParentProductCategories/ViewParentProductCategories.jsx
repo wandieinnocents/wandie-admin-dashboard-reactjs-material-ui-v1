@@ -28,11 +28,10 @@ const ViewParentProductCategories = () => {
   const getParentProductCategories = () => {
     axios.get('http://127.0.0.1:8000/api/v1/parent_product_categories')
         .then(function (response) {
+
           // nested object of data.data
           const data =  response.data.data;
-
           const formattedData = data?.map(parent_category_data => ({
-
             id: parent_category_data.id || 'No Id ',
             parent_product_category_code: parent_category_data.parent_product_category_code || 'No Code ',
             parent_product_category_name: parent_category_data.parent_product_category_name || 'No Category  Name ',
@@ -45,7 +44,6 @@ const ViewParentProductCategories = () => {
 
           setParentProductCategoryData(formattedData);
 
-          // setParentProductCategoryData(response.data.data);
         })
         .catch(function (error) {
           console.log(error);
@@ -242,7 +240,7 @@ const ViewParentProductCategories = () => {
               },
             }}
             pageSizeOptions={[5]}
-            checkboxSelection
+            // checkboxSelection
             disableRowSelectionOnClick
 
             />
@@ -259,25 +257,6 @@ const ViewParentProductCategories = () => {
         )}  
       
 
-     
-
-      
-
-
-      {/* <DataGrid
-        rows={parentProductCategoryData}
-        columns={columns}
-        initialState={{
-          pagination: {
-            paginationModel: {
-              pageSize: 15,
-            },
-          },
-        }}
-        pageSizeOptions={[5]}
-        checkboxSelection
-        disableRowSelectionOnClick
-      /> */}
     </Box>
 
       {/* End table */}
