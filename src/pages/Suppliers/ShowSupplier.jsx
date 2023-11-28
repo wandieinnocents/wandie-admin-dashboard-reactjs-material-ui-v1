@@ -74,7 +74,7 @@ export default function ShowSupplier() {
        
         <CardContent>
         <Typography gutterBottom variant="h4" component="div">
-           Photo
+           Supplier Photo
           </Typography>
          
           {/* divider */}
@@ -90,7 +90,7 @@ export default function ShowSupplier() {
 
             {/* supplier code */}
             <Typography gutterBottom variant="h4" component="div">
-              supplier Code
+              Supplier Code
             </Typography>
             {/* divider */}
             <Divider style={{ marginBottom:"10px",marginTop:"10px" }} />
@@ -103,7 +103,7 @@ export default function ShowSupplier() {
             {/* divider */}
             <Divider style={{ marginBottom:"10px",marginTop:"10px" }}  />
 
-           <Typography gutterBottom variant="h4" component="div">supplier Name</Typography>
+           <Typography gutterBottom variant="h4" component="div">Supplier Name</Typography>
 
           {/* divider */}
           <Divider style={{ marginBottom:"10px",marginTop:"10px" }} />
@@ -117,21 +117,21 @@ export default function ShowSupplier() {
            <Divider style={{ marginBottom:"10px",marginTop:"10px" }}  />
 
           {/* supplier date */}
-          <Typography gutterBottom variant="h4" component="div">Created Date</Typography>
+          <Typography gutterBottom variant="h4" component="div">Registered Date</Typography>
 
           {/* divider */}
           <Divider style={{ marginBottom:"10px",marginTop:"10px" }} />
 
           { supplier.supplier_register_date ? (
             <Typography  color="text.secondary">{supplier.supplier_register_date }</Typography>
-            ) : (<Chip label='No supplier Registered Date ' style={{ backgroundColor:'red', color:'#FFFFFF' }} /> )
+            ) : (<Chip label='No Registered Date ' style={{ backgroundColor:'red', color:'#FFFFFF' }} /> )
           }
           
            {/* divider */}
            <Divider style={{ marginBottom:"10px",marginTop:"10px" }} />
 
 
-          <Typography gutterBottom variant="h4" component="div"> supplier Status</Typography>
+          <Typography gutterBottom variant="h4" component="div"> Supplier Status</Typography>
          
           {/* divider */}
           <Divider style={{ marginBottom:"10px",marginTop:"10px" }} />
@@ -140,6 +140,93 @@ export default function ShowSupplier() {
             <Chip label={supplier.supplier_status || 'No Status Chosen'} style={{ backgroundColor:'green', color:'#FFFFFF' }} />
             ) : (<Chip label={supplier.supplier_status || 'No Status Chosen'} style={{ backgroundColor:'red', color:'#FFFFFF' }} /> )
           }
+
+
+           {/* email */}
+           {/* divider */}
+           <Divider style={{ marginBottom:"10px",marginTop:"10px" }} />
+           <Typography gutterBottom variant="h4" component="div"> Supplier Email</Typography>
+           {/* divider */}
+           <Divider style={{ marginBottom:"10px",marginTop:"10px" }} />
+          
+            { supplier.supplier_email ? (
+                <Typography  color="text.secondary">{supplier.supplier_email }</Typography>
+                ) : (<Chip label={'No Supplier Email'} style={{ backgroundColor:'red', color:'#FFFFFF' }} /> )
+              }
+
+
+           {/* phone */}
+           {/* divider */}
+           <Divider style={{ marginBottom:"10px",marginTop:"10px" }} />
+           <Typography gutterBottom variant="h4" component="div"> Supplier Phone</Typography>
+           {/* divider */}
+           <Divider style={{ marginBottom:"10px",marginTop:"10px" }} />
+          
+            { supplier.supplier_phone ? (
+                <Typography  color="text.secondary">{supplier.supplier_phone }</Typography>
+                ) : (<Chip label={'No Supplier Email'} style={{ backgroundColor:'red', color:'#FFFFFF' }} /> )
+              }
+
+
+           {/* Address */}
+           {/* divider */}
+           <Divider style={{ marginBottom:"10px",marginTop:"10px" }} />
+           <Typography gutterBottom variant="h4" component="div"> Supplier Address</Typography>
+           {/* divider */}
+           <Divider style={{ marginBottom:"10px",marginTop:"10px" }} />
+          
+            { supplier.supplier_address ? (
+                <Typography  color="text.secondary">{supplier.supplier_address }</Typography>
+                ) : (<Chip label={'No Supplier Email'} style={{ backgroundColor:'red', color:'#FFFFFF' }} /> )
+              }
+
+             {/* City */}
+           {/* divider */}
+           <Divider style={{ marginBottom:"10px",marginTop:"10px" }} />
+           <Typography gutterBottom variant="h4" component="div"> Supplier City</Typography>
+           {/* divider */}
+           <Divider style={{ marginBottom:"10px",marginTop:"10px" }} />
+          
+            { supplier.supplier_city ? (
+                <Typography  color="text.secondary">{supplier.supplier_city }</Typography>
+                ) : (<Chip label={'No Supplier Email'} style={{ backgroundColor:'red', color:'#FFFFFF' }} /> )
+              }
+
+               {/* Country */}
+           {/* divider */}
+           <Divider style={{ marginBottom:"10px",marginTop:"10px" }} />
+           <Typography gutterBottom variant="h4" component="div"> Supplier Country</Typography>
+           {/* divider */}
+           <Divider style={{ marginBottom:"10px",marginTop:"10px" }} />
+          
+            { supplier.supplier_country ? (
+                <Typography  color="text.secondary">{supplier.supplier_country }</Typography>
+                ) : (<Chip label={'No Supplier Email'} style={{ backgroundColor:'red', color:'#FFFFFF' }} /> )
+              }
+
+            {/* Organization */}
+           {/* divider */}
+           <Divider style={{ marginBottom:"10px",marginTop:"10px" }} />
+           <Typography gutterBottom variant="h4" component="div"> Supplier Organization</Typography>
+           {/* divider */}
+           <Divider style={{ marginBottom:"10px",marginTop:"10px" }} />
+          
+            { supplier.supplier_organization ? (
+                <Typography  color="text.secondary">{supplier.supplier_organization }</Typography>
+                ) : (<Chip label={'No Supplier Email'} style={{ backgroundColor:'red', color:'#FFFFFF' }} /> )
+              }
+
+               {/* Website  */}
+           {/* divider */}
+           <Divider style={{ marginBottom:"10px",marginTop:"10px" }} />
+           <Typography gutterBottom variant="h4" component="div"> Supplier Website </Typography>
+           {/* divider */}
+           <Divider style={{ marginBottom:"10px",marginTop:"10px" }} />
+          
+            { supplier.supplier_website_url ? (
+                <Typography  color="text.secondary">{supplier.supplier_website_url }</Typography>
+                ) : (<Chip label={'No Supplier Email'} style={{ backgroundColor:'red', color:'#FFFFFF' }} /> )
+              }
 
         
            {/* divider */}

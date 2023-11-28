@@ -7,7 +7,10 @@ import * as yup from "yup";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import HeaderEdit from "../../components/Headers/HeaderEdit";
 
+// icons
 import SendIcon from '@mui/icons-material/Send';
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+
 import Swal from 'sweetalert2'
 import axios from 'axios'
 import FormControl from '@mui/material/FormControl';
@@ -39,43 +42,59 @@ const EditSupplier = () => {
 
     // states for data submission
     const [id, setId] = useState(useParams().id);
-    const [brand_name, setBrandName] = useState('');
-    const [brand_description, setBrandDescription] = useState('');
-    const [brand_status, setBrandStatus] = useState('');
-    const [brand_image, setBrandImage] = useState(null);
-    const [brand_register_date, setBrandRegisterDate] = useState('');
+    const [supplier_name, setSupplierName] = useState('');
+    const [supplier_email, setSupplierEmail] = useState('');
+    const [supplier_phone, setSupplierPhone] = useState('');
+    const [supplier_address, setSupplierAddress] = useState('');
+    const [supplier_city, setSupplierCity] = useState('');
+    const [supplier_country, setSupplierCountry] = useState('');
+    const [supplier_organization, setSupplierOrganization] = useState('');
+    const [supplier_status, setSupplierStatus] = useState('');
+    const [supplier_description, setSupplierDescription] = useState('');
+    const [supplier_website_url, setSupplierWebsiteUrl] = useState('');
+    const [supplier_register_date, setSupplierRegisterDate] = useState('');
+    const [supplier_image, setSupplierImage] = useState(null);
+
+
+
+
 
 
     const [isSaving, setIsSaving] = useState(false);
 
-    // handle drop down change
-    const handleChangeBrandStatus = (event) => {
-      setBrandStatus(event.target.value);
-    };
+ // handle drop down change
+ const handleChangeSupplierStatus = (event) => {
+  setSupplierStatus(event.target.value);
+};
 
-   
-    // brand image change
-      const handleFileChange = (event) => {
-      setBrandImage(event.target.files[0]);
-    };
+// Supplier image change
+  const handleFileChange = (event) => {
+  setSupplierImage(event.target.files[0]);
+};
 
-    // handle date input
-  const handleBrandDateChange = (event) => {
-    setBrandRegisterDate(event.target.value);
-  };
-
+// handle date input
+const handleSupplierRegisterDataChange = (event) => {
+setSupplierRegisterDate(event.target.value);
+};
 
   // pick existing data to form as form value
   useEffect(() => {
-    axios.get(`http://127.0.0.1:8000/api/v1/brands/${id}`)
+    axios.get(`http://127.0.0.1:8000/api/v1/suppliers/${id}`)
     .then(function (response) {
         // handle database fields to set form values
-        let brand = response.data.data
-        setBrandName(brand.brand_name);
-        setBrandStatus(brand.brand_status);
-        setBrandDescription(brand.brand_description);
-        setBrandRegisterDate(brand.brand_register_date);
-        setBrandImage(brand.brand_image);
+        let supplier = response.data.data
+        setSupplierName(supplier.supplier_name) 
+        setSupplierRegisterDate(supplier.supplier_register_date) 
+        setSupplierEmail(supplier.supplier_email) 
+        setSupplierPhone(supplier.supplier_phone) 
+        setSupplierAddress(supplier.supplier_address) 
+        setSupplierCity(supplier.supplier_city) 
+        setSupplierCountry(supplier.supplier_phone) 
+        setSupplierOrganization(supplier.supplier_organization) 
+        setSupplierImage(supplier.supplier_image) 
+        setSupplierStatus(supplier.supplier_status) 
+        setSupplierDescription(supplier.supplier_description) 
+        setSupplierWebsiteUrl(supplier.supplier_website_url) 
     })
     // trigger sweet alerts on error
     .catch(function (error) {
@@ -94,13 +113,21 @@ const EditSupplier = () => {
     const updateData = () => {
       
       setIsSaving(true);
-      axios.post(`http://127.0.0.1:8000/api/v1/brands/${id}`, {
+      axios.post(`http://127.0.0.1:8000/api/v1/suppliers/${id}`, {
           // database fields
-          brand_name: brand_name,
-          brand_description: brand_description,
-          brand_status: brand_status,
-          brand_image:brand_image,
-          brand_register_date:brand_register_date,
+          supplier_name: supplier_name,
+          supplier_register_date: supplier_register_date,
+          supplier_email: supplier_email,
+          supplier_phone:supplier_phone,
+          supplier_address:supplier_address,
+          supplier_city:supplier_city,
+          supplier_country:supplier_country,
+          supplier_organization:supplier_organization,
+          supplier_image:supplier_image,
+          supplier_status:supplier_status,
+          supplier_description:supplier_description,
+          supplier_website_url:supplier_website_url,
+
         }, {
           // headers
           headers: {
@@ -113,13 +140,13 @@ const EditSupplier = () => {
         .then(function (response) {
           Swal.fire({
               icon: 'success',
-              title: 'Brand updated successfully!',
+              title: 'Supplier updated successfully!',
               showConfirmButton: false,
               timer: 1500
           })
           setIsSaving(false);
           // success response
-          console.log("Success updating data",response.data )
+          console.log("Success updating Supplier data",response.data )
         })
         // trigger sweet alerts on failure
         .catch(function (error) {
@@ -131,7 +158,7 @@ const EditSupplier = () => {
               showConfirmButton: false,
               timer: 1700
           })
-          console.log("Error updating data",error.response.data )
+          console.log("Error updating Supplier data",error.response.data )
           setIsSaving(false)
         });
   }
@@ -167,7 +194,7 @@ const EditSupplier = () => {
       
       <Box style={{ marginTop:'20px' }}>
         
-          <form >
+      <form >
             <Box
               display="grid"
               gap="30px"
@@ -176,20 +203,36 @@ const EditSupplier = () => {
                 "& > div": { gridColumn: isNonMobile ? undefined : "span 4" },
               }}
             >
+
+            {/* supplier name */}
               <TextField
                 fullWidth
                 // style={{ width:"100%" }}
                 type="text"
-                label="Brand  Name *"
+                label="Supplier Name *"
                 // onBlur={handleBlur}
-                onChange={(event)=>{setBrandName(event.target.value)}}
-                value={brand_name}
-                name="brand_name"
-                // id="name"
-                // error={!!touched.name && !!errors.name}
-                // helperText={touched.name && errors.name}
+                onChange={(event)=>{setSupplierName(event.target.value)}}
+                value={supplier_name}
+                name="supplier_name"
                 sx={{ gridColumn: "span 2" }}
               />
+
+
+              {/* date */}
+              <TextField
+                id="date"
+                label="Supplier Register Date"
+                type="date"
+                name="supplier_register_date"
+                value={supplier_register_date}
+                // defaultValue={currentDate}
+                onChange={handleSupplierRegisterDataChange}
+                InputLabelProps={{
+                  shrink: true
+                }}
+                sx={{ gridColumn: "span 2" }}
+              />
+
 
               {/* status */}
               <FormControl  fullWidth sx={{ gridColumn: "span 2" }}>
@@ -197,90 +240,151 @@ const EditSupplier = () => {
                 <Select
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
-                  value={brand_status}
+                  value={supplier_status}
                   label="Select Status"
-                  onChange={handleChangeBrandStatus}
+                  onChange={handleChangeSupplierStatus}
                 >
                   <MenuItem value={1}>Active</MenuItem>
                   <MenuItem value={2}>Disabled</MenuItem>
                 </Select>
               </FormControl>
 
-              {/* date */}
-               {/*  date */}
-            <TextField
-                id="date"
-                label="Brand Register Date"
-                type="date"
-                name="brand_register_date"
-                value={brand_register_date}
-                // defaultValue={currentDate}
-                onChange={handleBrandDateChange}
-                InputLabelProps={{
-                  shrink: true
-                }}
-                sx={{ gridColumn: "span 2" }}
-              />
-
-              {/* brand image */}
-             
-            
-            {/* image */}
-            <FormControl  fullWidth sx={{ gridColumn: "span 2" }}>
-          
-                    <Stack
-                      direction="row"
-                      divider={<Divider orientation="vertical" flexItem />}
-                      spacing={2}
-                    >
-
-                    {/* preview */}
-                   
-                    { brand_image ? (<img src={brand_image} alt="" style={{resizeMode: 'cover',width: '15%',}}/>) : (
-                                  <img src={DefaultImage} alt="Default Placeholder" style={{resizeMode: 'cover',width: '15%',}} />
-                                )}
-
-
-                    <input 
-                    id="demo-simple-select"
-                    // value={brand_image}
-                    style={{ marginTop:'15px' }}
-                    type="file"
-                    onChange={handleFileChange}
-                    />
-
-
-                    </Stack>
-
-                </FormControl>
-                                  
+              {/* supplier email */}
               <TextField
                 fullWidth
                 // style={{ width:"100%" }}
                 type="text"
+                label="Supplier  Email "
+                // onBlur={handleBlur}
+                onChange={(event)=>{setSupplierEmail(event.target.value)}}
+                value={supplier_email}
+                name="supplier_email"
+                sx={{ gridColumn: "span 2" }}
+              />
+
+               {/* supplier phone */}
+               <TextField
+                fullWidth
+                // style={{ width:"100%" }}
+                type="text"
+                label="Supplier Phone  *"
+                // onBlur={handleBlur}
+                onChange={(event)=>{setSupplierPhone(event.target.value)}}
+                value={supplier_phone}
+                name="supplier_phone"
+                sx={{ gridColumn: "span 2" }}
+              />
+
+               {/* supplier address */}
+               <TextField
+                fullWidth
+                // style={{ width:"100%" }}
+                type="text"
+                label="Supplier Address "
+                // onBlur={handleBlur}
+                onChange={(event)=>{setSupplierAddress(event.target.value)}}
+                value={supplier_address}
+                name="supplier_address"
+                sx={{ gridColumn: "span 2" }}
+              />
+
+
+               {/* supplier city */}
+               <TextField
+                fullWidth
+                // style={{ width:"100%" }}
+                type="text"
+                label="Supplier City "
+                // onBlur={handleBlur}
+                onChange={(event)=>{setSupplierCity(event.target.value)}}
+                value={supplier_city}
+                name="supplier_city"
+                sx={{ gridColumn: "span 2" }}
+              />
+
+               {/* supplier country */}
+               <TextField
+                fullWidth
+                type="text"
+                label="Supplier Country "
+                // onBlur={handleBlur}
+                onChange={(event)=>{setSupplierCountry(event.target.value)}}
+                value={supplier_country}
+                name="supplier_country"
+                sx={{ gridColumn: "span 2" }}
+              />
+
+               {/* supplier organization */}
+               <TextField
+                fullWidth
+                type="text"
+                label="Supplier Organization "
+                // onBlur={handleBlur}
+                onChange={(event)=>{setSupplierOrganization(event.target.value)}}
+                value={supplier_organization}
+                name="supplier_organization"
+                sx={{ gridColumn: "span 4" }}
+              />
+
+               {/* supplier website  */}
+               <TextField
+                fullWidth
+                type="text"
+                label="Supplier Website Address "
+                // onBlur={handleBlur}
+                onChange={(event)=>{setSupplierWebsiteUrl(event.target.value)}}
+                value={supplier_website_url}
+                name="supplier_website_url"
+                sx={{ gridColumn: "span 2" }}
+              />
+
+
+               
+                {/* supplier image */}
+                <FormControl  fullWidth sx={{ gridColumn: "span 2" }}>
+                    <Stack direction="row" divider={<Divider orientation="vertical" flexItem />} spacing={2} >
+                    {/* preview */}
+                    { supplier_image ? (<img src={supplier_image} alt="" style={{resizeMode: 'cover',width: '15%',}}/>) : (
+                      <img src={DefaultImage} alt="Default Placeholder" style={{resizeMode: 'cover',width: '15%',}} />
+                    )}
+
+                    <Button variant="raised" component="label" color="primary">
+                    <CloudUploadIcon  style={{ marginRight:"20px" }}/> Photo 
+                      <input 
+                      style={{ marginLeft:"30px" }}
+                      id="demo-simple-select"
+                      // value={product_category_image}
+                        type="file"
+                        // hidden
+                        onChange={handleFileChange}
+                      />
+
+                </Button>
+                    </Stack>
+               </FormControl>
+              
+              
+              <TextField
+                fullWidth
+                type="text"
                 multiline
                 rows={5}
                 label="Description"
-                // onBlur={handleBlur}
-                onChange={(event)=>{setBrandDescription(event.target.value)}}
-                value={brand_description}
-                name="brand_description"
-                // id="description"
-                // error={!!touched.description && !!errors.description}
-                // helperText={touched.description && errors.description}
+                onChange={(event)=>{setSupplierDescription(event.target.value)}}
+                value={supplier_description}
+                name="supplier_description"
                 sx={{ gridColumn: "span 4" }}
               />
-              
+
             </Box>
 
             {/* submit button */}
             <Box display="flex" justifyContent="start" mt="30px">
-
               <Button 
               disabled={isSaving}
               onClick={updateData} 
               type="submit" size="large" endIcon={<SendIcon />} style={{ backgroundColor:"#2587da", color:"#ffffff" }}  variant="contained">
-                Update Brand
+                Update Supplier
               </Button>
             </Box>
           </form>
