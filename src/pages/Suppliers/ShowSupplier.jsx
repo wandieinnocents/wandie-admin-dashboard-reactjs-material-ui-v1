@@ -59,251 +59,415 @@ export default function ShowSupplier() {
         {/* Check if data exists, else display data is empty / loading  */}
 
         {supplier ? (
-
-        <Box sx={{ width: "100%" }}>
-          <Grid
-            container
-            rowSpacing={1}
-            columnSpacing={{ xs: 1, sm: 2, md: 3 }}
-            columns={{ xs: 1, sm: 3, md: 12 }}
-            style={{ marginBottom: "50px" }}
-          >
-            {/* left column */}
-            <Grid item xs={4}>
-              <Card>
-                <CardActionArea>
-                  <CardContent>
-                    {/* divider */}
-                    <Box
-                      display="flex"
-                      justifyContent="center"
-                      alignItems="center"
+          <Box sx={{ width: "100%" }}>
+            <Grid
+              container
+              rowSpacing={1}
+              columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+              columns={{ xs: 1, sm: 3, md: 12 }}
+              style={{ marginBottom: "50px" }}
+            >
+              {/* left column */}
+              <Grid item xs={4}>
+                <Card>
+                  <CardActionArea>
+                    <CardContent
+                      style={{ backgroundColor: "#2587da", color: "#FFFFFF" }}
                     >
+                      {/* divider */}
+                      <Box
+                        display="flex"
+                        justifyContent="center"
+                        alignItems="center"
+                      >
+                        {supplier.supplier_image ? (
+                          <img
+                            src={supplier.supplier_image}
+                            alt=""
+                            style={{
+                              resizeMode: "cover",
+                              cursor: "pointer",
+                              borderRadius: "50%",
+                              border: "2px solid #dee1f7",
+                              padding: "10px",
+                            }}
+                            width="100px"
+                            height="100px"
+                            // src={`https://static.vecteezy.com/system/resources/previews/019/896/008/original/male-user-avatar-icon-in-flat-design-style-person-signs-illustration-png.png`}
+                          />
+                        ) : (
+                          <img
+                            width="100px"
+                            height="100px"
+                            src={DefaultImage}
+                            alt="Default Placeholder"
+                            style={{
+                              resizeMode: "cover",
+                              cursor: "pointer",
+                              borderRadius: "50%",
+                              border: "2px solid #dee1f7",
+                              padding: "10px",
+                            }}
+                          />
+                        )}
+                      </Box>
 
-                      {supplier.supplier_image ? (
-                        <img
-                          src={supplier.supplier_image}
-                          alt=""
-                          style={{ resizeMode: "cover",cursor: "pointer", borderRadius: "50%", border: '2px solid #dee1f7',  padding: '10px' }}
-                          width="100px"
-                          height="100px"
-                          // src={`https://static.vecteezy.com/system/resources/previews/019/896/008/original/male-user-avatar-icon-in-flat-design-style-person-signs-illustration-png.png`}
-                        />
-
+                      {/* supplier name */}
+                      {supplier.supplier_name ? (
+                        <Typography
+                          gutterBottom
+                          variant="h4"
+                          component="div"
+                          style={{
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            marginTop: "10px",
+                          }}
+                        >
+                          {supplier.supplier_name}
+                        </Typography>
                       ) : (
-                        <img
-                          width="100px"
-                          height="100px"
-                          src={DefaultImage}
-                          alt="Default Placeholder"
-                          style={{ resizeMode: "cover",cursor: "pointer", borderRadius: "50%", border: '2px solid #dee1f7',  padding: '10px' }}
+                        <Chip
+                          label="No Supplier Name "
+                          style={{ backgroundColor: "red", color: "#FFFFFF" }}
                         />
                       )}
 
+                      {/* supplier email */}
+                      {supplier.supplier_email ? (
+                        <Typography
+                          gutterBottom
+                          variant="h5"
+                          component="div"
+                          style={{
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            marginTop: "10px",
+                          }}
+                        >
+                          {supplier.supplier_email}
+                        </Typography>
+                      ) : (
+                        <center>
+                          <Chip
+                            label="No Supplier Email "
+                            style={{
+                              backgroundColor: "red",
+                              color: "#FFFFFF",
+                            }}
+                          />
+                        </center>
+                      )}
 
-                     
-                    </Box>
+                      {/* supplier phone */}
+                      {supplier.supplier_phone ? (
+                        <Typography
+                          gutterBottom
+                          variant="h5"
+                          component="div"
+                          style={{
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            marginTop: "10px",
+                            marginBottom: "20px",
+                          }}
+                        >
+                          {supplier.supplier_phone}
+                        </Typography>
+                      ) : (
+                        <center>
+                          <Chip
+                            label="No Supplier Phone "
+                            style={{
+                              backgroundColor: "red",
+                              color: "#FFFFFF",
+                            }}
+                          />
+                        </center>
+                      )}
 
-                    <Typography
-                      gutterBottom
-                      variant="h4"
-                      component="div"
-                      style={{
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                        marginTop: "10px",
-                      }}
-                    >
-                      Wenareeba Inncoent
-                    </Typography>
+                      <Divider
+                        style={{
+                          marginBottom: "10px",
+                          marginTop: "10px",
+                          backgroundColor: "#d3d3d3",
+                        }}
+                      />
 
-                    <Typography
-                      gutterBottom
-                      variant="h5"
-                      component="div"
-                      style={{
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                        marginTop: "10px",
-                        marginBottom: "10px",
-                      }}
-                    >
-                      innocent@gmail.com
-                    </Typography>
+                      {/* supplier code */}
+                      <center>
+                        <Typography style={{  fontWeight: 600, }} gutterBottom variant="h5" component="div">
+                          Supplier Code
+                        </Typography>
+                        
+                        {/* divider */}
+                        <Divider
+                          style={{
+                            marginBottom: "10px",
+                            marginTop: "10px",
+                            backgroundColor: "#d3d3d3",
+                          }}
+                        />
 
-                    <Typography
-                      gutterBottom
-                      variant="h5"
-                      component="div"
-                      style={{
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                        marginTop: "10px",
-                        marginBottom: "20px",
-                      }}
-                    >
-                      0706382817
-                    </Typography>
+                        {supplier.supplier_code ? (
+                          <Typography
+                            gutterBottom
+                            variant="h5"
+                            component="div"
+                            style={{
+                              display: "flex",
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginTop: "10px",
+                            }}
+                          >
+                            {supplier.supplier_code}
+                          </Typography>
+                        ) : (
+                          <Chip
+                            label="No Supplier Code "
+                            style={{
+                              backgroundColor: "red",
+                              color: "#FFFFFF",
+                            }}
+                          />
+                        )}
+                      </center>
 
-                    <Divider
-                      style={{ marginBottom: "10px", marginTop: "10px" }}
-                    />
+                      {/* divider */}
+                      <Divider
+                        style={{
+                          marginBottom: "10px",
+                          marginTop: "10px",
+                          backgroundColor: "#d3d3d3",
+                        }}
+                      />
 
-                    {/* supplier code */}
-                    <Typography gutterBottom variant="h5" component="div">
-                      Supplier Code
-                    </Typography>
+                      {/* registered date */}
+                      <center>
+                        <Typography style={{  fontWeight: 600, }} gutterBottom variant="h5" component="div">
+                          {" "}
+                          Registered Date{" "}
+                        </Typography>
+                        {/* divider */}
+                        <Divider
+                          style={{
+                            marginBottom: "10px",
+                            marginTop: "10px",
+                            backgroundColor: "#d3d3d3",
+                          }}
+                        />
 
-                    {/* divider */}
-                    <Divider
-                      style={{ marginBottom: "10px", marginTop: "10px" }}
-                    />
-                    <Typography color="text.secondary">CODE</Typography>
+                        {supplier.supplier_register_date ? (
+                          <Typography
+                            gutterBottom
+                            variant="h5"
+                            component="div"
+                            style={{
+                              display: "flex",
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginTop: "10px",
+                            }}
+                          >
+                            {supplier.supplier_register_date}
+                          </Typography>
+                        ) : (
+                          <Chip
+                            label="No Registered Date "
+                            style={{
+                              backgroundColor: "red",
+                              color: "#FFFFFF",
+                            }}
+                          />
+                        )}
+                      </center>
 
-                    {/* divider */}
-                    <Divider
-                      style={{ marginBottom: "10px", marginTop: "10px" }}
-                    />
+                      {/* divider */}
+                      <Divider
+                        style={{
+                          marginBottom: "10px",
+                          marginTop: "10px",
+                          backgroundColor: "#d3d3d3",
+                        }}
+                      />
+                      {/* website */}
+                      <center>
+                        <Typography style={{  fontWeight: 600, }} gutterBottom variant="h5" component="div">
+                          Website
+                        </Typography>
+                        {/* divider */}
+                        <Divider
+                          style={{
+                            marginBottom: "10px",
+                            marginTop: "10px",
+                            backgroundColor: "#d3d3d3",
+                          }}
+                        />
 
-                    {/* date */}
-                    <Typography gutterBottom variant="h5" component="div">
-                      Registerd Date
-                    </Typography>
+                        {supplier.supplier_website_url ? (
+                          <Typography
+                            gutterBottom
+                            variant="h5"
+                            component="div"
+                            style={{
+                              display: "flex",
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginTop: "10px",
+                            }}
+                          >
+                            {supplier.supplier_website_url}
+                          </Typography>
+                        ) : (
+                          <Chip
+                            label="No Website"
+                            style={{
+                              backgroundColor: "red",
+                              color: "#FFFFFF",
+                            }}
+                          />
+                        )}
+                      </center>
 
-                    {/* divider */}
-                    <Divider
-                      style={{ marginBottom: "10px", marginTop: "10px" }}
-                    />
-                    <Typography color="text.secondary">CODE</Typography>
+                      {/* divider */}
+                      <Divider
+                        style={{
+                          marginBottom: "10px",
+                          marginTop: "10px",
+                          backgroundColor: "#d3d3d3",
+                        }}
+                      />
+                      {/* status */}
+                      <center>
+                        <Typography style={{  fontWeight: 600, }} gutterBottom variant="h5" component="div">
+                          Supplier Status
+                        </Typography>
+                        {/* divider */}
+                        <Divider
+                          style={{
+                            marginBottom: "10px",
+                            marginTop: "10px",
+                            backgroundColor: "#d3d3d3",
+                          }}
+                        />
 
-                    {/* divider */}
-                    <Divider
-                      style={{ marginBottom: "10px", marginTop: "10px" }}
-                    />
-                    {/* website */}
-                    <Typography gutterBottom variant="h5" component="div">
-                      Website
-                    </Typography>
+                        {supplier.supplier_status ? (
+                          <Chip
+                            label={supplier.supplier_status}
+                            style={{
+                              backgroundColor: "#0faa50",
+                              color: "#FFFFFF",
+                            }}
+                          />
+                        ) : (
+                          <Chip
+                            label="No Status"
+                            style={{
+                              backgroundColor: "red",
+                              color: "#FFFFFF",
+                            }}
+                          />
+                        )}
+                      </center>
+                    </CardContent>
+                  </CardActionArea>
+                </Card>
+              </Grid>
 
-                    {/* divider */}
-                    <Divider
-                      style={{ marginBottom: "10px", marginTop: "10px" }}
-                    />
-                    <Typography color="text.secondary">website url</Typography>
+              {/* Right column */}
+              <Grid item xs={8}>
+                <Card>
+                  <CardActionArea>
+                    <CardContent>
+                      {/* divider */}
+                      <Divider
+                        style={{ marginBottom: "10px", marginTop: "10px" }}
+                      />
 
-                    {/* divider */}
-                    <Divider
-                      style={{ marginBottom: "10px", marginTop: "10px" }}
-                    />
+                      {/* address */}
+                      <Typography gutterBottom variant="h4" component="div">
+                        Address
+                      </Typography>
 
-                    <Typography gutterBottom variant="h5" component="div">
-                      Supplier Status
-                    </Typography>
+                      {/* divider */}
+                      <Divider
+                        style={{ marginBottom: "10px", marginTop: "10px" }}
+                      />
+                      <Typography color="text.secondary">address</Typography>
 
-                    {/* divider */}
-                    <Divider
-                      style={{ marginBottom: "10px", marginTop: "10px" }}
-                    />
+                      {/* divider */}
+                      <Divider
+                        style={{ marginBottom: "10px", marginTop: "10px" }}
+                      />
+                      {/* city */}
+                      <Typography gutterBottom variant="h4" component="div">
+                        City
+                      </Typography>
 
-                    <Chip
-                      label="No Status Chosen"
-                      style={{ backgroundColor: "green", color: "#FFFFFF" }}
-                    />
-                  </CardContent>
-                </CardActionArea>
-              </Card>
+                      {/* divider */}
+                      <Divider
+                        style={{ marginBottom: "10px", marginTop: "10px" }}
+                      />
+                      <Typography color="text.secondary">City</Typography>
+
+                      {/* divider */}
+                      <Divider
+                        style={{ marginBottom: "10px", marginTop: "10px" }}
+                      />
+                      {/* Country */}
+                      <Typography gutterBottom variant="h4" component="div">
+                        Country
+                      </Typography>
+
+                      {/* divider */}
+                      <Divider
+                        style={{ marginBottom: "10px", marginTop: "10px" }}
+                      />
+                      <Typography color="text.secondary">Country</Typography>
+
+                      {/* divider */}
+                      <Divider
+                        style={{ marginBottom: "10px", marginTop: "10px" }}
+                      />
+                      {/* Organization */}
+                      <Typography gutterBottom variant="h4" component="div">
+                        Organization
+                      </Typography>
+
+                      {/* divider */}
+                      <Divider
+                        style={{ marginBottom: "10px", marginTop: "10px" }}
+                      />
+                      <Typography color="text.secondary">
+                        Organization
+                      </Typography>
+
+                      {/* divider */}
+                      <Divider
+                        style={{ marginBottom: "10px", marginTop: "10px" }}
+                      />
+                      {/* Description */}
+                      <Typography gutterBottom variant="h4" component="div">
+                        Description
+                      </Typography>
+
+                      {/* divider */}
+                      <Divider
+                        style={{ marginBottom: "10px", marginTop: "10px" }}
+                      />
+                      <Typography color="text.secondary">
+                        Description
+                      </Typography>
+                    </CardContent>
+                  </CardActionArea>
+                </Card>
+              </Grid>
             </Grid>
-
-            {/* Right column */}
-            <Grid item xs={8}>
-              <Card>
-                <CardActionArea>
-                  <CardContent>
-                    {/* divider */}
-                    <Divider
-                      style={{ marginBottom: "10px", marginTop: "10px" }}
-                    />
-
-                    {/* address */}
-                    <Typography gutterBottom variant="h4" component="div">
-                      Address
-                    </Typography>
-
-                    {/* divider */}
-                    <Divider
-                      style={{ marginBottom: "10px", marginTop: "10px" }}
-                    />
-                    <Typography color="text.secondary">address</Typography>
-
-                    {/* divider */}
-                    <Divider
-                      style={{ marginBottom: "10px", marginTop: "10px" }}
-                    />
-                    {/* city */}
-                    <Typography gutterBottom variant="h4" component="div">
-                      City
-                    </Typography>
-
-                    {/* divider */}
-                    <Divider
-                      style={{ marginBottom: "10px", marginTop: "10px" }}
-                    />
-                    <Typography color="text.secondary">City</Typography>
-
-                    {/* divider */}
-                    <Divider
-                      style={{ marginBottom: "10px", marginTop: "10px" }}
-                    />
-                    {/* Country */}
-                    <Typography gutterBottom variant="h4" component="div">
-                      Country
-                    </Typography>
-
-                    {/* divider */}
-                    <Divider
-                      style={{ marginBottom: "10px", marginTop: "10px" }}
-                    />
-                    <Typography color="text.secondary">Country</Typography>
-
-                    {/* divider */}
-                    <Divider
-                      style={{ marginBottom: "10px", marginTop: "10px" }}
-                    />
-                    {/* Organization */}
-                    <Typography gutterBottom variant="h4" component="div">
-                      Organization
-                    </Typography>
-
-                    {/* divider */}
-                    <Divider
-                      style={{ marginBottom: "10px", marginTop: "10px" }}
-                    />
-                    <Typography color="text.secondary">Organization</Typography>
-
-                    {/* divider */}
-                    <Divider
-                      style={{ marginBottom: "10px", marginTop: "10px" }}
-                    />
-                    {/* Description */}
-                    <Typography gutterBottom variant="h4" component="div">
-                      Description
-                    </Typography>
-
-                    {/* divider */}
-                    <Divider
-                      style={{ marginBottom: "10px", marginTop: "10px" }}
-                    />
-                    <Typography color="text.secondary">Description</Typography>
-                  </CardContent>
-                </CardActionArea>
-              </Card>
-            </Grid>
-          </Grid>
-        </Box>
-
+          </Box>
         ) : (
           <>
             <center>
