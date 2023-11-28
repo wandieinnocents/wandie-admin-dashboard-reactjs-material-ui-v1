@@ -13,15 +13,16 @@ import EditBranch from "./pages/Branches/EditBranch";
 import ShowBranch from "./pages/Branches/ShowBranch";
 import ViewBranches from "./pages/Branches/ViewBranches";
 
+
 import AddClient from "./pages/Clients/AddClient";
 import ViewClients from "./pages/Clients/ViewClients";
-import AddProductCategory from "./pages/ProductCategories/AddProductCategory";
-import ViewProductCategories from "./pages/ProductCategories/ViewProductCategories";
-import EditProductCategory from "./pages/ProductCategories/EditProductCategory";
-import ShowProductCategory from "./pages/ProductCategories/ShowProductCategory";
 
-import AddPackage from "./pages/Packages/AddPackage";
-import ViewPackages from "./pages/Packages/ViewPackages";
+
+
+
+// import AddPackage from "./pages/Packages/AddPackage";
+// import ViewPackages from "./pages/Packages/ViewPackages";
+
 import AddSale from "./pages/Sales/AddSale";
 import ViewSales from "./pages/Sales/ViewSales";
 import AddHostingProvider from "./pages/HostingProviders/AddHostingProvider";
@@ -72,6 +73,18 @@ import AddParentProductCategory from "./pages/ParentProductCategories/AddParentP
 import ViewParentProductCategories from "./pages/ParentProductCategories/ViewParentProductCategories";
 import ShowParentProductCategory from "./pages/ParentProductCategories/ShowParentProductCategory";
 import EditParentProductCategory from "./pages/ParentProductCategories/EditParentProductCategory";
+
+// product categories
+import AddProductCategory from "./pages/ProductCategories/AddProductCategory";
+import ViewProductCategories from "./pages/ProductCategories/ViewProductCategories";
+import EditProductCategory from "./pages/ProductCategories/EditProductCategory";
+import ShowProductCategory from "./pages/ProductCategories/ShowProductCategory";
+
+// products
+import AddProduct from "./pages/Products/AddProduct";
+import EditProduct from "./pages/Products/EditProduct";
+import ShowProduct from "./pages/Products/ShowProduct";
+import ViewProducts from "./pages/Products/ViewProducts";
 
 // styling
 
@@ -167,8 +180,15 @@ function App() {
         <Route path="/edit_product_category/:id" element={<EditProductCategory />} />
         <Route path="/show_product_category/:id" element={<ShowProductCategory />} />
 
-        <Route path="/add_package" element={<AddPackage />} />
-        <Route path="/view_packages" element={<ViewPackages />} />
+        {/* products */}
+        <Route path="/add_product" element={<AddProduct />} />
+        <Route path="/view_products" element={<ViewProducts />} />
+        <Route path="/edit_product/:id" element={<EditProduct />} />
+        <Route path="/show_product/:id" element={<ShowProduct />} />
+
+        {/* <Route path="/add_package" element={<AddPackage />} />
+        <Route path="/view_packages" element={<ViewPackages />} /> */}
+
         <Route path="/add_client" element={<AddClient/>} />
         <Route path="/view_clients" element={<ViewClients/>} />
         <Route path="/add_sale" element={<AddSale/>} />

@@ -178,7 +178,8 @@ const ViewParentProductCategories = () => {
   // trigger sweet alerts on delete
   Swal.fire({
       title: 'Are you sure?',
-      text: "You won't be able to revert this!",
+      // text: "You won't be able to revert this! '\n' This will also delete all child categories",
+      html: "You won't be able to revert this! <br /> This will also delete all child categories and data associated with this parent category",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',

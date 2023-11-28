@@ -258,7 +258,7 @@ const SideBar = () => {
 
                 <MenuItem 
                   icon={<ArrowRightAltIcon />}
-                    component={<Link to="/view_product_categories" />}
+                    component={<Link to="/add_product" />}
                     // selected={selected}
                     // setSelected={setSelected}
                     > Add Product
@@ -266,7 +266,7 @@ const SideBar = () => {
 
                     <MenuItem 
                   icon={<ArrowRightAltIcon />}
-                    component={<Link to="/view_product_categories" />}
+                    component={<Link to="/view_products" />}
                     // selected={selected}
                     // setSelected={setSelected}
                     > Manage Products
