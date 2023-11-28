@@ -55,8 +55,13 @@ import ViewBrands from "./pages/Brands/ViewBrands";
 import ShowBrand from "./pages/Brands/ShowBrand";
 import EditBrand from "./pages/Brands/EditBrand";
 
+// units
 import AddUnit from "./pages/Units/AddUnit";
 import ViewUnits from "./pages/Units/ViewUnits";
+import EditUnit from "./pages/Units/EditUnit";
+import ShowUnit from "./pages/Units/ShowUnit";
+
+
 import AddSupplier from "./pages/Suppliers/AddSupplier";
 import ViewSuppliers from "./pages/Suppliers/ViewSuppliers";
 
@@ -136,6 +141,8 @@ function App() {
         {/* units */}
         <Route path="/add_unit" element={<AddUnit />} />
         <Route path="/view_units" element={<ViewUnits />} />
+        <Route path="/edit_unit/:id" element={<EditUnit />} />
+        <Route path="/show_unit/:id" element={<ShowUnit />} />
 
         {/* suppliers */}
         <Route path="/add_supplier" element={<AddSupplier />} />
