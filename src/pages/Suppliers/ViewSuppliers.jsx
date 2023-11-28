@@ -23,8 +23,9 @@ const ViewSuppliers = () => {
   const [supplierData, setSupplierData] = useState([]);
 
 
-useEffect(() => {
+
   const getsupplierData = async () => {
+    
     try {
       // const response = await fetch('http://127.0.0.1:8000/api/v1/product_categories');
       // const data = await response.json();
@@ -70,7 +71,10 @@ useEffect(() => {
     }
   };
 
-  getsupplierData();
+  
+
+useEffect(() => {
+  getsupplierData()
 }, []);
 
 
@@ -229,7 +233,7 @@ useEffect(() => {
                     showConfirmButton: false,
                     timer: 1500
                 })
-                // getsupplierData()
+                getsupplierData()
                 console.log("Supplier deleted", response.data.message)
             })
             // trigger sweet alerts on error
