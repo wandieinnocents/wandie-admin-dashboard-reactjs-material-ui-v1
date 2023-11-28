@@ -4,7 +4,10 @@ import { Formik } from "formik";
 import * as yup from "yup";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import HeaderAddData from "../../components/Headers/HeaderAddData";
+// icons
 import SendIcon from '@mui/icons-material/Send';
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+
 import Swal from 'sweetalert2'
 import axios from 'axios'
 import FormControl from '@mui/material/FormControl';
@@ -163,7 +166,7 @@ const AddSupplier = () => {
 
 
               {/* date */}
-            <TextField
+              <TextField
                 id="date"
                 label="Supplier Register Date"
                 type="date"
@@ -267,7 +270,7 @@ const AddSupplier = () => {
                 onChange={(event)=>{setSupplierOrganization(event.target.value)}}
                 value={supplier_organization}
                 name="supplier_organization"
-                sx={{ gridColumn: "span 2" }}
+                sx={{ gridColumn: "span 4" }}
               />
 
                {/* supplier website  */}
@@ -283,17 +286,25 @@ const AddSupplier = () => {
               />
 
 
+               
+
+
               {/* supplier image */}
               <div sx={{ gridColumn: "span 6" }}>
-                <input 
-                    id="demo-simple-select"
-                    
-                    // value={product_category_image}
-                    type="file"
-                    onChange={handleFileChange}
-                    // helperText=<span style={{ color:'red' }}> {productCategoryImageError} </span>
 
-                    />
+              <Button variant="raised" component="label" color="primary">
+                  <CloudUploadIcon  style={{ marginRight:"20px" }}/> Photo 
+                    <input 
+                    style={{ marginLeft:"30px" }}
+                     id="demo-simple-select"
+                    // value={product_category_image}
+                      type="file"
+                      // hidden
+                      onChange={handleFileChange}
+                     />
+
+                </Button>
+
               </div>
               
               <TextField
@@ -307,17 +318,16 @@ const AddSupplier = () => {
                 name="supplier_description"
                 sx={{ gridColumn: "span 4" }}
               />
-              
+
             </Box>
 
             {/* submit button */}
             <Box display="flex" justifyContent="start" mt="30px">
-
               <Button 
               disabled={isSaving}
               onClick={submitData} 
               type="submit" size="large" endIcon={<SendIcon />} style={{ backgroundColor:"#2587da", color:"#ffffff" }}  variant="contained">
-                Add Brand
+                Add Supplier
               </Button>
             </Box>
           </form>

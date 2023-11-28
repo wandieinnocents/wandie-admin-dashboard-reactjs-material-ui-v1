@@ -152,8 +152,7 @@ const AddBrand = () => {
               </FormControl>
 
               {/* date */}
-               {/*  date */}
-            <TextField
+              <TextField
                 id="date"
                 label="Brand Register Date"
                 type="date"

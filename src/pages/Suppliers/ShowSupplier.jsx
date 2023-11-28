@@ -26,13 +26,13 @@ export default function ShowSupplier() {
     // states
     // const [id, setId] = useState(useParams().id)
     const { id } = useParams();
-    const [brand, setBrand] = useState(null);
+    const [supplier, setSupplier] = useState(null);
 
     // retrieve single data by id
     useEffect(() => {
         axios.get(`http://127.0.0.1:8000/api/v1/suppliers/${id}`)
         .then(function (response) {
-          setBrand(response.data.data)
+          setSupplier(response.data.data)
           console.log("Single item Data", response.data.data)
         })
         // console log error on failure
@@ -53,15 +53,15 @@ export default function ShowSupplier() {
     <HeaderShowSingleData title="Supplier Details"
     // add
        buttonTitleEdit={"EDIT SUPPLIER"}
-       buttonURLEdit={`/edit_brand/${id}`}
+       buttonURLEdit={`/edit_supplier/${id}`}
 
       //  EDIT
       buttonTitleAdd={"ADD SUPPLIER"}
-       buttonURLAdd={`/add_brand/`}
+       buttonURLAdd={`/add_supplier/`}
         />
     <Divider style={{ marginBottom:"30px" }} />
 
-    {brand ? (
+    {supplier ? (
     <Box sx={{ width: '100%', paddingLeft:"20px",paddingRight:"20px" }}>
       <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}
       columns={{ xs: 1, sm: 3, md: 12 }}>
@@ -80,7 +80,7 @@ export default function ShowSupplier() {
           {/* divider */}
           <Divider style={{ marginBottom:"10px",marginTop:"10px" }} />
 
-          { brand.brand_image ? (<img src={brand.brand_image} alt="" style={{resizeMode: 'cover',width: '100%',}}/>) : (
+          { supplier.supplier_image ? (<img src={supplier.supplier_image} alt="" style={{resizeMode: 'cover',width: '100%',}}/>) : (
               <img src={DefaultImage} alt="Default Placeholder" style={{resizeMode: 'cover',width: '100%',}} />
             )}
 
@@ -88,71 +88,71 @@ export default function ShowSupplier() {
             <Divider style={{ marginBottom:"10px",marginTop:"10px" }}  />
             
 
-            {/* brand code */}
+            {/* supplier code */}
             <Typography gutterBottom variant="h4" component="div">
-              Brand Code
+              supplier Code
             </Typography>
             {/* divider */}
             <Divider style={{ marginBottom:"10px",marginTop:"10px" }} />
 
-            { brand.brand_code ? (
-            <Typography  color="text.secondary">{brand.brand_code }</Typography>
-            ) : (<Chip label='No Brand Code Assigned ' style={{ backgroundColor:'red', color:'#FFFFFF' }} /> )
+            { supplier.supplier_code ? (
+            <Typography  color="text.secondary">{supplier.supplier_code }</Typography>
+            ) : (<Chip label='No supplier Code Assigned ' style={{ backgroundColor:'red', color:'#FFFFFF' }} /> )
           }
           
             {/* divider */}
             <Divider style={{ marginBottom:"10px",marginTop:"10px" }}  />
 
-           <Typography gutterBottom variant="h4" component="div">Brand Name</Typography>
+           <Typography gutterBottom variant="h4" component="div">supplier Name</Typography>
 
           {/* divider */}
           <Divider style={{ marginBottom:"10px",marginTop:"10px" }} />
           
-          { brand.brand_name ? (
-            <Typography  color="text.secondary">{brand.brand_name }</Typography>
-            ) : (<Chip label='No Brand Name ' style={{ backgroundColor:'red', color:'#FFFFFF' }} /> )
+          { supplier.supplier_name ? (
+            <Typography  color="text.secondary">{supplier.supplier_name }</Typography>
+            ) : (<Chip label='No supplier Name ' style={{ backgroundColor:'red', color:'#FFFFFF' }} /> )
           }
 
            {/* divider */}
            <Divider style={{ marginBottom:"10px",marginTop:"10px" }}  />
 
-          {/* brand date */}
+          {/* supplier date */}
           <Typography gutterBottom variant="h4" component="div">Created Date</Typography>
 
           {/* divider */}
           <Divider style={{ marginBottom:"10px",marginTop:"10px" }} />
 
-          { brand.brand_register_date ? (
-            <Typography  color="text.secondary">{brand.brand_register_date }</Typography>
-            ) : (<Chip label='No Brand Registered Date ' style={{ backgroundColor:'red', color:'#FFFFFF' }} /> )
+          { supplier.supplier_register_date ? (
+            <Typography  color="text.secondary">{supplier.supplier_register_date }</Typography>
+            ) : (<Chip label='No supplier Registered Date ' style={{ backgroundColor:'red', color:'#FFFFFF' }} /> )
           }
           
            {/* divider */}
            <Divider style={{ marginBottom:"10px",marginTop:"10px" }} />
 
 
-          <Typography gutterBottom variant="h4" component="div"> Brand Status</Typography>
+          <Typography gutterBottom variant="h4" component="div"> supplier Status</Typography>
          
           {/* divider */}
           <Divider style={{ marginBottom:"10px",marginTop:"10px" }} />
           
-          { brand.brand_status ? (
-            <Chip label={brand.brand_status || 'No Status Chosen'} style={{ backgroundColor:'green', color:'#FFFFFF' }} />
-            ) : (<Chip label={brand.brand_status || 'No Status Chosen'} style={{ backgroundColor:'red', color:'#FFFFFF' }} /> )
+          { supplier.supplier_status ? (
+            <Chip label={supplier.supplier_status || 'No Status Chosen'} style={{ backgroundColor:'green', color:'#FFFFFF' }} />
+            ) : (<Chip label={supplier.supplier_status || 'No Status Chosen'} style={{ backgroundColor:'red', color:'#FFFFFF' }} /> )
           }
 
         
            {/* divider */}
            <Divider style={{ marginBottom:"10px",marginTop:"10px" }} />
 
-          <Typography gutterBottom variant="h4" component="div"> Brand Description </Typography>
+          <Typography gutterBottom variant="h4" component="div"> supplier Description </Typography>
          
           {/* divider */}
           <Divider style={{ marginBottom:"10px",marginTop:"10px" }} />
           
-          { brand.brand_description ? (
-            <Typography  color="text.secondary">{brand.brand_description }</Typography>
-            ) : (<Chip label='No Brand Description ' style={{ backgroundColor:'red', color:'#FFFFFF' }} /> )
+          { supplier.supplier_description ? (
+            <Typography  color="text.secondary">{supplier.supplier_description }</Typography>
+            ) : (<Chip label='No supplier Description ' style={{ backgroundColor:'red', color:'#FFFFFF' }} /> )
           }
 
          
