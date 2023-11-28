@@ -23,7 +23,7 @@ const ViewBranches = () => {
   const [branchData, setBranchData] = useState([]);
 
 
-useEffect(() => {
+
   const getBranchData = async () => {
     try {
       // const response = await fetch('http://127.0.0.1:8000/api/v1/product_categories');
@@ -57,8 +57,10 @@ useEffect(() => {
       console.error('Error fetching branches:', error);
     }
   };
-
-  getBranchData();
+  
+  // useEffect
+  useEffect(() => {
+    getBranchData();
 }, []);
 
 
@@ -184,6 +186,7 @@ useEffect(() => {
                     showConfirmButton: false,
                     timer: 1500
                 })
+                getBranchData()
                 console.log("Branch deleted", response.data.message)
             })
             // trigger sweet alerts on error

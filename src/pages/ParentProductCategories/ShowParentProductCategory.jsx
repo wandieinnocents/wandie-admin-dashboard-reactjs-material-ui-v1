@@ -4,7 +4,7 @@ import { styled } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
-import Header from '../../components/Header';
+import HeaderShowSingleData from '../../components/Headers/HeaderShowSingleData';
 
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -50,9 +50,14 @@ export default function ShowParentProductCategory() {
     <Box m="30px">
       
     <Box>
-    <Header title="Parent Category Details" 
-       buttonTitle={"ADD PARENT PRODUCT CATEGORY"}
-       buttonURL={`/add_parent_product_category/`}
+    <HeaderShowSingleData title="Parent Category Details"
+    // add
+       buttonTitleEdit={"EDIT PARENT CATEGORY"}
+       buttonURLEdit={`/edit_parent_product_category/${id}`}
+
+      //  EDIT
+      buttonTitleAdd={"ADD PARENT CATEGORY"}
+       buttonURLAdd={`/add_parent_product_category/`}
         />
     <Divider style={{ marginBottom:"30px" }} />
 

@@ -23,7 +23,7 @@ const ViewBrands = () => {
   const [brandData, setBrandData] = useState([]);
 
 
-useEffect(() => {
+
   const getBrandData = async () => {
     try {
       // const response = await fetch('http://127.0.0.1:8000/api/v1/product_categories');
@@ -63,6 +63,7 @@ useEffect(() => {
     }
   };
 
+  useEffect(() => {
   getBrandData();
 }, []);
 
@@ -222,7 +223,7 @@ useEffect(() => {
                     showConfirmButton: false,
                     timer: 1500
                 })
-                // getBrandData()
+                getBrandData()
                 console.log("Brand deleted", response.data.message)
             })
             // trigger sweet alerts on error

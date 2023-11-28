@@ -23,7 +23,7 @@ const ViewUnits = () => {
   const [unitData, setUnitData] = useState([]);
 
 
-useEffect(() => {
+
   const getUnitData = async () => {
     try {
       // const response = await fetch('http://127.0.0.1:8000/api/v1/product_categories');
@@ -57,6 +57,7 @@ useEffect(() => {
     }
   };
 
+  useEffect(() => {
   getUnitData();
 }, []);
 
@@ -186,6 +187,7 @@ useEffect(() => {
                     showConfirmButton: false,
                     timer: 1500
                 })
+                getUnitData()
                 console.log("Unit deleted", response.data.message)
             })
             // trigger sweet alerts on error
@@ -217,6 +219,7 @@ useEffect(() => {
 
        buttonTitleAdd={"Add Unit"}
        buttonURLAdd={`/add_unit`}
+       
         />
 
       {/* table */}

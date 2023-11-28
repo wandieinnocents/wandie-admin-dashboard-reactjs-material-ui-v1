@@ -38,7 +38,7 @@ const ViewProductCategories = () => {
 //     getProductCategories()
 // }, []);
 
-useEffect(() => {
+
   const getProductCategories = async () => {
     try {
       // const response = await fetch('http://127.0.0.1:8000/api/v1/product_categories');
@@ -79,6 +79,8 @@ useEffect(() => {
     }
   };
 
+
+  useEffect(() => {
   getProductCategories();
 }, []);
 
@@ -228,7 +230,8 @@ useEffect(() => {
                     showConfirmButton: false,
                     timer: 1500
                 })
-                // getProductCategories()
+
+                getProductCategories()
             })
             // trigger sweet alerts on error
             .catch(function (error) {

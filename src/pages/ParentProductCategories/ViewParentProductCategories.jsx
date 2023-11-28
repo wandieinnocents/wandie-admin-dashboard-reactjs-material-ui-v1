@@ -1,5 +1,5 @@
 import React, {useState, useEffect } from 'react'
-import Header from '../../components/Header';
+import HeaderViewTableData from '../../components/Headers/HeaderViewTableData';
 import {  Button, IconButton, Typography, useTheme } from "@mui/material";
 import Box from '@mui/material/Box';
 import { DataGrid } from '@mui/x-data-grid';
@@ -10,8 +10,10 @@ import TransferWithinAStationOutlinedIcon from '@mui/icons-material/TransferWith
 import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
 import ModeEditOutlinedIcon from '@mui/icons-material/ModeEditOutlined';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
+
 // progress bar
 import CircularProgress from '@mui/material/CircularProgress';
+import Chip from '@mui/material/Chip';
 
 
 
@@ -27,7 +29,23 @@ const ViewParentProductCategories = () => {
     axios.get('http://127.0.0.1:8000/api/v1/parent_product_categories')
         .then(function (response) {
           // nested object of data.data
-          setParentProductCategoryData(response.data.data);
+          const data =  response.data.data;
+
+          const formattedData = data?.map(parent_category_data => ({
+
+            id: parent_category_data.id || 'No Id ',
+            parent_product_category_code: parent_category_data.parent_product_category_code || 'No Code ',
+            parent_product_category_name: parent_category_data.parent_product_category_name || 'No Category  Name ',
+            parent_product_category_description: parent_category_data.parent_product_category_description || 'No Description ',
+            parent_product_category_status: parent_category_data.parent_product_category_status || 'No Status ',
+
+          }));
+
+          console.log("Data retrieved successfully", data)
+
+          setParentProductCategoryData(formattedData);
+
+          // setParentProductCategoryData(response.data.data);
         })
         .catch(function (error) {
           console.log(error);
@@ -67,6 +85,24 @@ const ViewParentProductCategories = () => {
       headerName: 'Status',
       width: 200,
       editable: true,
+      renderCell: (params) => {
+        const parent_product_category_status = params.value;
+        let chipColor = '';
+  
+        switch (parent_product_category_status) {
+          case 'active':
+            chipColor = '#4CAF50'; // Green
+            break;
+          case 'disabled':
+            chipColor = '#f6968f'; // Red 
+            break;
+          
+          default:
+            chipColor = '#F44336'; // Black (default color)
+        }
+  
+        return <Chip label={parent_product_category_status} style={{ backgroundColor: chipColor, color: '#ffffff' }} />;
+      },
     },
 
     // view action
@@ -183,9 +219,11 @@ const ViewParentProductCategories = () => {
     <Box m="30px">
       
       <Box>
-      <Header title="Parent Product Categories" 
-       buttonTitle={"ADD PARENT PRODUCT CATEGORY"}
-       buttonURL={`/add_parent_product_category/`}
+      <HeaderViewTableData 
+       title="Parent Categories" 
+       buttonTitleAdd={"Add Parent Category"}
+       buttonURLAdd={`/add_parent_product_category`}
+       
         />
 
       {/* table */}
