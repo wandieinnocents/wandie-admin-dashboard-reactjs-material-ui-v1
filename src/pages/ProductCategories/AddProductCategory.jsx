@@ -3,7 +3,7 @@ import { Box, Button, TextField } from "@mui/material";
 import { Formik } from "formik";
 import * as yup from "yup";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import Header from "../../components/Header";
+import HeaderAddData from "../../components/Headers/HeaderAddData";
 import SendIcon from '@mui/icons-material/Send';
 import Swal from 'sweetalert2'
 import axios from 'axios'
@@ -197,7 +197,7 @@ const AddProductCategory = () => {
     <Box mt="30px" mb="60px" mr="60px" ml="60px" >
       
       <Box>
-      <Header title="Add Product Category" 
+      <HeaderAddData title="Add Product Categories" 
        buttonTitle={"All Product Categories"}
        buttonURL={`/view_product_categories/`}
         />

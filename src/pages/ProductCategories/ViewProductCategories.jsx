@@ -1,43 +1,29 @@
 import React, {useState, useEffect } from 'react'
-import Header from '../../components/Header';
+
+// header
+import HeaderViewTableData from '../../components/Headers/HeaderViewTableData';
 import {  Button, IconButton, Typography, useTheme } from "@mui/material";
 import Box from '@mui/material/Box';
 import { DataGrid } from '@mui/x-data-grid';
 import Swal from 'sweetalert2'
 import axios from 'axios'
+
+// icons
 import CloudUploadOutlinedIcon from '@mui/icons-material/CloudUploadOutlined';
 import TransferWithinAStationOutlinedIcon from '@mui/icons-material/TransferWithinAStationOutlined';
 import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
 import ModeEditOutlinedIcon from '@mui/icons-material/ModeEditOutlined';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
+
 // progress bar
 import CircularProgress from '@mui/material/CircularProgress';
+import Chip from '@mui/material/Chip';
 
 
 
 const ViewProductCategories = () => {
   // product category states
   const [productCategoryData, setproductCategoryData] = useState([]);
-
-  // fetch data from api
-//   const getProductCategories = () => {
-
-//     axios.get('http://127.0.0.1:8000/api/v1/product_categories')
-//         .then(function (response) {
-//           // nested object of data.data
-//           setproductCategoryData(response.data.data);
-//         })
-//         .catch(function (error) {
-//           console.log(error);
-//         })
-
-
-//   }
-
-//   useEffect(() => {
-//     getProductCategories()
-// }, []);
-
 
   const getProductCategories = async () => {
     try {
@@ -46,24 +32,17 @@ const ViewProductCategories = () => {
 
       axios.get('http://127.0.0.1:8000/api/v1/product_categories')
         .then(function (response) {
-           const data =  response.data.data;
-          //  const data = response.data !== null ? response.data : 'Default Data';
-        // Assuming your data structure includes a 'category' property within each 'product'
-        // fetch the data with its relationship  here
-        // (backend fetch ) ->
-        // $product_categories = ProductCategory::with('parent_product_category')->get();
+            const data =  response.data.data;
+            const formattedData = data?.map(product_category => ({
 
-      
-      const formattedData = data?.map(product_category => ({
-
-        id: product_category.id,
-        product_category_code: product_category.product_category_code,
-        // pick the nested data in relationship here
-        parent_product_category_id: product_category.parent_product_category.parent_product_category_name,
-        product_category_name: product_category.product_category_name,
-        product_category_description: product_category.product_category_description,
-        product_category_status: product_category.product_category_status,
-        product_category_image: product_category.product_category_image,
+            id: product_category.id || 'No Id ' ,
+            product_category_code: product_category.product_category_code || 'No Code ',
+            // pick the nested data in relationship here
+            parent_product_category_id: product_category.parent_product_category.parent_product_category_name || 'No Parent Category ',
+            product_category_name: product_category.product_category_name || 'No Category ',
+            product_category_description: product_category.product_category_description || 'No Description ',
+            product_category_status: product_category.product_category_status || 'No Status ',
+            product_category_image: product_category.product_category_image || 'No Image ',
         
 
       }));
@@ -129,6 +108,24 @@ const ViewProductCategories = () => {
       // width: 200,
       flex: 1,
       editable: true, 
+      renderCell: (params) => {
+        const brand_status = params.value;
+        let chipColor = '';
+  
+        switch (brand_status) {
+          case 'active':
+            chipColor = '#4CAF50'; // Green
+            break;
+          case 'disabled':
+            chipColor = '#f6968f'; // Red 
+            break;
+          
+          default:
+            chipColor = '#F44336'; // Black (default color)
+        }
+  
+        return <Chip label={brand_status} style={{ backgroundColor: chipColor, color: '#ffffff' }} />;
+      },
     },
 
     // {
@@ -257,10 +254,13 @@ const ViewProductCategories = () => {
     <Box m="30px">
       
       <Box>
-      <Header title="Product Categories" 
-       buttonTitle={"ADD PRODUCT CATEGORY"}
-       buttonURL={`/add_product_category/`}
+      <HeaderViewTableData 
+       title="Product Categories" 
+
+       buttonTitleAdd={"Add Product Category"}
+       buttonURLAdd={`/add_product_category`}
         />
+
 
       {/* table */}
 

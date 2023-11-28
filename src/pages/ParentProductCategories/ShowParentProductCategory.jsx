@@ -40,20 +40,17 @@ export default function ShowParentProductCategory() {
       });
   }, [id]);
 
-
-  
-
   return (
     <Box m="30px">
       <Box>
-      <HeaderShowSingleData title="Parent Category Details"
-    // add
-       buttonTitleEdit={"EDIT PARENT CATEGORY"}
-       buttonURLEdit={`/edit_parent_product_category/${id}`}
-
-      //  EDIT
-      buttonTitleAdd={"ADD PARENT CATEGORY"}
-       buttonURLAdd={`/add_parent_product_category/`}
+        <HeaderShowSingleData
+          title="Parent Category Details"
+          // add
+          buttonTitleEdit={"EDIT PARENT CATEGORY"}
+          buttonURLEdit={`/edit_parent_product_category/${id}`}
+          //  EDIT
+          buttonTitleAdd={"ADD PARENT CATEGORY"}
+          buttonURLAdd={`/add_parent_product_category/`}
         />
 
         <Divider style={{ marginBottom: "30px" }} />
@@ -76,7 +73,7 @@ export default function ShowParentProductCategory() {
                   <CardActionArea>
                     <CardContent>
                       <Typography gutterBottom variant="h4" component="div">
-                      Parent Category Name
+                        Parent Category Name
                       </Typography>
 
                       {/* divider */}
@@ -95,24 +92,35 @@ export default function ShowParentProductCategory() {
                         />
                       )}
 
+                      {/* divider */}
+                      <Divider
+                        style={{ marginBottom: "10px", marginTop: "10px" }}
+                      />
 
-
-                         {/* divider */}
-                        <Divider style={{ marginBottom:"10px",marginTop:"10px" }} />
-                        
-                        {/* statis */}
-                        { parent_product_category.parent_product_category_status ? (
-                          <Chip label={parent_product_category.parent_product_category_status || 'No Status Chosen'} style={{ backgroundColor:'green', color:'#FFFFFF' }} />
-                          ) : (<Chip label={parent_product_category.parent_product_category_status || 'No Status Chosen'} style={{ backgroundColor:'red', color:'#FFFFFF' }} /> )
-                        }
+                      {/* status */}
+                      {parent_product_category.parent_product_category_status ? (
+                        <Chip
+                          label={
+                            parent_product_category.parent_product_category_status ||
+                            "No Status Chosen"
+                          }
+                          style={{ backgroundColor: "green", color: "#FFFFFF" }}
+                        />
+                      ) : (
+                        <Chip
+                          label={
+                            parent_product_category.parent_product_category_status ||
+                            "No Status Chosen"
+                          }
+                          style={{ backgroundColor: "red", color: "#FFFFFF" }}
+                        />
+                      )}
 
                       {/* parent_product_category description */}
                       {/* divider */}
                       <Divider
                         style={{ marginBottom: "10px", marginTop: "10px" }}
                       />
-
-                      
 
                       <Typography gutterBottom variant="h4" component="div">
                         Parent Category Description
@@ -125,7 +133,9 @@ export default function ShowParentProductCategory() {
 
                       {parent_product_category.parent_product_category_description ? (
                         <Typography color="text.secondary">
-                          {parent_product_category.parent_product_category_description}
+                          {
+                            parent_product_category.parent_product_category_description
+                          }
                         </Typography>
                       ) : (
                         <Chip
@@ -133,9 +143,6 @@ export default function ShowParentProductCategory() {
                           style={{ backgroundColor: "red", color: "#FFFFFF" }}
                         />
                       )}
-
-
-
                     </CardContent>
                   </CardActionArea>
                 </Card>

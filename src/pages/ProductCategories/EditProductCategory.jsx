@@ -5,7 +5,7 @@ import { Box, Button, TextField } from "@mui/material";
 import { Formik } from "formik";
 import * as yup from "yup";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import Header from "../../components/Header";
+import HeaderEdit from "../../components/Headers/HeaderEdit";
 import SendIcon from '@mui/icons-material/Send';
 import Swal from 'sweetalert2'
 import axios from 'axios'
@@ -144,10 +144,6 @@ const EditProductCategory = () => {
               timer: 1500
           })
           setIsSaving(false);
-          // setParentProductCategoryIdValue('')
-          // setProductCategoryName('') 
-          // setProductCategoryDescription('')
-          // setProductCategoryStatus('')
 
           // response
           console.log("Submit Success Data", response.data)
@@ -172,51 +168,28 @@ const EditProductCategory = () => {
 
   // end of  handle data saving to api
 
-      // const formData = new FormData();
-      // formData.append('product_category_image', product_category_image); 
-      // formData.append('product_category_status', product_category_status); 
-      // formData.append('product_category_description', product_category_description); 
-      // formData.append('product_category_name', product_category_name); 
-      // formData.append('parent_product_category_id', parent_product_category_id_value); 
-
-     
-      
-
-    //   const updateData = () => {
-
-    //     axios.put(`http://127.0.0.1:8000/api/v1/product_categories/${id}`, config, 
-    //     {
-    //             // database fields to update
-    //             parent_product_category_id: parent_product_category_id_value,
-    //             product_category_name: product_category_name,
-    //             product_category_description: product_category_description,
-    //             product_category_status: product_category_status,
-    //             product_category_image: product_category_image,
-    //         })
-    //     .then(response => {
-    //       // response
-    //       console.log('Success on data', response.data);
-    //     })
-    //     .catch(error => {
-    //       // error response
-    //       console.error('Error updating file:', error);
-    //     });
-
-    // }
-    
-
-  // end of  handle data saving to api
-
-
 
 
   return (
     <Box mt="30px" mb="60px" mr="60px" ml="60px" >
       
       <Box>
-      <Header title="Edit Product Category" 
+      <HeaderEdit 
+       title="Update Product Category" 
+      //  view 
        buttonTitle={"All Product Categories"}
        buttonURL={`/view_product_categories/`}
+
+      //  edit brand
+      //  buttonTitleEdit={"Edit Brand"}
+      //  buttonURLEdit={`/edit_brand/${id}`}
+
+       //  add brand
+       buttonTitleAdd={"Add Product Category"}
+       buttonURLAdd={`/add_product_category`}
+
+
+
         />
       {/* FORM */}
       
