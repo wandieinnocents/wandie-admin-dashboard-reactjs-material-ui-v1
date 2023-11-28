@@ -61,9 +61,11 @@ import ViewUnits from "./pages/Units/ViewUnits";
 import EditUnit from "./pages/Units/EditUnit";
 import ShowUnit from "./pages/Units/ShowUnit";
 
-
+// suppliers
 import AddSupplier from "./pages/Suppliers/AddSupplier";
 import ViewSuppliers from "./pages/Suppliers/ViewSuppliers";
+import EditSupplier from "./pages/Suppliers/EditSupplier";
+import ShowSupplier from "./pages/Suppliers/ShowSupplier";
 
 // parent product categories
 import AddParentProductCategory from "./pages/ParentProductCategories/AddParentProductCategory";
@@ -147,6 +149,8 @@ function App() {
         {/* suppliers */}
         <Route path="/add_supplier" element={<AddSupplier />} />
         <Route path="/view_suppliers" element={<ViewSuppliers />} />
+        <Route path="/edit_supplier/:id" element={<EditSupplier />} />
+        <Route path="/show_supplier/:id" element={<ShowSupplier />} />
 
         {/* dashboard */}
         <Route path="/" element={<Dashboard />} activeStyle={{backgroundColor: "red"}} />

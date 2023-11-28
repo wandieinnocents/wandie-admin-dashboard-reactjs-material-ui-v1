@@ -62,7 +62,7 @@ const EditUnit = () => {
     .catch(function (error) {
         Swal.fire({
              icon: 'error',
-            title: 'Error picking existing Unit data!',
+             title: 'Error picking existing Unit data!',
             showConfirmButton: false,
             timer: 1500
         })

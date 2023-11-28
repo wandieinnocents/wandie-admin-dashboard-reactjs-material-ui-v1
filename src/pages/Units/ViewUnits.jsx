@@ -42,7 +42,7 @@ useEffect(() => {
 
         id: unit_data.id || 'No Id ',
         unit_name: unit_data.unit_name || 'No Unit Name ',
-        unit_description: unit_data.unit_description || 'No Description ',
+        unit_description: unit_data.unit_description || 'No Unit Description ',
 
       }));
 
@@ -89,6 +89,7 @@ useEffect(() => {
       // width: 200,
       flex: 1,
       editable: true, 
+     
      
     },
 

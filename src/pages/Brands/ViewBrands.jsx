@@ -101,7 +101,8 @@ useEffect(() => {
       headerName: 'Brand Status',
       // width: 200,
       flex: 1,
-      editable: true, renderCell: (params) => {
+      editable: true, 
+      renderCell: (params) => {
         const brand_status = params.value;
         let chipColor = '';
   
