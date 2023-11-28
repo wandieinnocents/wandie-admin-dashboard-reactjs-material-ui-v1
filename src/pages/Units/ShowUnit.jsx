@@ -33,7 +33,7 @@ export default function ShowUnit() {
         axios.get(`http://127.0.0.1:8000/api/v1/units/${id}`)
         .then(function (response) {
           setUnit(response.data.data)
-          console.log("Single Branch item Data", response.data.data)
+          console.log("Single Unit item Data", response.data.data)
         })
         // console log error on failure
         .catch(function (error) {

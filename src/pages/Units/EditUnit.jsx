@@ -39,11 +39,10 @@ const EditUnit = () => {
 
     // states for data submission
     const [id, setId] = useState(useParams().id);
-    // states for data submission
-    // branch name
-    const [branch_name, setBranchName] = useState('');
+    // unit
+    const [unit_name, setUnitName] = useState('');
   // address
-    const [branch_address, setBranchAddress] = useState('');
+    const [unit_description, setUnitDescription] = useState('');
 
 
 
@@ -52,18 +51,18 @@ const EditUnit = () => {
 
   // pick existing data to form as form value
   useEffect(() => {
-    axios.get(`http://127.0.0.1:8000/api/v1/branches/${id}`)
+    axios.get(`http://127.0.0.1:8000/api/v1/units/${id}`)
     .then(function (response) {
         // handle database fields to set form values
-        let branch = response.data.data
-        setBranchName(branch.branch_name);
-        setBranchAddress(branch.branch_address);
+        let unit = response.data.data
+        setUnitName(unit.unit_name);
+        setUnitDescription(unit.unit_description);
     })
     // trigger sweet alerts on error
     .catch(function (error) {
         Swal.fire({
              icon: 'error',
-            title: 'Error picking existing branch data!',
+            title: 'Error picking existing Unit data!',
             showConfirmButton: false,
             timer: 1500
         })
@@ -76,10 +75,10 @@ const EditUnit = () => {
     const updateData = () => {
       
       setIsSaving(true);
-      axios.post(`http://127.0.0.1:8000/api/v1/branches/${id}`, {
+      axios.post(`http://127.0.0.1:8000/api/v1/units/${id}`, {
           // database fields
-          branch_name: branch_name,
-          branch_address: branch_address,
+          unit_name: unit_name,
+          unit_description: unit_description,
 
         }, {
           // headers
@@ -93,7 +92,7 @@ const EditUnit = () => {
         .then(function (response) {
           Swal.fire({
               icon: 'success',
-              title: 'Brand updated successfully!',
+              title: 'Unit updated successfully!',
               showConfirmButton: false,
               timer: 1500
           })
@@ -126,18 +125,18 @@ const EditUnit = () => {
       
       <Box>
       <HeaderEdit 
-       title="Update Branch" 
+       title="Update Unit" 
       //  view 
-       buttonTitle={"All BRANCHES"}
-       buttonURL={`/view_branches/`}
+       buttonTitle={"All UNITS"}
+       buttonURL={`/view_units/`}
 
       //  edit brand
       //  buttonTitleEdit={"Edit Brand"}
       //  buttonURLEdit={`/edit_brand/${id}`}
 
        //  add brand
-       buttonTitleAdd={"Add BRANCH"}
-       buttonURLAdd={`/add_branch`}
+       buttonTitleAdd={"ADD UNIT"}
+       buttonURLAdd={`/add_unit`}
 
 
 
@@ -160,10 +159,10 @@ const EditUnit = () => {
                 fullWidth
                 // style={{ width:"100%" }}
                 type="text"
-                label="Branch  Name *"
-                onChange={(event)=>{setBranchName(event.target.value)}}
-                value={branch_name}
-                name="branch_name"
+                label="Unit  Name *"
+                onChange={(event)=>{setUnitName(event.target.value)}}
+                value={unit_name}
+                name="unit_name"
                 sx={{ gridColumn: "span 4" }}
               />
 
@@ -174,11 +173,11 @@ const EditUnit = () => {
                 type="text"
                 multiline
                 rows={5}
-                label="Address"
+                label="Unit Description"
                 // onBlur={handleBlur}
-                onChange={(event)=>{setBranchAddress(event.target.value)}}
-                value={branch_address}
-                name="branch_address"
+                onChange={(event)=>{setUnitDescription(event.target.value)}}
+                value={unit_description}
+                name="unit_description"
                 sx={{ gridColumn: "span 4" }}
               />
               
@@ -191,7 +190,7 @@ const EditUnit = () => {
               disabled={isSaving}
               onClick={updateData} 
               type="submit" size="large" endIcon={<SendIcon />} style={{ backgroundColor:"#2587da", color:"#ffffff" }}  variant="contained">
-                Update Branch
+                Update Unit
               </Button>
             </Box>
           </form>
