@@ -156,19 +156,110 @@ const AddProduct = () => {
                 fullWidth
                 // style={{ width:"100%" }}
                 type="text"
-                label="Supplier Name *"
+                label="Product Name *"
                 // onBlur={handleBlur}
                 onChange={(event)=>{setSupplierName(event.target.value)}}
                 value={supplier_name}
                 name="supplier_name"
+                sx={{ gridColumn: "span 4" }}
+              />
+
+                {/* parent category  */}
+                <FormControl  fullWidth sx={{ gridColumn: "span 2" }}>
+                <InputLabel id="demo-simple-select-label">Select Parent Category </InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={supplier_status}
+                  label="Select Parent Category"
+                  onChange={handleChangeSupplierStatus}
+                >
+                  <MenuItem value={1}>Active</MenuItem>
+                  <MenuItem value={2}>Disabled</MenuItem>
+                </Select>
+              </FormControl>
+
+               {/* product category  */}
+               <FormControl  fullWidth sx={{ gridColumn: "span 2" }}>
+                <InputLabel id="demo-simple-select-label">Select Product Category </InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={supplier_status}
+                  label="Select Product Category"
+                  onChange={handleChangeSupplierStatus}
+                >
+                  <MenuItem value={1}>Active</MenuItem>
+                  <MenuItem value={2}>Disabled</MenuItem>
+                </Select>
+              </FormControl>
+
+               {/* brand  */}
+               <FormControl  fullWidth sx={{ gridColumn: "span 2" }}>
+                <InputLabel id="demo-simple-select-label">Select Brand </InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={supplier_status}
+                  label="Select Brand"
+                  onChange={handleChangeSupplierStatus}
+                >
+                  <MenuItem value={1}>Active</MenuItem>
+                  <MenuItem value={2}>Disabled</MenuItem>
+                </Select>
+              </FormControl>
+
+              {/* supplier  */}
+              <FormControl  fullWidth sx={{ gridColumn: "span 2" }}>
+                <InputLabel id="demo-simple-select-label">Select Supplier </InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={supplier_status}
+                  label="Select Supplier"
+                  onChange={handleChangeSupplierStatus}
+                >
+                  <MenuItem value={1}>Active</MenuItem>
+                  <MenuItem value={2}>Disabled</MenuItem>
+                </Select>
+              </FormControl>
+
+               {/* supplier  */}
+               <FormControl  fullWidth sx={{ gridColumn: "span 2" }}>
+                <InputLabel id="demo-simple-select-label">Select Unit </InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={supplier_status}
+                  label="Select Unit"
+                  onChange={handleChangeSupplierStatus}
+                >
+                  <MenuItem value={1}>Active</MenuItem>
+                  <MenuItem value={2}>Disabled</MenuItem>
+                </Select>
+              </FormControl>
+
+
+              {/* created date */}
+              <TextField
+                id="date"
+                label="Product Register Date"
+                type="date"
+                name="supplier_register_date"
+                value={supplier_register_date}
+                // defaultValue={currentDate}
+                onChange={handleSupplierRegisterDataChange}
+                InputLabelProps={{
+                  shrink: true
+                }}
                 sx={{ gridColumn: "span 2" }}
               />
 
 
-              {/* date */}
+              {/* expiry date */}
               <TextField
                 id="date"
-                label="Supplier Register Date"
+                label="Product Expiry Date"
                 type="date"
                 name="supplier_register_date"
                 value={supplier_register_date}
@@ -196,12 +287,12 @@ const AddProduct = () => {
                 </Select>
               </FormControl>
 
-              {/* supplier email */}
+              {/* stock quantity */}
               <TextField
                 fullWidth
                 // style={{ width:"100%" }}
                 type="text"
-                label="Supplier  Email "
+                label="Product Stock Quantity"
                 // onBlur={handleBlur}
                 onChange={(event)=>{setSupplierEmail(event.target.value)}}
                 value={supplier_email}
@@ -209,12 +300,13 @@ const AddProduct = () => {
                 sx={{ gridColumn: "span 2" }}
               />
 
-               {/* supplier phone */}
+
+               {/* cost price */}
                <TextField
                 fullWidth
                 // style={{ width:"100%" }}
                 type="text"
-                label="Supplier Phone  *"
+                label="Cost Price  *"
                 // onBlur={handleBlur}
                 onChange={(event)=>{setSupplierPhone(event.target.value)}}
                 value={supplier_phone}
@@ -222,71 +314,19 @@ const AddProduct = () => {
                 sx={{ gridColumn: "span 2" }}
               />
 
-               {/* supplier address */}
-               <TextField
+                {/* selling price */}
+                <TextField
                 fullWidth
                 // style={{ width:"100%" }}
                 type="text"
-                label="Supplier Address "
+                label="Selling Price  *"
                 // onBlur={handleBlur}
-                onChange={(event)=>{setSupplierAddress(event.target.value)}}
-                value={supplier_address}
-                name="supplier_address"
+                onChange={(event)=>{setSupplierPhone(event.target.value)}}
+                value={supplier_phone}
+                name="supplier_phone"
                 sx={{ gridColumn: "span 2" }}
               />
 
-
-               {/* supplier city  */}
-               <TextField
-                fullWidth
-                // style={{ width:"100%" }}
-                type="text"
-                label="Supplier City"
-                // onBlur={handleBlur}
-                onChange={(event)=>{setSupplierCity(event.target.value)}}
-                value={supplier_city}
-                name="supplier_city"
-                sx={{ gridColumn: "span 2" }}
-              />
-
-               {/* supplier country */}
-               <TextField
-                fullWidth
-                type="text"
-                label="Supplier Country "
-                // onBlur={handleBlur}
-                onChange={(event)=>{setSupplierCountry(event.target.value)}}
-                value={supplier_country}
-                name="supplier_country"
-                sx={{ gridColumn: "span 2" }}
-              />
-
-               {/* supplier organization */}
-               <TextField
-                fullWidth
-                type="text"
-                label="Supplier Organization"
-                // onBlur={handleBlur}
-                onChange={(event)=>{setSupplierOrganization(event.target.value)}}
-                value={supplier_organization}
-                name="supplier_organization"
-                sx={{ gridColumn: "span 4" }}
-              />
-
-               {/* supplier website  */}
-               <TextField
-                fullWidth
-                type="text"
-                label="Supplier Website Address "
-                // onBlur={handleBlur}
-                onChange={(event)=>{setSupplierWebsiteUrl(event.target.value)}}
-                value={supplier_website_url}
-                name="supplier_website_url"
-                sx={{ gridColumn: "span 2" }}
-              />
-
-
-               
 
 
               {/* supplier image */}
@@ -312,7 +352,7 @@ const AddProduct = () => {
                 type="text"
                 multiline
                 rows={5}
-                label="Description"
+                label="Product Description"
                 onChange={(event)=>{setSupplierDescription(event.target.value)}}
                 value={supplier_description}
                 name="supplier_description"
