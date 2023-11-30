@@ -134,10 +134,12 @@ export default function ShowSupplier() {
                           {supplier.supplier_name}
                         </Typography>
                       ) : (
+                        <center>
                         <Chip
                           label="No Supplier Name "
-                          style={{ backgroundColor: "red", color: "#FFFFFF" }}
+                          style={{ backgroundColor: "red", color: "#FFFFFF", marginTop: "10px", marginBottom:'10px' }}
                         />
+                        </center>
                       )}
 
                       {/* supplier email */}
@@ -190,6 +192,7 @@ export default function ShowSupplier() {
                             style={{
                               backgroundColor: "red",
                               color: "#FFFFFF",
+                              marginTop:'10px'
                             }}
                           />
                         </center>

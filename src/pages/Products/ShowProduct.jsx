@@ -27,15 +27,15 @@ export default function ShowProduct() {
   // states
   // const [id, setId] = useState(useParams().id)
   const { id } = useParams();
-  const [supplier, setSupplier] = useState(null);
+  const [product, setProduct] = useState(null);
 
   // retrieve single data by id
   useEffect(() => {
     axios
-      .get(`http://127.0.0.1:8000/api/v1/suppliers/${id}`)
+      .get(`http://127.0.0.1:8000/api/v1/products/${id}`)
       .then(function (response) {
-        setSupplier(response.data.data);
-        console.log("Single item Data", response.data.data);
+        setProduct(response.data.data);
+        console.log("Single Product item Data", response.data.data);
       })
       // console log error on failure
       .catch(function (error) {
@@ -47,13 +47,13 @@ export default function ShowProduct() {
     <Box m="40px">
       <Box>
         <HeaderShowSingleData
-          title="Supplier Details"
+          title="Product Details"
           // add
-          buttonTitleEdit={"EDIT SUPPLIER"}
-          buttonURLEdit={`/edit_supplier/${id}`}
+          buttonTitleEdit={"EDIT PRODUCT"}
+          buttonURLEdit={`/edit_product/${id}`}
           //  EDIT
-          buttonTitleAdd={"ADD SUPPLIER"}
-          buttonURLAdd={`/add_supplier/`}
+          buttonTitleAdd={"ADD PRODUCT"}
+          buttonURLAdd={`/add_product/`}
         />
         <Divider style={{ marginBottom: "30px" }} />
 
@@ -61,7 +61,7 @@ export default function ShowProduct() {
 
         {/* Check if data exists, else display data is empty / loading  */}
 
-        {supplier ? (
+        {product ? (
           <Box sx={{ width: "100%" }}>
             <Grid
               container
@@ -86,9 +86,9 @@ export default function ShowProduct() {
                         justifyContent="center"
                         alignItems="center"
                       >
-                        {supplier.supplier_image ? (
+                        {product.product_image ? (
                           <img
-                            src={supplier.supplier_image}
+                            src={product.product_image}
                             alt=""
                             style={{
                               resizeMode: "cover",
@@ -118,8 +118,8 @@ export default function ShowProduct() {
                         )}
                       </Box>
 
-                      {/* supplier name */}
-                      {supplier.supplier_name ? (
+                      {/* product name */}
+                      {product.product_name ? (
                         <Typography
                           gutterBottom
                           variant="h4"
@@ -131,17 +131,19 @@ export default function ShowProduct() {
                             marginTop: "10px",
                           }}
                         >
-                          {supplier.supplier_name}
+                          {product.product_name}
                         </Typography>
                       ) : (
+                        <center>
                         <Chip
-                          label="No Supplier Name "
-                          style={{ backgroundColor: "red", color: "#FFFFFF" }}
+                          label="No product Name "
+                          style={{ backgroundColor: "red", color: "#FFFFFF", marginTop: "10px", marginBottom:'10px' }}
                         />
+                        </center>
                       )}
 
-                      {/* supplier email */}
-                      {supplier.supplier_email ? (
+                      {/* product email */}
+                      {product.product_code ? (
                         <Typography
                           gutterBottom
                           variant="h5"
@@ -153,55 +155,22 @@ export default function ShowProduct() {
                             marginTop: "10px",
                           }}
                         >
-                          {supplier.supplier_email}
+                          {product.product_code}
                         </Typography>
                       ) : (
                         <center>
                           <Chip
-                            label="No Supplier Email "
+                            label="No product Code "
                             style={{
                               backgroundColor: "red",
                               color: "#FFFFFF",
+                              
                             }}
                           />
                         </center>
                       )}
 
-                      {/* supplier phone */}
-                      {supplier.supplier_phone ? (
-                        <Typography
-                          gutterBottom
-                          variant="h5"
-                          component="div"
-                          style={{
-                            display: "flex",
-                            justifyContent: "center",
-                            alignItems: "center",
-                            marginTop: "10px",
-                            marginBottom: "20px",
-                          }}
-                        >
-                          {supplier.supplier_phone}
-                        </Typography>
-                      ) : (
-                        <center>
-                          <Chip
-                            label="No Supplier Phone "
-                            style={{
-                              backgroundColor: "red",
-                              color: "#FFFFFF",
-                            }}
-                          />
-                        </center>
-                      )}
-
-                      {/* <Divider
-                        style={{
-                          marginBottom: "10px",
-                          marginTop: "10px",
-                          backgroundColor: "#d3d3d3",
-                        }}
-                      /> */}
+         
 
                     </CardContent>
                   </CardActionArea>
@@ -227,7 +196,7 @@ export default function ShowProduct() {
                         }}
                       /> */}
 
-                      {/* supplier code */}
+                      {/* product code */}
                       <center>
                         <Typography
                           style={{ fontWeight: 600 }}
@@ -235,7 +204,7 @@ export default function ShowProduct() {
                           variant="h5"
                           component="div"
                         >
-                          Supplier Code
+                          Product Branch
                         </Typography>
 
                         {/* divider */}
@@ -247,7 +216,7 @@ export default function ShowProduct() {
                           }}
                         />
 
-                        {supplier.supplier_code ? (
+                        {product.branch.branch_name ? (
                           <Typography
                             gutterBottom
                             variant="h5"
@@ -259,11 +228,11 @@ export default function ShowProduct() {
                               marginTop: "10px",
                             }}
                           >
-                            {supplier.supplier_code}
+                            {product.branch.branch_name}
                           </Typography>
                         ) : (
                           <Chip
-                            label="No Supplier Code "
+                            label="No  Branch "
                             style={{
                               backgroundColor: "red",
                               color: "#FFFFFF",
@@ -300,7 +269,7 @@ export default function ShowProduct() {
                           }}
                         />
 
-                        {supplier.supplier_register_date ? (
+                        {product.product_created_date ? (
                           <Typography
                             gutterBottom
                             variant="h5"
@@ -312,7 +281,7 @@ export default function ShowProduct() {
                               marginTop: "10px",
                             }}
                           >
-                            {supplier.supplier_register_date}
+                            {product.product_created_date}
                           </Typography>
                         ) : (
                           <Chip
@@ -341,7 +310,7 @@ export default function ShowProduct() {
                           variant="h5"
                           component="div"
                         >
-                          Website
+                          Expiry Date
                         </Typography>
                         {/* divider */}
                         <Divider
@@ -352,7 +321,7 @@ export default function ShowProduct() {
                           }}
                         />
 
-                        {supplier.supplier_website_url ? (
+                        {product.product_expiry_date ? (
                           <Typography
                             gutterBottom
                             variant="h5"
@@ -364,11 +333,11 @@ export default function ShowProduct() {
                               marginTop: "10px",
                             }}
                           >
-                            {supplier.supplier_website_url}
+                            {product.product_expiry_date}
                           </Typography>
                         ) : (
                           <Chip
-                            label="No Website"
+                            label="No Expiry Date"
                             style={{
                               backgroundColor: "red",
                               color: "#FFFFFF",
@@ -393,7 +362,7 @@ export default function ShowProduct() {
                           variant="h5"
                           component="div"
                         >
-                          Supplier Status
+                          Product Status
                         </Typography>
                         {/* divider */}
                         <Divider
@@ -404,9 +373,9 @@ export default function ShowProduct() {
                           }}
                         />
 
-                        {supplier.supplier_status ? (
+                        {product.product_status ? (
                           <Chip
-                            label={supplier.supplier_status}
+                            label={product.product_status}
                             style={{
                               backgroundColor: "#0faa50",
                               color: "#FFFFFF",
@@ -432,19 +401,20 @@ export default function ShowProduct() {
                 <Card>
                   <CardActionArea>
                     <CardContent>
+                    
                       {/* divider */}
                       <Divider
                         style={{ marginBottom: "10px", marginTop: "10px" }}
                       />
 
-                      {/* supplier address */}
+                      {/* product address */}
                       <Typography
                         style={{ fontWeight: 600 }}
                         gutterBottom
                         variant="h5"
                         component="div"
                       >
-                        Supplier Address
+                        product Address
                       </Typography>
 
                       {/* divider */}
@@ -452,7 +422,7 @@ export default function ShowProduct() {
                         style={{ marginBottom: "10px", marginTop: "10px" }}
                       />
 
-                      {supplier.supplier_address ? (
+                      {product.product_address ? (
                         <Typography
                           gutterBottom
                           variant="h5"
@@ -461,11 +431,11 @@ export default function ShowProduct() {
                             marginTop: "10px",
                           }}
                         >
-                          {supplier.supplier_address}
+                          {product.product_address}
                         </Typography>
                       ) : (
                         <Chip
-                          label="No Supplier Address "
+                          label="No product Address "
                           style={{
                             backgroundColor: "red",
                             color: "#FFFFFF",
@@ -485,7 +455,7 @@ export default function ShowProduct() {
                         variant="h5"
                         component="div"
                       >
-                        Supplier City
+                        product City
                       </Typography>
 
                       {/* divider */}
@@ -493,7 +463,7 @@ export default function ShowProduct() {
                         style={{ marginBottom: "10px", marginTop: "10px" }}
                       />
 
-                      {supplier.supplier_city ? (
+                      {product.product_city ? (
                         <Typography
                           gutterBottom
                           variant="h5"
@@ -502,11 +472,11 @@ export default function ShowProduct() {
                             marginTop: "10px",
                           }}
                         >
-                          {supplier.supplier_city}
+                          {product.product_city}
                         </Typography>
                       ) : (
                         <Chip
-                          label="No Supplier City "
+                          label="No product City "
                           style={{
                             backgroundColor: "red",
                             color: "#FFFFFF",
@@ -519,14 +489,14 @@ export default function ShowProduct() {
                         style={{ marginBottom: "10px", marginTop: "10px" }}
                       />
 
-                      {/* supplier country */}
+                      {/* product country */}
                       <Typography
                         style={{ fontWeight: 600 }}
                         gutterBottom
                         variant="h5"
                         component="div"
                       >
-                        Supplier Country
+                        product Country
                       </Typography>
 
                       {/* divider */}
@@ -534,7 +504,7 @@ export default function ShowProduct() {
                         style={{ marginBottom: "10px", marginTop: "10px" }}
                       />
 
-                      {supplier.supplier_country ? (
+                      {product.product_country ? (
                         <Typography
                           gutterBottom
                           variant="h5"
@@ -543,11 +513,11 @@ export default function ShowProduct() {
                             marginTop: "10px",
                           }}
                         >
-                          {supplier.supplier_country}
+                          {product.product_country}
                         </Typography>
                       ) : (
                         <Chip
-                          label="No Supplier Country "
+                          label="No product Country "
                           style={{
                             backgroundColor: "red",
                             color: "#FFFFFF",
@@ -560,14 +530,14 @@ export default function ShowProduct() {
                         style={{ marginBottom: "10px", marginTop: "10px" }}
                       />
 
-                      {/* supplier country */}
+                      {/* product country */}
                       <Typography
                         style={{ fontWeight: 600 }}
                         gutterBottom
                         variant="h5"
                         component="div"
                       >
-                        Supplier Organization
+                        product Organization
                       </Typography>
 
                       {/* divider */}
@@ -575,7 +545,7 @@ export default function ShowProduct() {
                         style={{ marginBottom: "10px", marginTop: "10px" }}
                       />
 
-                      {supplier.supplier_organization ? (
+                      {product.product_organization ? (
                         <Typography
                           gutterBottom
                           variant="h5"
@@ -584,11 +554,11 @@ export default function ShowProduct() {
                             marginTop: "10px",
                           }}
                         >
-                          {supplier.supplier_organization}
+                          {product.product_organization}
                         </Typography>
                       ) : (
                         <Chip
-                          label="No Supplier Organization "
+                          label="No product Organization "
                           style={{
                             backgroundColor: "red",
                             color: "#FFFFFF",
@@ -601,14 +571,14 @@ export default function ShowProduct() {
                         style={{ marginBottom: "10px", marginTop: "10px" }}
                       />
 
-                      {/* supplier country */}
+                      {/* product country */}
                       <Typography
                         style={{ fontWeight: 600 }}
                         gutterBottom
                         variant="h5"
                         component="div"
                       >
-                        About the Supplier
+                        About the product
                       </Typography>
 
                       {/* divider */}
@@ -616,7 +586,7 @@ export default function ShowProduct() {
                         style={{ marginBottom: "10px", marginTop: "10px" }}
                       />
 
-                      {supplier.supplier_description ? (
+                      {product.product_description ? (
                         <Typography
                           gutterBottom
                           variant="h5"
@@ -625,11 +595,11 @@ export default function ShowProduct() {
                             marginTop: "10px",
                           }}
                         >
-                          {supplier.supplier_description}
+                          {product.product_description}
                         </Typography>
                       ) : (
                         <Chip
-                          label="No Supplier Description "
+                          label="No product Description "
                           style={{
                             backgroundColor: "red",
                             color: "#FFFFFF",

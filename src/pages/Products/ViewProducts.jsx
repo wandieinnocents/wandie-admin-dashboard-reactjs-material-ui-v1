@@ -44,12 +44,12 @@ const ViewProducts = () => {
 
         id: product_data.id || 'No Id',
         product_code : product_data.product_code || 'No Code',
-        supplier_id : product_data.supplier_id_value || 'No Supplier',
-        brand_id : product_data.brand_id || 'No Brand',
+        supplier_id : product_data.supplier.supplier_name || 'No Supplier',
+        brand_id : product_data.brand.brand_name || 'No Brand',
         branch_id : product_data.branch.branch_name,
-        parent_product_category_id : product_data.parent_product_category_id || 'No Parent Category',
+        parent_product_category_id : product_data.parent_product_category.parent_product_category_name || 'No Parent Category',
         product_category_id : product_data.product_category.product_category_name || 'No Product Category',
-        unit_id : product_data.unit_id_value || 'No Unit',
+        unit_id : product_data.unit.unit_name || 'No Unit',
 
         product_created_date : product_data.product_created_date || 'No Created Date',
         product_expiry_date : product_data.product_expiry_date || 'No Expiry Date',
@@ -57,7 +57,7 @@ const ViewProducts = () => {
         product_stock_quantity : product_data.product_stock_quantity || 'No Stock Quantity',
         product_cost_price : product_data.product_cost_price || 'No Cost Price',
         product_selling_price : product_data.product_selling_price || 'No Selling Price',
-        product_status : product_data.product_status || 'No Product Status',
+        product_status : product_data.product_status || 'No  Status',
         product_description : product_data.product_description || 'No Description',
         product_image : product_data.product_image || 'No Image',
 
@@ -126,21 +126,42 @@ useEffect(() => {
            
     },
 
+    // {
+    //   field: 'brand_id',
+    //   headerName: 'Brand',
+    //   // width: 200,
+    //   flex: 1,
+    //   editable: true, 
+
+           
+    // },
+
+   
     {
-      field: 'brand_id',
-      headerName: 'Brand',
+      field: 'product_status',
+      headerName: 'Product Status',
       // width: 200,
       flex: 1,
       editable: true, 
-
+      renderCell: (params) => {
+        const product_status = params.value;
+        let chipColor = '';
+  
+        switch (product_status) {
+          case 'active':
+            chipColor = '#4CAF50'; // Green
+            break;
+          case 'disabled':
+            chipColor = '#f6968f'; // Red 
+            break;
+          
+          default:
+            chipColor = '#F44336'; // Black (default color)
+        }
+  
+        return <Chip label={product_status} style={{ backgroundColor: chipColor, color: '#ffffff' }} />;
+      },
            
-    },
-
-    {
-      field: 'unit_id',
-      headerName: 'Unit',
-      // width: 500,
-      editable: true,
     },
 
    
@@ -155,7 +176,7 @@ useEffect(() => {
         return (
           <Button
             // onClick={(e) => onButtonClick(e, params.row)}
-            href={`/show_supplier/${productsData.id}`}
+            href={`/show_product/${productsData.id}`}
             style={{ backgroundColor:"#0faa50" }}
             variant="contained"
           >
@@ -176,7 +197,7 @@ useEffect(() => {
         return (
           <Button
             // onClick={(e) => onButtonClick(e, params.row)}
-            href={`/edit_supplier/${productsData.id}`}
+            href={`/edit_product/${productsData.id}`}
             style={{ backgroundColor:"#2587da" }}
             variant="contained"
           >
@@ -228,17 +249,17 @@ useEffect(() => {
       }).then((result) => {
         
         if (result.isConfirmed) {
-            axios.delete(`http://127.0.0.1:8000/api/v1/suppliers/${id}`)
+            axios.delete(`http://127.0.0.1:8000/api/v1/products/${id}`)
             // trigger sweet alerts on successful delete
             .then(function (response) {
                 Swal.fire({
                     icon: 'success',
-                    title: 'Supplier Deleted Successfully!',
+                    title: 'product Deleted Successfully!',
                     showConfirmButton: false,
                     timer: 1500
                 })
                 getproductsData()
-                console.log("Supplier deleted", response.data.message)
+                console.log("product deleted", response.data.message)
             })
             // trigger sweet alerts on error
             .catch(function (error) {
