@@ -58,7 +58,7 @@ const AddProductCategory = () => {
 
 
     // handle drop down change parent product category id
-    const handleChangeProductCategoryId = (event) => {
+    const handleChangeParentProductCategoryId = (event) => {
       // setParentProductCategoryIdData(event.target.value);
       setParentProductCategoryIdValue(event.target.value);
     };
@@ -69,7 +69,7 @@ const AddProductCategory = () => {
     };
 
 
-    // drop down parent category id data api data fetch and insert in drop down picker
+  // drop down parent category id data api data fetch and insert in drop down picker
   useEffect(() => {
     axios.get('http://127.0.0.1:8000/api/v1/parent_product_categories')
       .then(response => {
@@ -224,7 +224,7 @@ const AddProductCategory = () => {
                   id="demo-simple-select"
                   value={parent_product_category_id_value}
                   label="Select Parent Category *"
-                  onChange={handleChangeProductCategoryId}
+                  onChange={handleChangeParentProductCategoryId}
                   helperText=<span style={{ color:'red' }}> {parentProductCategoryIdError} </span>
                 >
                 <FormHelperText>{parentProductCategoryIdError}</FormHelperText>

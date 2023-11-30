@@ -20,17 +20,17 @@ import Chip from '@mui/material/Chip';
 
 const ViewProducts = () => {
   // product category states
-  const [supplierData, setSupplierData] = useState([]);
+  const [productsData, setProductsData] = useState([]);
 
 
 
-  const getsupplierData = async () => {
+  const getproductsData = async () => {
     
     try {
       // const response = await fetch('http://127.0.0.1:8000/api/v1/product_categories');
       // const data = await response.json();
 
-      axios.get('http://127.0.0.1:8000/api/v1/suppliers')
+      axios.get('http://127.0.0.1:8000/api/v1/products')
         .then(function (response) {
            const data =  response.data.data;
           //  const data = response.data !== null ? response.data : 'Default Data';
@@ -40,29 +40,32 @@ const ViewProducts = () => {
         // $product_categories = ProductCategory::with('parent_product_category')->get();
 
       
-      const formattedData = data?.map(supplier_data => ({
+      const formattedData = data?.map(product_data => ({
 
-        id: supplier_data.id || 'No Id ',
-        supplier_code: supplier_data.supplier_code || 'No Code ',
-        supplier_name: supplier_data.supplier_name || 'No Supplier  Name ',
-        supplier_status: supplier_data.supplier_status || 'No Status ',
-        supplier_image: supplier_data.supplier_image || 'No Image ',
-        supplier_register_date:supplier_data.supplier_register_date || 'No Date ',
-        supplier_email: supplier_data.supplier_email || 'No Email ',
-        supplier_phone: supplier_data.supplier_phone || 'No Phone ',
-        supplier_address: supplier_data.supplier_address || 'No Address ',
-        supplier_city: supplier_data.supplier_city || 'No City ',
-        supplier_country: supplier_data.supplier_country || 'No Country ',
-        supplier_organization: supplier_data.supplier_organization || 'No Organization ',
-        supplier_description: supplier_data.supplier_description || 'No Description ',
-        supplier_website_url: supplier_data.supplier_website_url || 'No Website ',
+        id: product_data.id || 'No Id',
+        product_code : product_data.product_code || 'No Code',
+        supplier_id : product_data.supplier_id_value || 'No Supplier',
+        brand_id : product_data.brand_id || 'No Brand',
+        branch_id : product_data.branch.branch_name,
+        parent_product_category_id : product_data.parent_product_category_id || 'No Parent Category',
+        product_category_id : product_data.product_category.product_category_name || 'No Product Category',
+        unit_id : product_data.unit_id_value || 'No Unit',
 
+        product_created_date : product_data.product_created_date || 'No Created Date',
+        product_expiry_date : product_data.product_expiry_date || 'No Expiry Date',
+        product_name : product_data.product_name || 'No Product Name',
+        product_stock_quantity : product_data.product_stock_quantity || 'No Stock Quantity',
+        product_cost_price : product_data.product_cost_price || 'No Cost Price',
+        product_selling_price : product_data.product_selling_price || 'No Selling Price',
+        product_status : product_data.product_status || 'No Product Status',
+        product_description : product_data.product_description || 'No Description',
+        product_image : product_data.product_image || 'No Image',
 
       }));
 
-      console.log("Data retrieved successfully", data)
+      console.log("Products Data retrieved successfully", data)
 
-      setSupplierData(formattedData);
+      setProductsData(formattedData);
 
         })
 
@@ -74,7 +77,7 @@ const ViewProducts = () => {
   
 
 useEffect(() => {
-  getsupplierData()
+  getproductsData()
 }, []);
 
 
@@ -90,17 +93,24 @@ useEffect(() => {
     },
     
     {
-      field: 'supplier_code',
+      field: 'product_code',
       headerName: 'Code',
       // width: 200,
       flex: 1,
       editable: true, 
     },
+
+    {
+      field: 'branch_id',
+      headerName: 'Branch',
+      // width: 500,
+      editable: true,
+    },
     
     
     {
-      field: 'supplier_name',
-      headerName: 'Supplier Name',
+      field: 'parent_product_category_id',
+      headerName: 'Parent Product Category',
       // width: 200,
       flex: 1,
       editable: true, 
@@ -108,38 +118,32 @@ useEffect(() => {
     },
 
     {
-      field: 'supplier_status',
-      headerName: 'Supplier Status',
+      field: 'product_category_id',
+      headerName: 'Product Category',
       // width: 200,
       flex: 1,
       editable: true, 
-      renderCell: (params) => {
-        const brand_status = params.value;
-        let chipColor = '';
-  
-        switch (brand_status) {
-          case 'active':
-            chipColor = '#4CAF50'; // Green
-            break;
-          case 'disabled':
-            chipColor = '#f6968f'; // Red 
-            break;
-          
-          default:
-            chipColor = '#F44336'; // Black (default color)
-        }
-  
-        return <Chip label={brand_status} style={{ backgroundColor: chipColor, color: '#ffffff' }} />;
-      },
            
     },
 
-    // {
-    //   field: 'description',
-    //   headerName: 'DESCRIPTION',
-    //   width: 500,
-    //   editable: true,
-    // },
+    {
+      field: 'brand_id',
+      headerName: 'Brand',
+      // width: 200,
+      flex: 1,
+      editable: true, 
+
+           
+    },
+
+    {
+      field: 'unit_id',
+      headerName: 'Unit',
+      // width: 500,
+      editable: true,
+    },
+
+   
 
     // view action
     {
@@ -147,11 +151,11 @@ useEffect(() => {
       headerName: 'VIEW',
       sortable: false,
       width: 100,
-      renderCell: (supplierData) => {
+      renderCell: (productsData) => {
         return (
           <Button
             // onClick={(e) => onButtonClick(e, params.row)}
-            href={`/show_supplier/${supplierData.id}`}
+            href={`/show_supplier/${productsData.id}`}
             style={{ backgroundColor:"#0faa50" }}
             variant="contained"
           >
@@ -168,11 +172,11 @@ useEffect(() => {
       headerName: 'EDIT',
       sortable: false,
       width: 100,
-      renderCell: (supplierData) => {
+      renderCell: (productsData) => {
         return (
           <Button
             // onClick={(e) => onButtonClick(e, params.row)}
-            href={`/edit_supplier/${supplierData.id}`}
+            href={`/edit_supplier/${productsData.id}`}
             style={{ backgroundColor:"#2587da" }}
             variant="contained"
           >
@@ -190,10 +194,10 @@ useEffect(() => {
       sortable: false,
       width: 100,
       // flex: 1,
-      renderCell: (supplierData) => {
+      renderCell: (productsData) => {
         return (
           <Button
-            onClick={()=>handleDelete(supplierData.id)}
+            onClick={()=>handleDelete(productsData.id)}
             style={{ backgroundColor:"#da2533" }}
             variant="contained"
           >
@@ -233,7 +237,7 @@ useEffect(() => {
                     showConfirmButton: false,
                     timer: 1500
                 })
-                getsupplierData()
+                getproductsData()
                 console.log("Supplier deleted", response.data.message)
             })
             // trigger sweet alerts on error
@@ -261,18 +265,18 @@ useEffect(() => {
       
       <Box >
       <HeaderViewTableData 
-       title="Suppliers" 
+       title="Products" 
 
-       buttonTitleAdd={"Add Supplier"}
-       buttonURLAdd={`/add_supplier`}
+       buttonTitleAdd={"Add Products"}
+       buttonURLAdd={`/add_product`}
         />
 
       {/* table */}
 
       <Box sx={{ height: 900, width: '100%' }}>
-      {supplierData ? (
+      {productsData ? (
           <DataGrid 
-              rows={supplierData} 
+              rows={productsData} 
               columns={columns}
               initialState={{
               pagination: {

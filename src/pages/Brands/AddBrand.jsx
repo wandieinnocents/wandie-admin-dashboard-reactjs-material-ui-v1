@@ -55,6 +55,7 @@ const AddBrand = () => {
           brand_status: brand_status,
           brand_image:brand_image,
           brand_register_date:brand_register_date,
+          
         }, {
           // headers
           headers: {
