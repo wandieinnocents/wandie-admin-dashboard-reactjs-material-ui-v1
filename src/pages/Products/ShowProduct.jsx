@@ -362,6 +362,52 @@ export default function ShowProduct() {
                           variant="h5"
                           component="div"
                         >
+                          Product Stock
+                        </Typography>
+                        {/* divider */}
+                        <Divider
+                          style={{
+                            marginBottom: "10px",
+                            marginTop: "10px",
+                            backgroundColor: "#d3d3d3",
+                          }}
+                        />
+
+                        {product.product_stock_quantity ? (
+                          <Chip
+                            label={product.product_stock_quantity}
+                            style={{
+                              backgroundColor: "#0faa50",
+                              color: "#FFFFFF",
+                            }}
+                          />
+                        ) : (
+                          <Chip
+                            label="No Stock"
+                            style={{
+                              backgroundColor: "red",
+                              color: "#FFFFFF",
+                            }}
+                          />
+                        )}
+                      </center>
+
+                        {/* divider */}
+                        <Divider
+                        style={{
+                          marginBottom: "10px",
+                          marginTop: "10px",
+                          backgroundColor: "#d3d3d3",
+                        }}
+                      />
+                      {/* status */}
+                      <center>
+                        <Typography
+                          style={{ fontWeight: 600 }}
+                          gutterBottom
+                          variant="h5"
+                          component="div"
+                        >
                           Product Status
                         </Typography>
                         {/* divider */}
@@ -391,6 +437,9 @@ export default function ShowProduct() {
                           />
                         )}
                       </center>
+
+
+
                     </CardContent>
                   </CardActionArea>
                 </Card>
@@ -401,20 +450,20 @@ export default function ShowProduct() {
                 <Card>
                   <CardActionArea>
                     <CardContent>
-                    
+
                       {/* divider */}
                       <Divider
                         style={{ marginBottom: "10px", marginTop: "10px" }}
                       />
 
-                      {/* product address */}
+                      {/* parent category */}
                       <Typography
                         style={{ fontWeight: 600 }}
                         gutterBottom
                         variant="h5"
                         component="div"
                       >
-                        product Address
+                        Product Parent Category
                       </Typography>
 
                       {/* divider */}
@@ -422,7 +471,7 @@ export default function ShowProduct() {
                         style={{ marginBottom: "10px", marginTop: "10px" }}
                       />
 
-                      {product.product_address ? (
+                      {product.parent_product_category.parent_product_category_name ? (
                         <Typography
                           gutterBottom
                           variant="h5"
@@ -431,11 +480,11 @@ export default function ShowProduct() {
                             marginTop: "10px",
                           }}
                         >
-                          {product.product_address}
+                          {product.parent_product_category.parent_product_category_name}
                         </Typography>
                       ) : (
                         <Chip
-                          label="No product Address "
+                          label="No Parent Category "
                           style={{
                             backgroundColor: "red",
                             color: "#FFFFFF",
@@ -448,14 +497,14 @@ export default function ShowProduct() {
                         style={{ marginBottom: "10px", marginTop: "10px" }}
                       />
 
-                      {/* city */}
+                      {/* Product Category */}
                       <Typography
                         style={{ fontWeight: 600 }}
                         gutterBottom
                         variant="h5"
                         component="div"
                       >
-                        product City
+                        Product Category
                       </Typography>
 
                       {/* divider */}
@@ -463,7 +512,7 @@ export default function ShowProduct() {
                         style={{ marginBottom: "10px", marginTop: "10px" }}
                       />
 
-                      {product.product_city ? (
+                      {product.product_category.product_category_name ? (
                         <Typography
                           gutterBottom
                           variant="h5"
@@ -472,11 +521,11 @@ export default function ShowProduct() {
                             marginTop: "10px",
                           }}
                         >
-                          {product.product_city}
+                          {product.product_category.product_category_name}
                         </Typography>
                       ) : (
                         <Chip
-                          label="No product City "
+                          label="No Product Category "
                           style={{
                             backgroundColor: "red",
                             color: "#FFFFFF",
@@ -489,14 +538,14 @@ export default function ShowProduct() {
                         style={{ marginBottom: "10px", marginTop: "10px" }}
                       />
 
-                      {/* product country */}
+                      {/* product brand */}
                       <Typography
                         style={{ fontWeight: 600 }}
                         gutterBottom
                         variant="h5"
                         component="div"
                       >
-                        product Country
+                        Brand
                       </Typography>
 
                       {/* divider */}
@@ -504,7 +553,7 @@ export default function ShowProduct() {
                         style={{ marginBottom: "10px", marginTop: "10px" }}
                       />
 
-                      {product.product_country ? (
+                      {product.brand.brand_name ? (
                         <Typography
                           gutterBottom
                           variant="h5"
@@ -513,11 +562,11 @@ export default function ShowProduct() {
                             marginTop: "10px",
                           }}
                         >
-                          {product.product_country}
+                          {product.brand.brand_name}
                         </Typography>
                       ) : (
                         <Chip
-                          label="No product Country "
+                          label="No Brand "
                           style={{
                             backgroundColor: "red",
                             color: "#FFFFFF",
@@ -530,14 +579,14 @@ export default function ShowProduct() {
                         style={{ marginBottom: "10px", marginTop: "10px" }}
                       />
 
-                      {/* product country */}
+                      {/* Supplier */}
                       <Typography
                         style={{ fontWeight: 600 }}
                         gutterBottom
                         variant="h5"
                         component="div"
                       >
-                        product Organization
+                        Supplier
                       </Typography>
 
                       {/* divider */}
@@ -545,7 +594,7 @@ export default function ShowProduct() {
                         style={{ marginBottom: "10px", marginTop: "10px" }}
                       />
 
-                      {product.product_organization ? (
+                      {product.supplier.supplier_name ? (
                         <Typography
                           gutterBottom
                           variant="h5"
@@ -554,11 +603,11 @@ export default function ShowProduct() {
                             marginTop: "10px",
                           }}
                         >
-                          {product.product_organization}
+                          {product.supplier.supplier_name}
                         </Typography>
                       ) : (
                         <Chip
-                          label="No product Organization "
+                          label="No Supplier "
                           style={{
                             backgroundColor: "red",
                             color: "#FFFFFF",
@@ -571,14 +620,14 @@ export default function ShowProduct() {
                         style={{ marginBottom: "10px", marginTop: "10px" }}
                       />
 
-                      {/* product country */}
+                      {/* Unit */}
                       <Typography
                         style={{ fontWeight: 600 }}
                         gutterBottom
                         variant="h5"
                         component="div"
                       >
-                        About the product
+                        Product Unit
                       </Typography>
 
                       {/* divider */}
@@ -586,7 +635,7 @@ export default function ShowProduct() {
                         style={{ marginBottom: "10px", marginTop: "10px" }}
                       />
 
-                      {product.product_description ? (
+                      {product.unit.unit_name ? (
                         <Typography
                           gutterBottom
                           variant="h5"
@@ -595,17 +644,105 @@ export default function ShowProduct() {
                             marginTop: "10px",
                           }}
                         >
-                          {product.product_description}
+                          {product.unit.unit_name}
                         </Typography>
                       ) : (
                         <Chip
-                          label="No product Description "
+                          label="No Unit "
                           style={{
                             backgroundColor: "red",
                             color: "#FFFFFF",
                           }}
                         />
                       )}
+
+
+                      {/* divider */}
+                      <Divider
+                        style={{ marginBottom: "10px", marginTop: "10px" }}
+                      />
+
+                      {/* Cost price */}
+                      <Typography
+                        style={{ fontWeight: 600 }}
+                        gutterBottom
+                        variant="h5"
+                        component="div"
+                      >
+                        Product Cost Price
+                      </Typography>
+
+                      {/* divider */}
+                      <Divider
+                        style={{ marginBottom: "10px", marginTop: "10px" }}
+                      />
+
+                      {product.product_cost_price ? (
+                        <Typography
+                          gutterBottom
+                          variant="h5"
+                          component="div"
+                          style={{
+                            marginTop: "10px",
+                          }}
+                        >
+                          {product.product_cost_price}
+                        </Typography>
+                      ) : (
+                        <Chip
+                          label="No Cost Price "
+                          style={{
+                            backgroundColor: "red",
+                            color: "#FFFFFF",
+                          }}
+                        />
+                      )}
+
+
+                      {/* divider */}
+                      <Divider
+                        style={{ marginBottom: "10px", marginTop: "10px" }}
+                      />
+
+                      {/* Unit */}
+                      <Typography
+                        style={{ fontWeight: 600 }}
+                        gutterBottom
+                        variant="h5"
+                        component="div"
+                      >
+                        Product Selling Price
+                      </Typography>
+
+                      {/* divider */}
+                      <Divider
+                        style={{ marginBottom: "10px", marginTop: "10px" }}
+                      />
+
+                      {product.product_selling_price ? (
+                        <Typography
+                          gutterBottom
+                          variant="h5"
+                          component="div"
+                          style={{
+                            marginTop: "10px",
+                          }}
+                        >
+                          {product.product_selling_price}
+                        </Typography>
+                      ) : (
+                        <Chip
+                          label="No Selling Price "
+                          style={{
+                            backgroundColor: "red",
+                            color: "#FFFFFF",
+                          }}
+                        />
+                      )}
+
+
+
+
                     </CardContent>
                   </CardActionArea>
                 </Card>
