@@ -5,15 +5,16 @@ import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import {
- Button,
- Table as MuiTable,
- TableBody,
- TableCell,
- TableHead,
- TableRow,
+  Button,
+  Table as MuiTable,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableRow,
 } from "@mui/material";
-import { DataGrid } from '@mui/x-data-grid';
-
+import TextField from "@mui/material/TextField";
+import Autocomplete from "@mui/material/Autocomplete";
+import { DataGrid } from "@mui/x-data-grid";
 
 import HeaderShowSingleData from "../../components/Headers/HeaderShowSingleData";
 
@@ -28,13 +29,20 @@ import axios from "axios";
 import SendIcon from "@mui/icons-material/Send";
 import FolderIcon from "@mui/icons-material/Folder";
 import DeleteIcon from "@mui/icons-material/Delete";
-import AddCircleIcon from '@mui/icons-material/AddCircle';
-import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
-import ModeEditOutlinedIcon from '@mui/icons-material/ModeEditOutlined';
-import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
-import LocalOfferIcon from '@mui/icons-material/LocalOffer';
-import TaskAltIcon from '@mui/icons-material/TaskAlt';
-import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
+import AddCircleIcon from "@mui/icons-material/AddCircle";
+import RemoveRedEyeOutlinedIcon from "@mui/icons-material/RemoveRedEyeOutlined";
+import ModeEditOutlinedIcon from "@mui/icons-material/ModeEditOutlined";
+import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
+import LocalOfferIcon from "@mui/icons-material/LocalOffer";
+import TaskAltIcon from "@mui/icons-material/TaskAlt";
+import ShoppingCartCheckoutIcon from "@mui/icons-material/ShoppingCartCheckout";
+
+// BOTTOM NAV
+import BottomNavigation from "@mui/material/BottomNavigation";
+import BottomNavigationAction from "@mui/material/BottomNavigationAction";
+import RestoreIcon from "@mui/icons-material/Restore";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import LocationOnIcon from "@mui/icons-material/LocationOn";
 
 // progress bar
 import CircularProgress from "@mui/material/CircularProgress";
@@ -43,7 +51,7 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 
-import Swal from 'sweetalert2'
+import Swal from "sweetalert2";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import Avatar from "@mui/material/Avatar";
@@ -60,17 +68,18 @@ export default function AddSale() {
   // states
   // const [id, setId] = useState(useParams().id)
   // const { id } = useParams();
-  const [products, setProducts] = useState(null);
+  const [products, setProducts] = useState([]);
   const [dense, setDense] = React.useState(false);
   const [secondary, setSecondary] = React.useState(false);
   // const [isLoading, setIsLoading] = useState(false);
   const [cart, setCart] = useState([]);
   const [totalAmount, setTotalAmount] = useState(0);
+  // search
+  const [searchQuery, setSearchQuery] = useState("");
+  const [filteredProducts, setFilteredProducts] = useState([]);
 
-  // del
-
-
-
+  // bottom nav
+  const [bottomNavValue, setBottomNavValue] = React.useState("recents");
 
   // del
 
@@ -100,49 +109,47 @@ export default function AddSale() {
     console.log(products);
   }, [products]);
 
-  const addProductToCart = async(product) =>{
+  const addProductToCart = async (product) => {
     // check if the adding product exist
-    let findProductInCart = await cart.find(i=>{
-      return i.id === product.id
+    let findProductInCart = await cart.find((i) => {
+      return i.id === product.id;
     });
 
-    if(findProductInCart){
+    if (findProductInCart) {
       let newCart = [];
       let newItem;
 
-
-      cart.forEach(cartItem => {
-        if(cartItem.id === product.id){
+      cart.forEach((cartItem) => {
+        if (cartItem.id === product.id) {
           newItem = {
             ...cartItem,
             quantity: cartItem.quantity + 1,
-            totalAmount: cartItem.product_selling_price * (cartItem.quantity + 1)
-          }
+            totalAmount:
+              cartItem.product_selling_price * (cartItem.quantity + 1),
+          };
           newCart.push(newItem);
-        }else{
+        } else {
           newCart.push(cartItem);
         }
       });
 
       setCart(newCart);
       // toast(`Added ${newItem.name} to cart`,toastOptions)
-
-    }else{
+    } else {
       let addingProduct = {
         ...product,
-        'quantity': 1,
-        'totalAmount': product.product_selling_price,
-      }
+        quantity: 1,
+        totalAmount: product.product_selling_price,
+      };
       setCart([...cart, addingProduct]);
       // toast(`Added ${product.name} to cart`, toastOptions)
     }
+  };
 
-  }
-
-  const removeProduct = async(product) =>{
-    const newCart =cart.filter(cartItem => cartItem.id !== product.id);
+  const removeProduct = async (product) => {
+    const newCart = cart.filter((cartItem) => cartItem.id !== product.id);
     setCart(newCart);
-  }
+  };
 
   // const componentRef = useRef();
 
@@ -156,20 +163,33 @@ export default function AddSale() {
 
   useEffect(() => {
     fetchProducts();
-  },[]);
+  }, []);
 
   useEffect(() => {
     let newTotalAmount = 0;
-    cart.forEach(icart => {
+    cart.forEach((icart) => {
       newTotalAmount = newTotalAmount + parseInt(icart.totalAmount);
-    })
+    });
     setTotalAmount(newTotalAmount);
-  },[cart])
+  }, [cart]);
 
+  // search functionality
+  useEffect(() => {
+    // Filter products based on searchQuery
+    const filtered = products.filter((product) =>
+      product.product_name.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+    setFilteredProducts(filtered);
+  }, [searchQuery, products]);
 
+  const handleSearch = (e) => {
+    setSearchQuery(e.target.value);
+  };
 
-
-
+  // bottom navigation sticky
+  const handleChangeBottomNav = (event, newValue) => {
+    setBottomNavValue(newValue);
+  };
 
   return (
     <Box m="40px">
@@ -182,8 +202,6 @@ export default function AddSale() {
           //  EDIT
           buttonTitleAdd={"ADD product"}
           buttonURLAdd={`/add_product/`}
-
-          
         />
         <Divider style={{ marginBottom: "30px" }} />
 
@@ -197,170 +215,262 @@ export default function AddSale() {
             rowSpacing={1}
             columnSpacing={{ xs: 1, sm: 2, md: 3 }}
             columns={{ xs: 1, sm: 3, md: 12 }}
-            style={{ marginBottom: "50px" }}
+            // style={{ marginBottom: "50px" }}
           >
             {/* left column */}
-            <Grid item xs={5}>
+            <Grid
+              item
+              xs={5}
+              style={{
+                marginBottom: "50px",
+                height: "700px",
+                overflow: "scroll",
+                padding: "30px",
+                backgroundColor: "#e9f3fe",
+              }}
+            >
+              {/* search input */}
+              {/* <input
+              type="text"
+              placeholder="Search products..."
+              value={searchQuery}
+              onChange={handleSearch}
+            /> */}
+
+              <TextField
+                label="Search Products..."
+                fullWidth
+                //  placeholder="Search products..."
+                value={searchQuery}
+                onChange={handleSearch}
+                style={{ backgroundColor: "#ffffff" }}
+                // variant="filled"
+              />
+
               {/* START OF LIST */}
 
-           
-           
-                <List dense={dense}>
-                  {/* List item */}
-                  {products?.map((product, key) => (
-                    <>
-                      <ListItem
-                        secondaryAction={
-                          <Button 
+              <List dense={dense}>
+                {/* List item */}
+                {filteredProducts?.map((product, key) => (
+                  <>
+                    <ListItem
+                      secondaryAction={
+                        <Button
                           // disabled={isSaving}
                           onClick={() => addProductToCart(product)}
-                          type="submit" size="large" endIcon={<AddCircleIcon />} style={{ backgroundColor:"#2587da", color:"#ffffff" }}  variant="contained">
-                            Add
-                          </Button>
-                        }
-                      >
-                        <ListItemAvatar>
-                          <Avatar>
-                            <ShoppingCartCheckoutIcon />
-                          </Avatar>
-                        </ListItemAvatar>
+                          type="submit"
+                          size="large"
+                          endIcon={<AddCircleIcon />}
+                          style={{
+                            backgroundColor: "#2587da",
+                            color: "#ffffff",
+                          }}
+                          variant="contained"
+                        >
+                          Add
+                        </Button>
+                      }
+                    >
+                      <ListItemAvatar>
+                        <Avatar>
+                          <ShoppingCartCheckoutIcon />
+                        </Avatar>
+                      </ListItemAvatar>
 
-                        <ListItemText
-                          primary={product.product_name}
-                          secondary={secondary ? "Secondary text" : null}
-                        />
-
-                        <ListItemText
-                          primary= {product.product_selling_price}
-                          secondary={secondary ? "Secondary text" : null}
-                        />
-                        
-                      </ListItem>
-
-                      <Divider
-                        style={{ marginBottom: "10px", marginTop: "10px" }}
+                      <ListItemText
+                        primary={product.product_name}
+                        secondary={secondary ? "Secondary text" : null}
                       />
-                    </>
-                  ))}
-                  {/* End List item */}
-                </List>
-          
+
+                      <ListItemText
+                        primary={product.product_selling_price}
+                        secondary={secondary ? "Secondary text" : null}
+                      />
+                    </ListItem>
+
+                    <Divider
+                      style={{ marginBottom: "10px", marginTop: "10px" }}
+                    />
+                  </>
+                ))}
+                {/* End List item */}
+              </List>
 
               {/* END OF LIST */}
             </Grid>
 
             {/* right column */}
-            <Grid item xs={7} >
+            <Grid
+              item
+              xs={7}
+              style={{
+                marginBottom: "50px",
+                height: "700px",
+                overflow: "scroll",
+                padding: "30px",
+                backgroundColor: "#e9f3fe",
+              }}
+            >
               {/* TOP SECTION LEFT */}
 
-              <Paper elevation={2} style={{  backgroundColor: "#0faa50",padding: "1rem 0px" }}>
-                  <MuiTable >
-                    <TableHead style={{  backgroundColor: "#0faa50", color:"#ffffff" }} >
-                      <TableRow >
-                      <TableCell style={{  color:"#ffffff" }}>#</TableCell>
-                        <TableCell  style={{  color:"#ffffff" }}>Name</TableCell>
-                        <TableCell style={{  color:"#ffffff" }}>Price</TableCell>
-                        <TableCell style={{  color:"#ffffff" }}>Qty</TableCell>
-                        <TableCell style={{  color:"#ffffff" }}>Total</TableCell>
-                        <TableCell style={{  color:"#ffffff" }}>Action</TableCell>
-                      </TableRow>
-                    </TableHead>
+              <Paper
+                elevation={2}
+                style={{ backgroundColor: "#0faa50", padding: "1rem 0px" }}
+              >
+                <MuiTable>
+                  <TableHead
+                    style={{ backgroundColor: "#0faa50", color: "#ffffff" }}
+                  >
+                    <TableRow>
+                      <TableCell style={{ color: "#ffffff" }}>#</TableCell>
+                      <TableCell style={{ color: "#ffffff" }}>Name</TableCell>
+                      <TableCell style={{ color: "#ffffff" }}>Price</TableCell>
+                      <TableCell style={{ color: "#ffffff" }}>Qty</TableCell>
+                      <TableCell style={{ color: "#ffffff" }}>Total</TableCell>
+                      <TableCell style={{ color: "#ffffff" }}>Action</TableCell>
+                    </TableRow>
+                  </TableHead>
 
-
-                    <TableBody>
+                  <TableBody>
                     {/* { cart ? cart.map((cartProduct, key) => <tr key={key}> */}
-                      {cart.map((cartProduct, index) => (
-                        
-                        <TableRow key={index} style={{ backgroundColor: "#ffffff", }}>
-                        <TableCell>{'#' + ' ' + cartProduct.id}</TableCell>
-                          <TableCell>{cartProduct.product_name}</TableCell>
-                          <TableCell>{cartProduct.product_selling_price}</TableCell>
-                          <TableCell>{cartProduct.quantity}</TableCell>
-                          <TableCell>{cartProduct.totalAmount}</TableCell>
-                          <TableCell>
-                          <DeleteOutlinedIcon style={{ color: "red" }} onClick={()=>  removeProduct(cartProduct) } />
-                          </TableCell>
-                        </TableRow>
-                      ) ) } 
-                      
-                    </TableBody>
-
-
-                  </MuiTable>
-                </Paper>
-
-                {/* Summary data */}
-         
-                {/* style={{ backgroundColor: "#0faa50", color: "#FFFFFF" }} */}
-                <List dense={dense} style={{ marginTop:'20px', borderRadius:'40px', backgroundColor: "#0faa50", }}>
-                  {/* List item */}
-                 
-                    <>
-                      <ListItem
-                        secondaryAction={
-                          <Button 
-                          // disabled={isSaving}
-                          // onClick={() => addProductToCart(product)}
-                          type="submit" size="large" endIcon={<TaskAltIcon />} style={{ backgroundColor:"#2587da",borderRadius:'40px', color:"#ffffff" }}  variant="contained">
-                            {'UGX' + ' ' + totalAmount}
-                          </Button>
-                        }
+                    {cart.map((cartProduct, index) => (
+                      <TableRow
+                        key={index}
+                        style={{ backgroundColor: "#ffffff" }}
                       >
-                        <ListItemAvatar>
-                          <Avatar style={{ backgroundColor: "#ffffff", }}>
-                            <ShoppingCartCheckoutIcon style={{ color: "#2587da", }} />
-                          </Avatar>
-                        </ListItemAvatar>
+                        <TableCell>{"#" + " " + cartProduct.id}</TableCell>
+                        <TableCell>{cartProduct.product_name}</TableCell>
+                        <TableCell>
+                          {cartProduct.product_selling_price}
+                        </TableCell>
+                        <TableCell>{cartProduct.quantity}</TableCell>
+                        <TableCell>{cartProduct.totalAmount}</TableCell>
+                        <TableCell>
+                          <DeleteOutlinedIcon
+                            style={{ color: "red" }}
+                            onClick={() => removeProduct(cartProduct)}
+                          />
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </MuiTable>
+              </Paper>
 
-                        <ListItemText
-                          primary='GRAND TOTAL'
-                          style={{ color: "#ffffff", }} 
-                          // secondary={secondary ? "Secondary text" : null}
+              {/* Summary data */}
+
+              {/* style={{ backgroundColor: "#0faa50", color: "#FFFFFF" }} */}
+              <List
+                dense={dense}
+                style={{
+                  marginTop: "20px",
+                  borderRadius: "40px",
+                  backgroundColor: "#0faa50",
+                }}
+              >
+                {/* List item */}
+
+                <>
+                  <ListItem
+                    secondaryAction={
+                      <Button
+                        // disabled={isSaving}
+                        // onClick={() => addProductToCart(product)}
+                        type="submit"
+                        size="large"
+                        endIcon={<TaskAltIcon />}
+                        style={{
+                          backgroundColor: "#2587da",
+                          borderRadius: "40px",
+                          color: "#ffffff",
+                        }}
+                        variant="contained"
+                      >
+                        {"UGX" + " " + totalAmount}
+                      </Button>
+                    }
+                  >
+                    <ListItemAvatar>
+                      <Avatar style={{ backgroundColor: "#ffffff" }}>
+                        <ShoppingCartCheckoutIcon
+                          style={{ color: "#2587da" }}
                         />
+                      </Avatar>
+                    </ListItemAvatar>
 
-                        
-                        
-                      </ListItem>
+                    <ListItemText
+                      primary="GRAND TOTAL"
+                      style={{ color: "#ffffff" }}
+                      // secondary={secondary ? "Secondary text" : null}
+                    />
+                  </ListItem>
 
-                      {/* <Divider
+                  {/* <Divider
                         style={{ marginBottom: "10px", marginTop: "10px" }}
                       /> */}
-                    </>
-               
-                  {/* End List item */}
-                </List>
-        
+                </>
+
+                {/* End List item */}
+              </List>
 
               {/* End of summary */}
-             
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-               
-
-            
-  
             </Grid>
+            {/* bottom navigation */}
+            <BottomNavigation
+               style={{ marginTop:'20px', 
+                 paddingRight:'300px',
+                paddingBottom:'20px', paddingTop:'20px' , display: 'flex', justifyContent: 'center', alignItems: 'center',}}
+              sx={{ position: "fixed", bottom: 0, width: "100%", height:'90px',  }}
+              // value={bottomNavValue}
+              // onChange={handleChangeBottomNav}
+            >
+              {/* <BottomNavigationAction
+                label="Recents"
+                value="recents"
+                icon={<RestoreIcon />}
+              /> */}
+              {/* button */}
+              <Button
+                // disabled={isSaving}
+                // onClick={() => addProductToCart(product)}
+                type="submit"
+                size="large"
+                endIcon={<AddCircleIcon />}
+                style={{ backgroundColor: "#2587da", color: "#ffffff" }}
+                variant="contained"
+              >
+                Add Supplier
+              </Button>
+
+               {/* button */}
+               <Button
+                // disabled={isSaving}
+                // onClick={() => addProductToCart(product)}
+                type="submit"
+                size="large"
+                endIcon={<AddCircleIcon />}
+                style={{ backgroundColor: "#2587da", color: "#ffffff", marginLeft:'20px' }}
+                variant="contained"
+              >
+                Add Supplier
+              </Button>
+
+              {/* button */}
+              <Button
+                // disabled={isSaving}
+                // onClick={() => addProductToCart(product)}
+                type="submit"
+                size="large"
+                endIcon={<AddCircleIcon />}
+                style={{ backgroundColor: "#2587da", color: "#ffffff", marginLeft:'20px' }}
+                variant="contained"
+              >
+                Add Supplier
+              </Button>
+
+           
+            </BottomNavigation>
+            {/* end  of bottom navigation */}
           </Grid>
         </Box>
       </Box>
