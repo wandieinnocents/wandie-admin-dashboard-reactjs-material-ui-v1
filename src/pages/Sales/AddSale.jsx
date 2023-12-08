@@ -64,6 +64,10 @@ import DefaultImage from "../../images/no_photo.jpeg";
 //   backgroundColor: theme.palette.background.paper,
 // }));
 
+// toast
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 export default function AddSale() {
   // states
   // const [id, setId] = useState(useParams().id)
@@ -134,7 +138,19 @@ export default function AddSale() {
       });
 
       setCart(newCart);
-      // toast(`Added ${newItem.name} to cart`,toastOptions)
+      // toast notification after adding to cart
+      // toast(`Added ${newItem.product_name} to cart`)
+      toast(`👋 Added ${newItem.product_name} to cart`, {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
+
     } else {
       let addingProduct = {
         ...product,
@@ -142,7 +158,18 @@ export default function AddSale() {
         totalAmount: product.product_selling_price,
       };
       setCart([...cart, addingProduct]);
-      // toast(`Added ${product.name} to cart`, toastOptions)
+      // toast notification after adding to cart
+      // toast(`Added ${product.product_name} to cart`)
+      toast(`👋 Added ${product.product_name} to cart`, {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
     }
   };
 
@@ -176,8 +203,10 @@ export default function AddSale() {
   // search functionality
   useEffect(() => {
     // Filter products based on searchQuery
-    const filtered = products.filter((product) =>
-      product.product_name.toLowerCase().includes(searchQuery.toLowerCase())
+    const filtered = products.filter(
+      (product) =>
+        product.product_name.toLowerCase().includes(searchQuery.toLowerCase())
+      // product.product_sell.toLowerCase().includes(searchQuery.toLowerCase())
     );
     setFilteredProducts(filtered);
   }, [searchQuery, products]);
@@ -186,10 +215,9 @@ export default function AddSale() {
     setSearchQuery(e.target.value);
   };
 
-  // bottom navigation sticky
-  const handleChangeBottomNav = (event, newValue) => {
-    setBottomNavValue(newValue);
-  };
+  // toastify
+  const notify = () => toast("Wow so easy!");
+
 
   return (
     <Box m="40px">
@@ -230,17 +258,10 @@ export default function AddSale() {
               }}
             >
               {/* search input */}
-              {/* <input
-              type="text"
-              placeholder="Search products..."
-              value={searchQuery}
-              onChange={handleSearch}
-            /> */}
 
               <TextField
                 label="Search Products..."
                 fullWidth
-                //  placeholder="Search products..."
                 value={searchQuery}
                 onChange={handleSearch}
                 style={{ backgroundColor: "#ffffff" }}
@@ -417,10 +438,21 @@ export default function AddSale() {
             </Grid>
             {/* bottom navigation */}
             <BottomNavigation
-               style={{ marginTop:'20px', 
-                 paddingRight:'300px',
-                paddingBottom:'20px', paddingTop:'20px' , display: 'flex', justifyContent: 'center', alignItems: 'center',}}
-              sx={{ position: "fixed", bottom: 0, width: "100%", height:'90px',  }}
+              style={{
+                marginTop: "20px",
+                paddingRight: "300px",
+                paddingBottom: "20px",
+                paddingTop: "20px",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+              sx={{
+                position: "fixed",
+                bottom: 0,
+                width: "100%",
+                height: "90px",
+              }}
               // value={bottomNavValue}
               // onChange={handleChangeBottomNav}
             >
@@ -433,23 +465,11 @@ export default function AddSale() {
               <Button
                 // disabled={isSaving}
                 // onClick={() => addProductToCart(product)}
+                // 
                 type="submit"
                 size="large"
                 endIcon={<AddCircleIcon />}
                 style={{ backgroundColor: "#2587da", color: "#ffffff" }}
-                variant="contained"
-              >
-                Add Supplier
-              </Button>
-
-               {/* button */}
-               <Button
-                // disabled={isSaving}
-                // onClick={() => addProductToCart(product)}
-                type="submit"
-                size="large"
-                endIcon={<AddCircleIcon />}
-                style={{ backgroundColor: "#2587da", color: "#ffffff", marginLeft:'20px' }}
                 variant="contained"
               >
                 Add Supplier
@@ -462,18 +482,38 @@ export default function AddSale() {
                 type="submit"
                 size="large"
                 endIcon={<AddCircleIcon />}
-                style={{ backgroundColor: "#2587da", color: "#ffffff", marginLeft:'20px' }}
+                style={{
+                  backgroundColor: "#2587da",
+                  color: "#ffffff",
+                  marginLeft: "20px",
+                }}
+                variant="contained"
+              >
+                GRAND TOTAL - {"UGX" + " " + totalAmount}
+              </Button>
+
+              {/* button */}
+              <Button
+                // disabled={isSaving}
+                // onClick={() => addProductToCart(product)}
+                type="submit"
+                size="large"
+                endIcon={<AddCircleIcon />}
+                style={{
+                  backgroundColor: "#2587da",
+                  color: "#ffffff",
+                  marginLeft: "20px",
+                }}
                 variant="contained"
               >
                 Add Supplier
               </Button>
-
-           
             </BottomNavigation>
             {/* end  of bottom navigation */}
           </Grid>
         </Box>
       </Box>
+      <ToastContainer />
     </Box>
   );
 }
