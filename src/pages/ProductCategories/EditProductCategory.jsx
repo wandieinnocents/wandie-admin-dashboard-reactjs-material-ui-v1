@@ -177,7 +177,7 @@ const EditProductCategory = () => {
       <HeaderEdit 
        title="Update Product Category" 
       //  view 
-       buttonTitle={"All Product Categories"}
+       buttonTitle={"All Product Categories"}vi
        buttonURL={`/view_product_categories/`}
 
       //  edit brand

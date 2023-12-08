@@ -1,373 +1,369 @@
-import { Box, Button, TextField } from "@mui/material";
-import { Formik } from "formik";
-import * as yup from "yup";
-import useMediaQuery from "@mui/material/useMediaQuery";
-import Header from "../../components/Header";
-import SendIcon from '@mui/icons-material/Send';
-
-import * as React from 'react';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
-
-
-
-
-
+import React, { useState, useEffect, useRef } from "react";
+import { Link, useParams } from "react-router-dom";
+import { styled } from "@mui/material/styles";
+import Grid from "@mui/material/Grid";
+import Paper from "@mui/material/Paper";
+import Box from "@mui/material/Box";
+import {
+ Button,
+ Table as MuiTable,
+ TableBody,
+ TableCell,
+ TableHead,
+ TableRow,
+} from "@mui/material";
+import { DataGrid } from '@mui/x-data-grid';
 
 
-const AddSale = () => {
-  const isNonMobile = useMediaQuery("(min-width:600px)");
-  const [value, setValue] = React.useState('2022-04-17');
+import HeaderShowSingleData from "../../components/Headers/HeaderShowSingleData";
 
-  const [client, setClient] = React.useState('');
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import Typography from "@mui/material/Typography";
+import { CardActionArea } from "@mui/material";
+import Divider from "@mui/material/Divider";
+import axios from "axios";
+// icons
+import SendIcon from "@mui/icons-material/Send";
+import FolderIcon from "@mui/icons-material/Folder";
+import DeleteIcon from "@mui/icons-material/Delete";
+import AddCircleIcon from '@mui/icons-material/AddCircle';
+import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
+import ModeEditOutlinedIcon from '@mui/icons-material/ModeEditOutlined';
+import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
+import LocalOfferIcon from '@mui/icons-material/LocalOffer';
+import TaskAltIcon from '@mui/icons-material/TaskAlt';
+import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
 
-  // date
-  const dateNow = new Date();
-  const year = dateNow.getFullYear();
-  const month = (dateNow.getUTCMonth() + 1).toString().padStart(2, '0'); // padStart ensures the month is 2 digits
-  const date = dateNow.getUTCDate().toString().padStart(2, '0'); // padStart ensures the date is 2 digits
-  const currentDate = `${year}-${month}-${date}`;
-  // end date picker
+// progress bar
+import CircularProgress from "@mui/material/CircularProgress";
+import Chip from "@mui/material/Chip";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemAvatar from "@mui/material/ListItemAvatar";
 
-  const handleChangeClient = (event) => {
-    setClient(event.target.value);
+import Swal from 'sweetalert2'
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
+import Avatar from "@mui/material/Avatar";
+import IconButton from "@mui/material/IconButton";
+
+// default image if no photo in db
+import DefaultImage from "../../images/no_photo.jpeg";
+
+// const Demo = styled("div")(({ theme }) => ({
+//   backgroundColor: theme.palette.background.paper,
+// }));
+
+export default function AddSale() {
+  // states
+  // const [id, setId] = useState(useParams().id)
+  // const { id } = useParams();
+  const [products, setProducts] = useState(null);
+  const [dense, setDense] = React.useState(false);
+  const [secondary, setSecondary] = React.useState(false);
+  // const [isLoading, setIsLoading] = useState(false);
+  const [cart, setCart] = useState([]);
+  const [totalAmount, setTotalAmount] = useState(0);
+
+  // del
+
+
+
+
+  // del
+
+  // retrieve single data by id
+
+  const fetchProducts = async () => {
+    // setIsLoading(true);
+    axios
+      .get(`http://127.0.0.1:8000/api/v1/products`)
+      .then(function (response) {
+        setProducts(response.data.data);
+        console.log("List Products data", response.data.data);
+        // setIsLoading(false);
+      })
+      // console log error on failure
+      .catch(function (error) {
+        console.log(error);
+      });
   };
 
-  
-  const handleFormSubmit = (values) => {
-    console.log(values);
-  };
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
+  // console log when app loads
+  useEffect(() => {
+    console.log(products);
+  }, [products]);
+
+  const addProductToCart = async(product) =>{
+    // check if the adding product exist
+    let findProductInCart = await cart.find(i=>{
+      return i.id === product.id
+    });
+
+    if(findProductInCart){
+      let newCart = [];
+      let newItem;
 
 
-  const initialValues = {
-    fullName: "",
-    email: "",
-    contact: "",
-    contact2: "",
-    organization: "",
-    address: "",
+      cart.forEach(cartItem => {
+        if(cartItem.id === product.id){
+          newItem = {
+            ...cartItem,
+            quantity: cartItem.quantity + 1,
+            totalAmount: cartItem.product_selling_price * (cartItem.quantity + 1)
+          }
+          newCart.push(newItem);
+        }else{
+          newCart.push(cartItem);
+        }
+      });
 
-  };
+      setCart(newCart);
+      // toast(`Added ${newItem.name} to cart`,toastOptions)
 
-  const phoneRegExp =
-  /^((\+[1-9]{1,4}[ -]?)|(\([0-9]{2,3}\)[ -]?)|([0-9]{2,4})[ -]?)*?[0-9]{3,4}[ -]?[0-9]{3,4}$/;
+    }else{
+      let addingProduct = {
+        ...product,
+        'quantity': 1,
+        'totalAmount': product.product_selling_price,
+      }
+      setCart([...cart, addingProduct]);
+      // toast(`Added ${product.name} to cart`, toastOptions)
+    }
 
-  // validation
-  const checkoutSchema = yup.object().shape({
-    fullName: yup.string().required("required"),
-    email: yup.string().email("invalid email").required("required"),
-    contact: yup
-      .string()
-      .matches(phoneRegExp, "Phone number is not valid")
-      .required("required"),
-      contact2: yup
-      .string()
-      .matches(phoneRegExp, "Phone number 2 is not valid")
-      .required("required"),
-    address: yup.string().required("required"),
-    organization: yup.string().required("required"),
-    
-  });
+  }
+
+  const removeProduct = async(product) =>{
+    const newCart =cart.filter(cartItem => cartItem.id !== product.id);
+    setCart(newCart);
+  }
+
+  // const componentRef = useRef();
+
+  // const handleReactToPrint = useReactToPrint({
+  //   content: () => componentRef.current,
+  // });
+
+  // const handlePrint = () => {
+  //   handleReactToPrint();
+  // }
+
+  useEffect(() => {
+    fetchProducts();
+  },[]);
+
+  useEffect(() => {
+    let newTotalAmount = 0;
+    cart.forEach(icart => {
+      newTotalAmount = newTotalAmount + parseInt(icart.totalAmount);
+    })
+    setTotalAmount(newTotalAmount);
+  },[cart])
+
+
+
+
 
 
   return (
-    <Box mt="30px" pb="60px" pr="60px" pl="60px" >
+    <Box m="40px">
+      <Box>
+        <HeaderShowSingleData
+          title="POST"
+          // add
+          buttonTitleEdit={"POS"}
+          buttonURLEdit={`/edit_product/`}
+          //  EDIT
+          buttonTitleAdd={"ADD product"}
+          buttonURLAdd={`/add_product/`}
 
-      <Header title="ADD SALE " subtitle="Register a New Sale" />
+          
+        />
+        <Divider style={{ marginBottom: "30px" }} />
 
-      <Formik
-        onSubmit={handleFormSubmit}
-        initialValues={initialValues}
-        validationSchema={checkoutSchema}
-      >
-        {({
-          values,
-          errors,
-          touched,
-          handleBlur,
-          handleChange,
-          handleSubmit,
-        }) => (
-          <form onSubmit={handleSubmit}>
-            <Box
-              display="grid"
-              gap="30px"
-              gridTemplateColumns="repeat(4, minmax(0, 1fr))"
-              sx={{
-                "& > div": { gridColumn: isNonMobile ? undefined : "span 4" },
-              }}
-            >
+        {/* NEW USER INTERFACE */}
+
+        {/* Check if data exists, else display data is empty / loading  */}
+
+        <Box sx={{ width: "100%" }}>
+          <Grid
+            container
+            rowSpacing={1}
+            columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+            columns={{ xs: 1, sm: 3, md: 12 }}
+            style={{ marginBottom: "50px" }}
+          >
+            {/* left column */}
+            <Grid item xs={5}>
+              {/* START OF LIST */}
+
            
            
-           
+                <List dense={dense}>
+                  {/* List item */}
+                  {products?.map((product, key) => (
+                    <>
+                      <ListItem
+                        secondaryAction={
+                          <Button 
+                          // disabled={isSaving}
+                          onClick={() => addProductToCart(product)}
+                          type="submit" size="large" endIcon={<AddCircleIcon />} style={{ backgroundColor:"#2587da", color:"#ffffff" }}  variant="contained">
+                            Add
+                          </Button>
+                        }
+                      >
+                        <ListItemAvatar>
+                          <Avatar>
+                            <ShoppingCartCheckoutIcon />
+                          </Avatar>
+                        </ListItemAvatar>
 
-              {/* Registration date */}
-              <TextField
-                id="date"
-                label="Registration Date"
-                type="date"
-                name="registration_date"
-                defaultValue={currentDate}
-                InputLabelProps={{
-                  shrink: true
-                }}
-                sx={{ gridColumn: "span 2" }}
-              />
+                        <ListItemText
+                          primary={product.product_name}
+                          secondary={secondary ? "Secondary text" : null}
+                        />
 
-              {/* Renewal date */}
-              <TextField
-                  id="date"
-                  label="Renewal Date"
-                  type="date"
-                  name="registration_date"
-                  defaultValue={currentDate}
-                  InputLabelProps={{
-                    shrink: true
-                  }}
-                  sx={{ gridColumn: "span 2" }}
-                />
+                        <ListItemText
+                          primary= {product.product_selling_price}
+                          secondary={secondary ? "Secondary text" : null}
+                        />
+                        
+                      </ListItem>
 
-              {/* Sale serial number */}
-             <TextField
-                fullWidth
-                type="text"
-                label="Sale Serial Number"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.organization}
-                name="organization"
-                error={!!touched.organization && !!errors.organization}
-                helperText={touched.organization && errors.organization}
-                sx={{ gridColumn: "span 2" }}
-              />
+                      <Divider
+                        style={{ marginBottom: "10px", marginTop: "10px" }}
+                      />
+                    </>
+                  ))}
+                  {/* End List item */}
+                </List>
+          
 
+              {/* END OF LIST */}
+            </Grid>
 
-              {/* Client */}
-              <FormControl  fullWidth sx={{ gridColumn: "span 2" }}>
-                <InputLabel id="demo-simple-select-label">Select Client</InputLabel>
-                <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  value={client}
-                  label="Select Client"
-                  onChange={handleChangeClient}
-                >
-                  <MenuItem value={10}>Client one</MenuItem>
-                  <MenuItem value={20}>Client 2</MenuItem>
-                  <MenuItem value={30}>Client 3</MenuItem>
-                </Select>
-              </FormControl>
+            {/* right column */}
+            <Grid item xs={7} >
+              {/* TOP SECTION LEFT */}
 
-              {/* Hosting provider */}
-              <FormControl  fullWidth sx={{ gridColumn: "span 2" }}>
-                <InputLabel id="demo-simple-select-label">Select Hosting provider</InputLabel>
-                <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  value={client}
-                  label="Select Hosting provider"
-                  onChange={handleChangeClient}
-                >
-                  <MenuItem value={10}>Asura hosting</MenuItem>
-                  <MenuItem value={20}>Namecheap</MenuItem>
-                </Select>
-              </FormControl>
-
-                {/* sale status */}
-              <FormControl  fullWidth sx={{ gridColumn: "span 2" }}>
-                <InputLabel id="demo-simple-select-label">Select Sale Status</InputLabel>
-                <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  value={client}
-                  label="Select Sale Status"
-                  onChange={handleChangeClient}
-                >
-                  <MenuItem value={10}>Pending</MenuItem>
-                  <MenuItem value={20}>Complete</MenuItem>
-                </Select>
-              </FormControl>
-
-               {/* service status */}
-              <FormControl  fullWidth sx={{ gridColumn: "span 2" }}>
-                <InputLabel id="demo-simple-select-label">Select Service Status</InputLabel>
-                <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  value={client}
-                  label="Select Service Status"
-                  onChange={handleChangeClient}
-                >
-                  <MenuItem value={10}>Active</MenuItem>
-                  <MenuItem value={20}>Inactive</MenuItem>
-                </Select>
-              </FormControl>
-
-               {/* product name */}
-                <TextField
-                fullWidth
-                type="text"
-                label="Select Product Name"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.address}
-                name="address"
-                error={!!touched.address && !!errors.address}
-                helperText={touched.address && errors.address}
-                sx={{ gridColumn: "span 2" }}
-              />
-
-              {/* Storage space */}
-              <FormControl  fullWidth sx={{ gridColumn: "span 2" }}>
-                <InputLabel id="demo-simple-select-label">Select Storage Space</InputLabel>
-                <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  value={client}
-                  label="Select Storage Space"
-                  onChange={handleChangeClient}
-                >
-                  <MenuItem value={10}>5 GB</MenuItem>
-                  <MenuItem value={20}>10 GB</MenuItem>
-                  <MenuItem value={20}>20 GB</MenuItem>
-                </Select>
-              </FormControl>
-
-              {/* domain name cost */}
-              <TextField
-                fullWidth
-                type="text"
-                label="Domain Name Cost"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.address}
-                name="address"
-                error={!!touched.address && !!errors.address}
-                helperText={touched.address && errors.address}
-                sx={{ gridColumn: "span 2" }}
-              />
-
-              {/* hosting cost */}
-              <TextField
-                fullWidth
-                type="text"
-                label="Hosting Cost"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.address}
-                name="address"
-                error={!!touched.address && !!errors.address}
-                helperText={touched.address && errors.address}
-                sx={{ gridColumn: "span 2" }}
-              />
-
-              {/* total cost */}
-              <TextField
-                fullWidth
-                type="text"
-                label="Total Cost"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.address}
-                name="address"
-                error={!!touched.address && !!errors.address}
-                helperText={touched.address && errors.address}
-                sx={{ gridColumn: "span 2" }}
-              />
-
-              {/* balance */}
-              <TextField
-                fullWidth
-                type="text"
-                label="Balance"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.address}
-                name="address"
-                error={!!touched.address && !!errors.address}
-                helperText={touched.address && errors.address}
-                sx={{ gridColumn: "span 2" }}
-              />
-
-              {/* payment status */}
-              <FormControl  fullWidth sx={{ gridColumn: "span 2" }}>
-                <InputLabel id="demo-simple-select-label">Select Payment Status</InputLabel>
-                <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  value={client}
-                  label="Select Payment Status"
-                  onChange={handleChangeClient}
-                >
-                  <MenuItem value={10}>Partial Payment</MenuItem>
-                  <MenuItem value={20}>Full Payment</MenuItem>
-                  <MenuItem value={20}>Pending</MenuItem>
-                </Select>
-              </FormControl>
-
-              {/* sale recorded by */}
-              <TextField
-                fullWidth
-                type="text"
-                label="Sale Recorded By"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.address}
-                name="address"
-                error={!!touched.address && !!errors.address}
-                helperText={touched.address && errors.address}
-                sx={{ gridColumn: "span 2" }}
-              />
+              <Paper elevation={2} style={{  backgroundColor: "#0faa50",padding: "1rem 0px" }}>
+                  <MuiTable >
+                    <TableHead style={{  backgroundColor: "#0faa50", color:"#ffffff" }} >
+                      <TableRow >
+                      <TableCell style={{  color:"#ffffff" }}>#</TableCell>
+                        <TableCell  style={{  color:"#ffffff" }}>Name</TableCell>
+                        <TableCell style={{  color:"#ffffff" }}>Price</TableCell>
+                        <TableCell style={{  color:"#ffffff" }}>Qty</TableCell>
+                        <TableCell style={{  color:"#ffffff" }}>Total</TableCell>
+                        <TableCell style={{  color:"#ffffff" }}>Action</TableCell>
+                      </TableRow>
+                    </TableHead>
 
 
-              {/* business address */}
-              <TextField
-                fullWidth
-                type="text"
-                label="Business Address"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.address}
-                name="address"
-                error={!!touched.address && !!errors.address}
-                helperText={touched.address && errors.address}
-                sx={{ gridColumn: "span 2" }}
-              />
+                    <TableBody>
+                    {/* { cart ? cart.map((cartProduct, key) => <tr key={key}> */}
+                      {cart.map((cartProduct, index) => (
+                        
+                        <TableRow key={index} style={{ backgroundColor: "#ffffff", }}>
+                        <TableCell>{'#' + ' ' + cartProduct.id}</TableCell>
+                          <TableCell>{cartProduct.product_name}</TableCell>
+                          <TableCell>{cartProduct.product_selling_price}</TableCell>
+                          <TableCell>{cartProduct.quantity}</TableCell>
+                          <TableCell>{cartProduct.totalAmount}</TableCell>
+                          <TableCell>
+                          <DeleteOutlinedIcon style={{ color: "red" }} onClick={()=>  removeProduct(cartProduct) } />
+                          </TableCell>
+                        </TableRow>
+                      ) ) } 
+                      
+                    </TableBody>
 
-             {/* description */}
-              <TextField
-                fullWidth
-                // style={{ width:"100%" }}
-                type="text"
-                multiline
-                rows={5}
-                label="Description"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.description}
-                name="description"
-                error={!!touched.description && !!errors.description}
-                helperText={touched.description && errors.description}
-                sx={{ gridColumn: "span 4" }}
-              />
 
-            </Box>
+                  </MuiTable>
+                </Paper>
 
-            {/* submit button */}
-            <Box display="flex" justifyContent="start" mt="30px">
-              <Button type="submit" size="large" endIcon={<SendIcon />} style={{ backgroundColor:"#6ce4fe" }} color="secondary" variant="contained">
-                Add New Sale
-              </Button>
-            </Box>
-          </form>
-        )}
-      </Formik>
+                {/* Summary data */}
+         
+                {/* style={{ backgroundColor: "#0faa50", color: "#FFFFFF" }} */}
+                <List dense={dense} style={{ marginTop:'20px', borderRadius:'40px', backgroundColor: "#0faa50", }}>
+                  {/* List item */}
+                 
+                    <>
+                      <ListItem
+                        secondaryAction={
+                          <Button 
+                          // disabled={isSaving}
+                          // onClick={() => addProductToCart(product)}
+                          type="submit" size="large" endIcon={<TaskAltIcon />} style={{ backgroundColor:"#2587da",borderRadius:'40px', color:"#ffffff" }}  variant="contained">
+                            {'UGX' + ' ' + totalAmount}
+                          </Button>
+                        }
+                      >
+                        <ListItemAvatar>
+                          <Avatar style={{ backgroundColor: "#ffffff", }}>
+                            <ShoppingCartCheckoutIcon style={{ color: "#2587da", }} />
+                          </Avatar>
+                        </ListItemAvatar>
+
+                        <ListItemText
+                          primary='GRAND TOTAL'
+                          style={{ color: "#ffffff", }} 
+                          // secondary={secondary ? "Secondary text" : null}
+                        />
+
+                        
+                        
+                      </ListItem>
+
+                      {/* <Divider
+                        style={{ marginBottom: "10px", marginTop: "10px" }}
+                      /> */}
+                    </>
+               
+                  {/* End List item */}
+                </List>
+        
+
+              {/* End of summary */}
+             
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+               
+
+            
+  
+            </Grid>
+          </Grid>
+        </Box>
+      </Box>
     </Box>
   );
-};
-
-
-
-export default AddSale;
+}

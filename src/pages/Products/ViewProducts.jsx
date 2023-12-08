@@ -50,7 +50,6 @@ const ViewProducts = () => {
         parent_product_category_id : product_data.parent_product_category.parent_product_category_name || 'No Parent Category',
         product_category_id : product_data.product_category.product_category_name || 'No Product Category',
         unit_id : product_data.unit.unit_name || 'No Unit',
-
         product_created_date : product_data.product_created_date || 'No Created Date',
         product_expiry_date : product_data.product_expiry_date || 'No Expiry Date',
         product_name : product_data.product_name || 'No Product Name',
@@ -254,12 +253,12 @@ useEffect(() => {
             .then(function (response) {
                 Swal.fire({
                     icon: 'success',
-                    title: 'product Deleted Successfully!',
+                    title: 'Product Deleted Successfully!',
                     showConfirmButton: false,
                     timer: 1500
                 })
                 getproductsData()
-                console.log("product deleted", response.data.message)
+                console.log("Product Deleted", response.data.message)
             })
             // trigger sweet alerts on error
             .catch(function (error) {
